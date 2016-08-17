@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,7 @@ namespace ConstructIT.DAL.Models
         [Display(Name = "Prezime")]
         public String KorisnikPrezime { get; set; }
 
+        [Index(IsUnique = true)]
         [Required(ErrorMessage = "'E-Mail' ne sme biti neodređen!")]
         [RegularExpression(@"^[\w!#$%&'*+\-/=?\^_`{|}~]+(\.[\w!#$%&'*+\-/=?\^_`{|}~]+)*"
         + "@"

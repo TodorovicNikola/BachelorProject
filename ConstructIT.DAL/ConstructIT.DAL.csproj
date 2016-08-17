@@ -66,6 +66,10 @@
     <Compile Include="Migrations\201608171132534_floatToDouble.Designer.cs">
       <DependentUpon>201608171132534_floatToDouble.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201608171837052_KorisnikEmailUniqueIndex.cs" />
+    <Compile Include="Migrations\201608171837052_KorisnikEmailUniqueIndex.Designer.cs">
+      <DependentUpon>201608171837052_KorisnikEmailUniqueIndex.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DodelaMaterijala.cs" />
     <Compile Include="Models\EvidencijaAngazovanjaMasine.cs" />
@@ -106,6 +110,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201608171132534_floatToDouble.resx">
       <DependentUpon>201608171132534_floatToDouble.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608171837052_KorisnikEmailUniqueIndex.resx">
+      <DependentUpon>201608171837052_KorisnikEmailUniqueIndex.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

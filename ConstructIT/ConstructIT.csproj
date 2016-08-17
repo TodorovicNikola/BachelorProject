@@ -203,6 +203,7 @@
     <Compile Include="Controllers\MaterijalController.cs" />
     <Compile Include="Controllers\ProizvodniRadnikController.cs" />
     <Compile Include="Controllers\ProjekatController.cs" />
+    <Compile Include="Controllers\SessionController.cs" />
     <Compile Include="Controllers\StrukaController.cs" />
     <Compile Include="Controllers\TipMasineController.cs" />
     <Compile Include="Controllers\ZadatakController.cs" />
@@ -311,6 +312,7 @@
     <Content Include="Views\Zadatak\Details.cshtml" />
     <Content Include="Views\Zadatak\Edit.cshtml" />
     <Content Include="Views\Zadatak\Index.cshtml" />
+    <Content Include="Views\Session\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

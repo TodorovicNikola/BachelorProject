@@ -15,6 +15,21 @@ namespace ConstructIT.DAL.Migrations
 
         protected override void Seed(ConstructIT.DAL.ConstructITDBContext context)
         {/*
+            context.Korisnici.AddOrUpdate(
+                new Korisnik { KorisnikEMail = "nikola5tod@yahoo.com", KorisnikIme = "Nikola", KorisnikPrezime = "Todoroviæ", KorisnikLozinka = "nikola", KorisnikTip = "admin"},
+                new Korisnik { KorisnikEMail = "nenadtod@live.com", KorisnikIme = "Nenad", KorisnikPrezime = "Todoroviæ", KorisnikLozinka = "nenad", KorisnikTip = "tehnOsoblje" },
+                new Korisnik { KorisnikEMail = "pero@dummy.com", KorisnikIme = "Pero", KorisnikPrezime = "Todoroviæ", KorisnikLozinka = "pero", KorisnikTip = "tehnOsoblje" },
+                new Korisnik { KorisnikEMail = "marija@dummy", KorisnikIme = "Marija", KorisnikPrezime = "Todoroviæ Siteriæ", KorisnikLozinka = "marija", KorisnikTip = "tehnOsoblje" },
+                new Korisnik { KorisnikEMail = "branimir@dummy", KorisnikIme = "Branimir", KorisnikPrezime = "Todoroviæ", KorisnikLozinka = "branimir", KorisnikTip = "tehnOsoblje" },
+                new Korisnik { KorisnikEMail = "ana@dummy", KorisnikIme = "Ana", KorisnikPrezime = "Todoroviæ", KorisnikLozinka = "ana", KorisnikTip = "klijent" },
+                new Korisnik { KorisnikEMail = "nikolina@dummy", KorisnikIme = "Nikolina", KorisnikPrezime = "Vasiæ", KorisnikLozinka = "nikolina", KorisnikTip = "tehnOsoblje" },
+                new Korisnik { KorisnikEMail = "aleksandra@dummy", KorisnikIme = "Aleksandra", KorisnikPrezime = "Stupar", KorisnikLozinka = "aleksandra", KorisnikTip = "klijent" },
+                new Korisnik { KorisnikEMail = "babaAna@dummy", KorisnikIme = "Ana", KorisnikPrezime = "Siteriæ", KorisnikLozinka = "ana", KorisnikTip = "tehnOsoblje" }
+                );
+
+            context.SaveChanges();
+
+            
             context.Projekti.AddOrUpdate(
                 new Projekat { ProjekatNaziv = "Kolektor II", ProjekatKod = "KII", ProjekatOpis = "postea dissentiunt pri eu", ProjekatAdresa = "Bulevar oslobodjenja 15 Novi Sad" },
                 new Projekat { ProjekatNaziv = "Obnova Sokolskog doma", ProjekatKod = "OSD", ProjekatOpis = "lucilius constituam", ProjekatAdresa = "Kireska 4/6 Subotica" },
