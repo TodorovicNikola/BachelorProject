@@ -1,0 +1,52 @@
+﻿@model IEnumerable<ConstructIT.DAL.Models.Materijal>
+
+@{
+    ViewBag.Title = "Materijali";
+}
+
+<h2>Materijali</h2>
+
+<p>
+    @Html.ActionLink("Dodaj novi", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MaterijalNaziv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaterijalProizvodjac)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaterijalOpis)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaterijalRaspolozivaKolicina)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaterijalNaziv)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaterijalProizvodjac)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaterijalOpis)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaterijalRaspolozivaKolicina)
+        </td>
+        <td>
+            @Html.ActionLink("Izmeni", "Edit", new { id=item.MaterijalID }) |
+            @Html.ActionLink("Obriši", "Delete", new { id=item.MaterijalID })
+        </td>
+    </tr>
+}
+
+</table>
+
+

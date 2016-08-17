@@ -1,0 +1,81 @@
+﻿@model IEnumerable<ConstructIT.DAL.Models.ProizvodniRadnik>
+
+@{
+    ViewBag.Title = "Proizvodni radnici";
+}
+
+<h2>Proizvodni radnici</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProizvodniRadnikID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Struka.StrukaNaziv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProizRadIme)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProizRadPrezime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProizRadJMBG)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProizRadEMail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProizRadAdresa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProizRadTelKucni)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProizRadTelMob)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProizvodniRadnikID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Struka.StrukaNaziv)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProizRadIme)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProizRadPrezime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProizRadJMBG)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProizRadEMail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProizRadAdresa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProizRadTelKucni)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProizRadTelMob)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ProizvodniRadnikID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ProizvodniRadnikID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ProizvodniRadnikID })
+        </td>
+    </tr>
+}
+
+</table>

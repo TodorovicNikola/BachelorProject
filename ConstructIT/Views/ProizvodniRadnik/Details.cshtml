@@ -1,0 +1,82 @@
+﻿@model ConstructIT.DAL.Models.ProizvodniRadnik
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ProizvodniRadnik</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Struka.StrukaNaziv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Struka.StrukaNaziv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProizRadJMBG)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProizRadJMBG)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProizRadIme)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProizRadIme)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProizRadPrezime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProizRadPrezime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProizRadEMail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProizRadEMail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProizRadAdresa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProizRadAdresa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProizRadTelKucni)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProizRadTelKucni)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProizRadTelMob)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProizRadTelMob)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ProizvodniRadnikID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

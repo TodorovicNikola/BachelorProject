@@ -1,0 +1,105 @@
+﻿@model ConstructIT.DAL.Models.Projekat
+@using ConstructIT.DAL.Models
+
+@{
+    ViewBag.Title = Model.ProjekatNaziv;
+}
+
+<h2>
+    @Html.DisplayFor(model => model.ProjekatNaziv)
+</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ProjekatNaziv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProjekatNaziv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProjekatKod)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProjekatKod)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProjekatOpis)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProjekatOpis)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProjekatAdresa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProjekatAdresa)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ProjekatID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+<hr />
+
+<h4>Zadaci</h4>
+
+@{ var zadatak = new Zadatak(); }
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => zadatak.ZadatakNaziv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => zadatak.ZadatakDatumPocetka)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => zadatak.ZadatakDatumZavrsetka)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => zadatak.Prioritet.PrioritetNaziv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => zadatak.Status.StatusNaziv)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Zadaci)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(item.ZadatakNaziv, "Details", "Zadatak", new { id = item.ZadatakID }, null )
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ZadatakDatumPocetka)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ZadatakDatumZavrsetka)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prioritet.PrioritetNaziv)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status.StatusNaziv)
+            </td>
+            <td>
+                @Html.ActionLink("Delete", "Delete", "Zadatak", null, new { id = item.ZadatakID })
+            </td>
+        </tr>
+    }
+
+</table>
+

@@ -1,0 +1,50 @@
+﻿@model ConstructIT.DAL.Models.Masina
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Masina</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TipMasine.TipMasineNaziv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipMasine.TipMasineNaziv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MasinaProizvodjac)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MasinaProizvodjac)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MasinaOpis)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MasinaOpis)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MasinaDostupnaKolicina)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MasinaDostupnaKolicina)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MasinaID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

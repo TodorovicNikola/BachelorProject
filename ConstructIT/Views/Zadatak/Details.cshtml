@@ -1,0 +1,82 @@
+﻿@model ConstructIT.DAL.Models.Zadatak
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Zadatak</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.KorisnikKomJeDodeljen.KorisnikLozinka)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KorisnikKomJeDodeljen.KorisnikLozinka)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prioritet.PrioritetNaziv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prioritet.PrioritetNaziv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Projekat.ProjekatNaziv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Projekat.ProjekatNaziv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status.StatusNaziv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status.StatusNaziv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ZadatakNaziv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ZadatakNaziv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ZadatakDatumPocetka)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ZadatakDatumPocetka)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ZadatakDatumZavrsetka)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ZadatakDatumZavrsetka)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ZadatakOpis)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ZadatakOpis)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

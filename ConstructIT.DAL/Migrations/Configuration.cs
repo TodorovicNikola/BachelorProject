@@ -26,8 +26,8 @@ namespace ConstructIT.DAL.Migrations
             context.SaveChanges();
 
             context.Prioriteti.AddOrUpdate(
-                new Prioritet { PrioritetNaziv = "Blokirajuci", PrioritetTezina = 1.0f },
-                new Prioritet { PrioritetNaziv = "Kriticni", PrioritetTezina = 0.8f },
+                new Prioritet { PrioritetNaziv = "Blokirajuæi", PrioritetTezina = 1.0f },
+                new Prioritet { PrioritetNaziv = "Kritièni", PrioritetTezina = 0.8f },
                 new Prioritet { PrioritetNaziv = "Veliki", PrioritetTezina = 0.6f },
                 new Prioritet { PrioritetNaziv = "Mali", PrioritetTezina = 0.4f },
                 new Prioritet { PrioritetNaziv = "Trivijalni", PrioritetTezina = 0.2f }
@@ -38,13 +38,13 @@ namespace ConstructIT.DAL.Migrations
             context.Statusi.AddOrUpdate(
                 new Status { StatusNaziv = "Novo" },
                 new Status { StatusNaziv = "U toku" },
-                new Status { StatusNaziv = "Resen" },
+                new Status { StatusNaziv = "Rešen" },
                 new Status { StatusNaziv = "Obustavljen" },
                 new Status { StatusNaziv = "Blokiran" }
             );
 
             context.SaveChanges();
-            */
+            
             context.Zadaci.AddOrUpdate(
                 new Zadatak { ZadatakNaziv = "Rašèišæavanje terena", ProjekatID = 1, ZadatakDatumPocetka = DateTime.Now.AddDays(-8).Date, ZadatakDatumZavrsetka = DateTime.Today.AddDays(-6).Date, PrioritetID = 4, StatusID = 3, ZadatakOpis = " Ex eos harum nullam instructior. Iuvaret iracundia instructior te ius, summo placerat moderatius eam id. Viris sapientem vulputate vis et. Postea essent quaestio cum ei, viderer fabellas urbanitas at usu, dicant persius per id. Idque integre electram id est, pro lorem aperiri periculis et." },
                 new Zadatak { ZadatakNaziv = "Skidanje asfalta", ProjekatID = 1, ZadatakDatumPocetka = DateTime.Now.AddDays(-7).Date, ZadatakDatumZavrsetka = DateTime.Today.AddDays(-4).Date, PrioritetID = 4, StatusID = 3, ZadatakOpis = "Qui ut affert evertitur referrentur. Eam quis omnis tacimates in, no mei atqui clita posidonium, eam et sale lucilius eleifend. Magna ignota mentitum quo ea, eu sit magna numquam tincidunt. Euismod inimicus repudiandae est no, te animal dolorum ceteros eam, labitur accommodare qui te. Mutat libris mandamus ne quo, mei ad constituto accommodare." },
@@ -69,17 +69,17 @@ namespace ConstructIT.DAL.Migrations
 
             context.Materijali.AddOrUpdate(
                 new Materijal { MaterijalNaziv = "Cement", MaterijalOpis = "metus sit amet imperdiet maximus", MaterijalProizvodjac = "Hipopotamus", MaterijalRaspolozivaKolicina = 90.0f },
-                new Materijal { MaterijalNaziv = "Krec", MaterijalOpis = "Vivamus pharetra rhoncus dolor", MaterijalProizvodjac = "Puma", MaterijalRaspolozivaKolicina = 130.0f },
+                new Materijal { MaterijalNaziv = "Kreè", MaterijalOpis = "Vivamus pharetra rhoncus dolor", MaterijalProizvodjac = "Puma", MaterijalRaspolozivaKolicina = 130.0f },
                 new Materijal { MaterijalNaziv = "Farba osnovna", MaterijalOpis = "elementum justo nec", MaterijalProizvodjac = "Moler", MaterijalRaspolozivaKolicina = 180.0f },
                 new Materijal { MaterijalNaziv = "Cigla", MaterijalOpis = "vehicula arcu quam", MaterijalProizvodjac = "Zada", MaterijalRaspolozivaKolicina = 100.0f },
-                new Materijal { MaterijalNaziv = "Sljunak", MaterijalOpis = "Nullam imperdiet elit", MaterijalProizvodjac = "Zada", MaterijalRaspolozivaKolicina = 300.0f },
-                new Materijal { MaterijalNaziv = "Sperploca", MaterijalOpis = "metus sit amet imperdiet maximus", MaterijalProizvodjac = "Puma", MaterijalRaspolozivaKolicina = 15.0f },
+                new Materijal { MaterijalNaziv = "Šljunak", MaterijalOpis = "Nullam imperdiet elit", MaterijalProizvodjac = "Zada", MaterijalRaspolozivaKolicina = 300.0f },
+                new Materijal { MaterijalNaziv = "Šperploèa", MaterijalOpis = "metus sit amet imperdiet maximus", MaterijalProizvodjac = "Puma", MaterijalRaspolozivaKolicina = 15.0f },
                 new Materijal { MaterijalNaziv = "Git", MaterijalOpis = "elementum justo nec", MaterijalProizvodjac = "Hipopotamus", MaterijalRaspolozivaKolicina = 10.0f },
                 new Materijal { MaterijalNaziv = "Silikon", MaterijalOpis = "raesent sed vehicula mauris", MaterijalProizvodjac = "Zada", MaterijalRaspolozivaKolicina = 250.0f },
                 new Materijal { MaterijalNaziv = "Malter", MaterijalOpis = "Vivamus pharetra rhoncus dolor", MaterijalProizvodjac = "Moler", MaterijalRaspolozivaKolicina = 400.0f },
                 new Materijal { MaterijalNaziv = "Gips", MaterijalOpis = "vehicula arcu quam", MaterijalProizvodjac = "Zada", MaterijalRaspolozivaKolicina = 200.0f },
-                new Materijal { MaterijalNaziv = "Drvene ploce 35x15", MaterijalOpis = "metus sit amet imperdiet maximus", MaterijalProizvodjac = "Hipopotamus", MaterijalRaspolozivaKolicina = 85.0f },
-                new Materijal { MaterijalNaziv = "Saraf 3cm", MaterijalOpis = "Nullam imperdiet elit", MaterijalProizvodjac = "Moler", MaterijalRaspolozivaKolicina = 80.0f },
+                new Materijal { MaterijalNaziv = "Drvene ploèe 35x15", MaterijalOpis = "metus sit amet imperdiet maximus", MaterijalProizvodjac = "Hipopotamus", MaterijalRaspolozivaKolicina = 85.0f },
+                new Materijal { MaterijalNaziv = "Šaraf 3cm", MaterijalOpis = "Nullam imperdiet elit", MaterijalProizvodjac = "Moler", MaterijalRaspolozivaKolicina = 80.0f },
                 new Materijal { MaterijalNaziv = "Ekser 5cm", MaterijalOpis = "Vivamus pharetra rhoncus dolor", MaterijalProizvodjac = "Puma", MaterijalRaspolozivaKolicina = 250.0f },
                 new Materijal { MaterijalNaziv = "Pur pena", MaterijalOpis = "raesent sed vehicula mauris", MaterijalProizvodjac = "Hipopotamus", MaterijalRaspolozivaKolicina = 60.0f }
             );
@@ -88,10 +88,10 @@ namespace ConstructIT.DAL.Migrations
 
             context.Struke.AddOrUpdate(
                 new Struka { StrukaNaziv = "Moler" },
-                new Struka { StrukaNaziv = "Zavarivac" },
+                new Struka { StrukaNaziv = "Zavarivaè" },
                 new Struka { StrukaNaziv = "Bravar" },
                 new Struka { StrukaNaziv = "Tesar" },
-                new Struka { StrukaNaziv = "Ispomoc" },
+                new Struka { StrukaNaziv = "Ispomoæ" },
                 new Struka { StrukaNaziv = "Zidar" }
             );
 
@@ -152,7 +152,7 @@ namespace ConstructIT.DAL.Migrations
             );
 
             context.SaveChanges();
-
+            */
         }
     }
 }

@@ -39,7 +39,7 @@ namespace ConstructIT.DAL.Models
 
         [Required(ErrorMessage = "'Potrebna količina' ne sme biti neodređena!")]
         [Display(Name = "Potrebna količina")]
-        public float PotrMatKolicina { get; set; }
+        public double PotrMatKolicina { get; set; }
 
 
         public virtual Zadatak Zadatak { get; set; }

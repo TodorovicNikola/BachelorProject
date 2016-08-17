@@ -62,6 +62,10 @@
     <Compile Include="Migrations\201608170940324_unmandatoryNullsTurnedNullable.Designer.cs">
       <DependentUpon>201608170940324_unmandatoryNullsTurnedNullable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201608171132534_floatToDouble.cs" />
+    <Compile Include="Migrations\201608171132534_floatToDouble.Designer.cs">
+      <DependentUpon>201608171132534_floatToDouble.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DodelaMaterijala.cs" />
     <Compile Include="Models\EvidencijaAngazovanjaMasine.cs" />
@@ -99,6 +103,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201608170940324_unmandatoryNullsTurnedNullable.resx">
       <DependentUpon>201608170940324_unmandatoryNullsTurnedNullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608171132534_floatToDouble.resx">
+      <DependentUpon>201608171132534_floatToDouble.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

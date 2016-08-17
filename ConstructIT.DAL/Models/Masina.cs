@@ -17,6 +17,7 @@ namespace ConstructIT.DAL.Models
         public String MasinaProizvodjac { get; set; }
 
         [StringLength(1024, ErrorMessage = "'Opis Mašine' ne sme biti duži od 1024 karaktera!")]
+        [Display(Name = "Opis mašine")]
         public String MasinaOpis { get; set; }
 
         [ForeignKey("TipMasine")]

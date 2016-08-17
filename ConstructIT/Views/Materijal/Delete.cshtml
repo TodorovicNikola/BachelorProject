@@ -1,0 +1,56 @@
+﻿@model ConstructIT.DAL.Models.Materijal
+
+@{
+    ViewBag.Title = "Brisanje masine";
+}
+
+<h2>Brisanje mašine</h2>
+
+<h3>Da li ste sigurni da želite da obrišete?</h3>
+<div>
+    <h4>Materijal</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MaterijalNaziv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaterijalNaziv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaterijalProizvodjac)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaterijalProizvodjac)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaterijalOpis)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaterijalOpis)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaterijalRaspolozivaKolicina)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaterijalRaspolozivaKolicina)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Obriši" class="btn btn-default" /> |
+            @Html.ActionLink("Nazad", "Index")
+        </div>
+    }
+</div>

@@ -11,18 +11,21 @@ namespace ConstructIT.DAL.Models
     {
         public int MaterijalID { get; set; }
 
-        [StringLength(64, ErrorMessage = "'Naziv Materijala' ne sme biti duži od 64 karaktera!"), Required(ErrorMessage = "'Naziv Materijala' ne sme biti prazan!")]
+        [StringLength(64, ErrorMessage = "'Naziv materijala' ne sme biti duži od 64 karaktera!"), Required(ErrorMessage = "'Naziv materijala' ne sme biti prazan!")]
+        [Display(Name = "Naziv materijala")]
         public String MaterijalNaziv { get; set; }
 
-        [StringLength(64, ErrorMessage = "'Naziv Proizvođača' ne sme biti duži od 64 karaktera!"), Required(ErrorMessage = "'Naziv Proizvođača' ne sme biti prazan!")]
+        [StringLength(64, ErrorMessage = "'Proizvođač' ne sme biti duži od 64 karaktera!"), Required(ErrorMessage = "'Proizvođač' ne sme biti prazan!")]
+        [Display(Name = "Proizvođač")]
         public String MaterijalProizvodjac { get; set; }
 
-        [StringLength(1024, ErrorMessage = "'Opis' ne sme biti duži od 1024 karaktera!")]
+        [StringLength(1024, ErrorMessage = "'Opis materijala' ne sme biti duži od 1024 karaktera!")]
+        [Display(Name = "Opis materijala")]
         public String MaterijalOpis { get; set; }
 
         [Display(Name = "Raspoloživa količina")]
         [Required(ErrorMessage = "'Raspoloživa količina' ne sme biti neodređena!")]
-        public float MaterijalRaspolozivaKolicina { get; set; }
+        public double MaterijalRaspolozivaKolicina { get; set; }
 
 
         public ICollection<PotrebaMaterijala> PotrebeMaterijala { get; set; }
