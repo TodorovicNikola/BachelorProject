@@ -44,11 +44,12 @@ namespace ConstructIT.DAL.Models
         public DateTime PZ_VremeIzmene { get; set; }
 
         [ForeignKey("Status")]
-        public int PZ_StatusID { get; set; }
+        public int? PZ_StatusID { get; set; }
 
         [ForeignKey("Prioritet")]
-        public int PZ_PrioritetID { get; set; }
+        public int? PZ_PrioritetID { get; set; }
 
+        [Required]
         [ForeignKey("KorisnikKojiJeIzmenio")]
         public int PZ_KorisnikID { get; set; }
 

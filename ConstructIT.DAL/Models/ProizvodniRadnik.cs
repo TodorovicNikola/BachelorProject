@@ -39,12 +39,12 @@ namespace ConstructIT.DAL.Models
         [RegularExpression(@"^\+?(\d[\d-. ]+)?(\([\d-. ]+\))?[\d-. ]+\d$", ErrorMessage = "Nepravilan unos za 'Telefon-kućni'!")]
         [StringLength(32, ErrorMessage = "'Telefon-kućni' ne sme biti duži od 32 karaktera!")]
         [Display(Name = "Telefon-kućni")]
-        public String TelefonKucni { get; set; }
+        public String ProizRadTelKucni { get; set; }
 
         [RegularExpression(@"^\+?(\d[\d-. ]+)?(\([\d-. ]+\))?[\d-. ]+\d$", ErrorMessage = "Nepravilan unos za 'Telefon-mobilni'!")]
         [StringLength(32, ErrorMessage = "'Telefon-mobilni' ne sme biti duži od 32 karaktera!")]
         [Display(Name = "Telefon-mobilni")]
-        public String TelefonMobilni { get; set; }
+        public String ProizRadTelMob { get; set; }
 
         [ForeignKey("Struka")]
         [Required(ErrorMessage = "'Struka' ne sme biti prazna!")]

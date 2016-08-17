@@ -20,21 +20,25 @@ namespace ConstructIT.DAL.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ZadatakID { get; set; }
 
-        [StringLength(128, ErrorMessage = "'Naziv Zadatka' ne sme biti duži od 64 karaktera!"), Required(ErrorMessage = "'Naziv Zadatka' ne sme biti prazan!")]
+        [StringLength(128, ErrorMessage = "'Naziv zadatka' ne sme biti duži od 64 karaktera!"), Required(ErrorMessage = "'Naziv zadatka' ne sme biti prazan!")]
         [Display(Name = "Naziv zadatka")]
         public String ZadatakNaziv { get; set; }
 
         [DataType(DataType.Date)]
-        [Required(ErrorMessage = "'Datum Početka' ne sme biti prazan!")]
-        [Display(Name = "Datum Početka")]
+        [Required(ErrorMessage = "'Datum početka' ne sme biti prazan!")]
+        [Display(Name = "Datum početka")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime ZadatakDatumPocetka { get; set; }
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        [Required(ErrorMessage = "'Datum Završetka' ne sme biti prazan!")]
-        [Display(Name = "Datum Završetka")]
+        [Required(ErrorMessage = "'Datum završetka' ne sme biti prazan!")]
+        [Display(Name = "Datum završetka")]
         public DateTime ZadatakDatumZavrsetka { get; set; }
+
+        [StringLength(2048, ErrorMessage = "'Opis zadatka' ne sme biti duži od 2048 karaktera!"), Required(ErrorMessage = "'Opis zadatka' ne sme biti prazan!")]
+        [Display(Name = "Opis zadatka")]
+        public String ZadatakOpis { get; set; }
 
         [Required]
         [ForeignKey("Status")]
@@ -45,7 +49,7 @@ namespace ConstructIT.DAL.Models
         public int PrioritetID { get; set; }
 
         [ForeignKey("KorisnikKomJeDodeljen")]
-        public int KorisnikID { get; set; }
+        public int? KorisnikID { get; set; }
 
 
         [ForeignKey("ProjekatID")]

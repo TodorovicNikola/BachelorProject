@@ -3,7 +3,7 @@ namespace ConstructIT.DAL.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class init : DbMigration
+    public partial class initSeed : DbMigration
     {
         public override void Up()
         {
@@ -61,6 +61,7 @@ namespace ConstructIT.DAL.Migrations
                         ZadatakNaziv = c.String(nullable: false, maxLength: 128),
                         ZadatakDatumPocetka = c.DateTime(nullable: false),
                         ZadatakDatumZavrsetka = c.DateTime(nullable: false),
+                        ZadatakOpis = c.String(nullable: false, maxLength: 128),
                         StatusID = c.Int(nullable: false),
                         PrioritetID = c.Int(nullable: false),
                         KorisnikID = c.Int(nullable: false),
@@ -98,10 +99,8 @@ namespace ConstructIT.DAL.Migrations
                 c => new
                     {
                         MasinaID = c.Int(nullable: false, identity: true),
-                        MasinaNaziv = c.String(nullable: false, maxLength: 128),
                         MasinaProizvodjac = c.String(nullable: false, maxLength: 128),
-                        MasinaSifra = c.String(maxLength: 64),
-                        Opis = c.String(maxLength: 1024),
+                        MasinaOpis = c.String(maxLength: 1024),
                         TipMasineID = c.Int(nullable: false),
                         MasinaDostupnaKolicina = c.Int(nullable: false),
                     })
@@ -163,8 +162,8 @@ namespace ConstructIT.DAL.Migrations
                         ProizRadPrezime = c.String(nullable: false, maxLength: 64),
                         ProizRadEMail = c.String(maxLength: 64),
                         ProizRadAdresa = c.String(maxLength: 64),
-                        TelefonKucni = c.String(maxLength: 32),
-                        TelefonMobilni = c.String(maxLength: 32),
+                        ProizRadTelKucni = c.String(maxLength: 32),
+                        ProizRadTelMob = c.String(maxLength: 32),
                         StrukaID = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ProizvodniRadnikID)
