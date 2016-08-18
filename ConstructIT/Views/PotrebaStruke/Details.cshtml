@@ -1,0 +1,58 @@
+﻿@model ConstructIT.DAL.Models.PotrebaStruke
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PotrebaStruke</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Struka.StrukaNaziv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Struka.StrukaNaziv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Zadatak.ZadatakNaziv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Zadatak.ZadatakNaziv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PotrebaStrukeOdDatuma)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PotrebaStrukeOdDatuma)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PotrebaStrukeDoDatuma)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PotrebaStrukeDoDatuma)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PotrebaStrukeKolicina)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PotrebaStrukeKolicina)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PotrebaStrukeID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

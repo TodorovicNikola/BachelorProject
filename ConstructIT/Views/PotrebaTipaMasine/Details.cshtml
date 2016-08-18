@@ -1,0 +1,58 @@
+﻿@model ConstructIT.DAL.Models.PotrebaTipaMasine
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PotrebaTipaMasine</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TipMasine.TipMasineNaziv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipMasine.TipMasineNaziv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Zadatak.ZadatakNaziv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Zadatak.ZadatakNaziv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PotrTipaMasOdDatuma)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PotrTipaMasOdDatuma)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PotrTipaMasDoDatuma)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PotrTipaMasDoDatuma)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PotrTipaMasKolicina)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PotrTipaMasKolicina)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PotrebaTipaMasineID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

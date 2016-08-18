@@ -1,0 +1,42 @@
+﻿@model ConstructIT.DAL.Models.PotrebaMaterijala
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PotrebaMaterijala</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Materijal.MaterijalNaziv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Materijal.MaterijalNaziv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Zadatak.ZadatakNaziv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Zadatak.ZadatakNaziv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PotrMatKolicina)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PotrMatKolicina)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

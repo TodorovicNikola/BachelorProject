@@ -30,7 +30,7 @@ namespace ConstructIT.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Zadatak zadatak = await db.Zadaci.Include(z => z.PotrebeMaterijala).Include(z => z.PotrebeStruka).Include(z => z.PotrebeTipovaMasina).Where(z => z.ZadatakID == id).FirstOrDefaultAsync();
+            Zadatak zadatak = await db.Zadaci.Include(z => z.PotrebeMaterijala).Include(z => z.PotrebeStruka).Include(z => z.PotrebeTipovaMasina).Include(z => z.KomentariNaZadatak).Include(z => z.PromeneZadatka).Where(z => z.ZadatakID == id).FirstOrDefaultAsync();
             if (zadatak == null)
             {
                 return HttpNotFound();

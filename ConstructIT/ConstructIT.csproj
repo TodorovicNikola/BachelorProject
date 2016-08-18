@@ -201,6 +201,9 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MasinaController.cs" />
     <Compile Include="Controllers\MaterijalController.cs" />
+    <Compile Include="Controllers\PotrebaMaterijalaController.cs" />
+    <Compile Include="Controllers\PotrebaStrukeController.cs" />
+    <Compile Include="Controllers\PotrebaTipaMasineController.cs" />
     <Compile Include="Controllers\ProizvodniRadnikController.cs" />
     <Compile Include="Controllers\ProjekatController.cs" />
     <Compile Include="Controllers\SessionController.cs" />
@@ -313,6 +316,21 @@
     <Content Include="Views\Zadatak\Edit.cshtml" />
     <Content Include="Views\Zadatak\Index.cshtml" />
     <Content Include="Views\Session\Login.cshtml" />
+    <Content Include="Views\PotrebaMaterijala\Create.cshtml" />
+    <Content Include="Views\PotrebaMaterijala\Delete.cshtml" />
+    <Content Include="Views\PotrebaMaterijala\Details.cshtml" />
+    <Content Include="Views\PotrebaMaterijala\Edit.cshtml" />
+    <Content Include="Views\PotrebaMaterijala\Index.cshtml" />
+    <Content Include="Views\PotrebaTipaMasine\Create.cshtml" />
+    <Content Include="Views\PotrebaTipaMasine\Delete.cshtml" />
+    <Content Include="Views\PotrebaTipaMasine\Details.cshtml" />
+    <Content Include="Views\PotrebaTipaMasine\Edit.cshtml" />
+    <Content Include="Views\PotrebaTipaMasine\Index.cshtml" />
+    <Content Include="Views\PotrebaStruke\Create.cshtml" />
+    <Content Include="Views\PotrebaStruke\Delete.cshtml" />
+    <Content Include="Views\PotrebaStruke\Details.cshtml" />
+    <Content Include="Views\PotrebaStruke\Edit.cshtml" />
+    <Content Include="Views\PotrebaStruke\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

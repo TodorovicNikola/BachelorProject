@@ -1,0 +1,57 @@
+﻿@model IEnumerable<ConstructIT.DAL.Models.PotrebaStruke>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Struka.StrukaNaziv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Zadatak.ZadatakNaziv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PotrebaStrukeOdDatuma)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PotrebaStrukeDoDatuma)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PotrebaStrukeKolicina)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Struka.StrukaNaziv)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Zadatak.ZadatakNaziv)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PotrebaStrukeOdDatuma)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PotrebaStrukeDoDatuma)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PotrebaStrukeKolicina)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PotrebaStrukeID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PotrebaStrukeID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PotrebaStrukeID })
+        </td>
+    </tr>
+}
+
+</table>

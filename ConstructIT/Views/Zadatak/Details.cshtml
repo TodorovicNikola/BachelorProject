@@ -1,82 +1,96 @@
 ﻿@model ConstructIT.DAL.Models.Zadatak
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Zadatak " + @Html.DisplayFor(model => model.ZadatakNaziv);
 }
 
-<h2>Details</h2>
+<h2>Zadatak - @Html.DisplayFor(model => model.ZadatakNaziv)</h2> 
 
 <div>
-    <h4>Zadatak</h4>
+    <h4 style="padding-left:3%">Projekat - @Html.DisplayFor(model => model.Projekat.ProjekatNaziv)</h4>
+    @Html.ActionLink("Izmeni", "Edit", new { /* id = Model.PrimaryKey */ }, new { @style="position:relative; float:right; top: -10px; right:5%;"})
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.KorisnikKomJeDodeljen.KorisnikLozinka)
-        </dt>
+    <div style="position:relative; float:left; left:5%">
 
-        <dd>
-            @Html.DisplayFor(model => model.KorisnikKomJeDodeljen.KorisnikLozinka)
-        </dd>
+        <blockquote>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Prioritet.PrioritetNaziv)
-        </dt>
+            @Html.DisplayNameFor(model => model.ZadatakDatumPocetka):
 
-        <dd>
-            @Html.DisplayFor(model => model.Prioritet.PrioritetNaziv)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Projekat.ProjekatNaziv)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Projekat.ProjekatNaziv)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Status.StatusNaziv)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Status.StatusNaziv)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ZadatakNaziv)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ZadatakNaziv)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ZadatakDatumPocetka)
-        </dt>
-
-        <dd>
             @Html.DisplayFor(model => model.ZadatakDatumPocetka)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ZadatakDatumZavrsetka)
-        </dt>
+        </blockquote>
+        <blockquote>
+            @Html.DisplayNameFor(model => model.ZadatakDatumZavrsetka):
 
-        <dd>
             @Html.DisplayFor(model => model.ZadatakDatumZavrsetka)
-        </dd>
+        </blockquote>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ZadatakOpis)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ZadatakOpis)
-        </dd>
-
-    </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+    <div style="position:relative; float:right; right:20%">
+
+            <blockquote>
+
+                @Html.DisplayNameFor(model => model.Prioritet.PrioritetNaziv):
+
+                @Html.DisplayFor(model => model.Prioritet.PrioritetNaziv)
+
+            </blockquote>
+            <blockquote>
+                @Html.DisplayNameFor(model => model.Status.StatusNaziv):
+
+                @Html.DisplayFor(model => model.Status.StatusNaziv)
+            </blockquote>
+
+    </div>
+    <div style="clear:both"></div>
+    <div style="margin-left:10%; margin-right:10%;">
+
+        <h4>@Html.DisplayNameFor(model => model.ZadatakOpis)</h4>
+
+        <p>@Html.DisplayFor(model => model.ZadatakOpis)</p>
+
+    </div>
+</div>
+<hr />
+<ul class="nav nav-tabs">
+    <li class="dropdown active">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+            O zadatku <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+            <li class="active"><a href="#komentari" data-toggle="tab" aria-expanded="true">Komentari</a></li>
+            <li class="divider"></li>
+            <li class=""><a href="#promene" data-toggle="tab" aria-expanded="false">Promene</a></li>
+        </ul>
+    </li>
+    <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+            Potrebe zadatka <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+            <li class=""><a href="#proizvRadn" data-toggle="tab" aria-expanded="false">Proizvodni radnici</a></li>
+            <li class="divider"></li>
+            <li class=""><a href="#masine" data-toggle="tab" aria-expanded="false">Mašine</a></li>
+            <li class="divider"></li>
+            <li class=""><a href="#materijali" data-toggle="tab" aria-expanded="false">Materijali</a></li>
+        </ul>
+    </li>
+</ul>
+<div id="myTabContent" class="tab-content">
+    <div class="tab-pane fade  active in" id="komentari">
+        
+    </div>
+    <div class="tab-pane fade" id="promene">
+        <p>promene fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater.</p>
+    </div>
+    <div class="tab-pane fade" id="proizvRadn">
+        <p>proizvRadn mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork.</p>
+    </div>
+    <div class="tab-pane fade" id="masine">
+        <p>masine fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater.</p>
+    </div>
+    <div class="tab-pane fade" id="materijali">
+        <p>materijali mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork.</p>
+    </div>
+</div>
