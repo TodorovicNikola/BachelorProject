@@ -7,13 +7,13 @@ namespace ConstructIT.DAL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class unmandatoryNullsTurnedNullable : IMigrationMetadata
+    public sealed partial class init : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(unmandatoryNullsTurnedNullable));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(init));
         
         string IMigrationMetadata.Id
         {
-            get { return "201608170940324_unmandatoryNullsTurnedNullable"; }
+            get { return "201609091105237_init"; }
         }
         
         string IMigrationMetadata.Source
