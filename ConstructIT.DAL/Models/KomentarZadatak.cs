@@ -30,6 +30,7 @@ namespace ConstructIT.DAL.Models
         [Display(Name = "Naslov komentara")]
         public String KomentarZadatakNaslov { get; set; }
 
+        [DataType(DataType.MultilineText)]
         [Required(ErrorMessage = "'Sadržaj komentara' ne sme biti neodređen!")]
         [StringLength(1024, ErrorMessage = "'Sadržaj komentara' ne sme biti duži od 1024 karaktera!")]
         [Display(Name = "Sadržaj komentara")]
