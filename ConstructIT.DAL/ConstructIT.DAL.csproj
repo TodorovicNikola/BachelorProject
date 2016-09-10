@@ -54,6 +54,14 @@
     <Compile Include="Migrations\201609091105237_init.Designer.cs">
       <DependentUpon>201609091105237_init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609091333211_rename.cs" />
+    <Compile Include="Migrations\201609091333211_rename.Designer.cs">
+      <DependentUpon>201609091333211_rename.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609100935431_potrebasKeys.cs" />
+    <Compile Include="Migrations\201609100935431_potrebasKeys.Designer.cs">
+      <DependentUpon>201609100935431_potrebasKeys.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DodelaMaterijala.cs" />
     <Compile Include="Models\EvidencijaAngazovanjaMasine.cs" />
@@ -86,6 +94,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201609091105237_init.resx">
       <DependentUpon>201609091105237_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609091333211_rename.resx">
+      <DependentUpon>201609091333211_rename.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609100935431_potrebasKeys.resx">
+      <DependentUpon>201609100935431_potrebasKeys.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

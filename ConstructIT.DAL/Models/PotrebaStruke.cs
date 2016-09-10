@@ -24,14 +24,14 @@ namespace ConstructIT.DAL.Models
         [Display(Name = "Do datuma")]
         public DateTime PotrebaStrukeDoDatuma { get; set; }
 
-        [Required(ErrorMessage = "'Količina' ne sme biti neodređena!")]
-        [Display(Name = "Količina")]
+        [Required(ErrorMessage = "'Potrebna količina' ne sme biti neodređena!")]
+        [Display(Name = "Potrebna količina")]
         public int PotrebaStrukeKolicina { get; set; }
 
         [Required]
         [ForeignKey("Zadatak")]
         [Column(Order = 1)]
-        public int ProjekatiID { get; set; }
+        public int ProjekatID { get; set; }
 
         [Required]
         [ForeignKey("Zadatak")]

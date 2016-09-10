@@ -1,20 +1,45 @@
 ﻿@model ConstructIT.DAL.Models.PotrebaTipaMasine
+@using ConstructIT.DAL.Models
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Izmena potrebe tipa mašine";
+
+    var _projekat = new Projekat();
+    var _zadatak = new Zadatak();
 }
 
-<h2>Edit</h2>
+<h2>Izmena</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>PotrebaTipaMasine</h4>
+        <h4  style="padding-left: 3%">Potreba tipa mašine</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.PotrebaTipaMasineID)
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => _projekat.ProjekatNaziv, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" value="@ViewBag.ProjekatNaziv" disabled class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => _zadatak.ZadatakNaziv, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" value="@ViewBag.ZadatakNaziv" disabled class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TipMasine.TipMasineNaziv, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" value="@ViewBag.TipMasineNaziv" disabled class="form-control" />
+            </div>
+        </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.PotrTipaMasOdDatuma, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -40,38 +65,15 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ProjekatID, "ProjekatID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("ProjekatID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.ProjekatID, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ZadatakID, "ZadatakID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("ZadatakID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.ZadatakID, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.TipMasineID, "TipMasineID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("TipMasineID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.TipMasineID, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        @Html.HiddenFor(model => model.PotrebaTipaMasineID)
+        @Html.HiddenFor(model => model.ProjekatID)
+        @Html.HiddenFor(model => model.ZadatakID)
+        @Html.HiddenFor(model => model.TipMasineID)
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Sačuvaj" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

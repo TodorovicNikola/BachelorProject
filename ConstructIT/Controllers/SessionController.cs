@@ -42,7 +42,7 @@ namespace ConstructIT.Controllers
         public ActionResult Logout()
         {
             Session["korisnik"] = null;
-            return RedirectToAction("Login", "Login");
+            return RedirectToAction("Login", "Session");
         }
     }
 }

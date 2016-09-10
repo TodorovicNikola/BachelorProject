@@ -1,28 +1,61 @@
 ﻿@model ConstructIT.DAL.Models.PotrebaMaterijala
+@using ConstructIT.DAL.Models
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Izmena potrebe materijala";
+
+    var _projekat = new Projekat();
+    var _zadatak = new Zadatak();
 }
 
-<h2>Edit</h2>
+<h2>Izmena</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>PotrebaMaterijala</h4>
+        <h4  style="padding-left: 3%">Potreba materijala</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.ProjekatID)
 
-        @Html.HiddenFor(model => model.ZadatakID)
 
-        @Html.HiddenFor(model => model.MaterijalID)
+        <div class="form-group">
+            @Html.LabelFor(model => _projekat.ProjekatNaziv, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" value="@ViewBag.ProjekatNaziv" disabled class="form-control" />
+            </div>
+        </div>
 
-        @Html.HiddenFor(model => model.PotrMatOdDatuma)
+        <div class="form-group">
+            @Html.LabelFor(model => _zadatak.ZadatakNaziv, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" value="@ViewBag.ZadatakNaziv" disabled class="form-control" />
+            </div>
+        </div>
 
-        @Html.HiddenFor(model => model.PotrMatDoDatuma)
+        <div class="form-group">
+            @Html.LabelFor(model => model.Materijal.MaterijalNaziv, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" value="@ViewBag.MaterijalNaziv" disabled class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PotrMatOdDatuma, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PotrMatOdDatuma, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PotrMatOdDatuma, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PotrMatDoDatuma, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PotrMatDoDatuma, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PotrMatDoDatuma, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.PotrMatKolicina, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -32,14 +65,15 @@
             </div>
         </div>
 
+        @Html.HiddenFor(model => model.PotrebaMaterijalaID)
+        @Html.HiddenFor(model => model.ProjekatID)
+        @Html.HiddenFor(model => model.ZadatakID)
+        @Html.HiddenFor(model => model.MaterijalID)
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Sačuvaj" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

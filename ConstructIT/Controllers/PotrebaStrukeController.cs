@@ -39,10 +39,13 @@ namespace ConstructIT.Controllers
         }
 
         // GET: PotrebaStruke/Create
-        public ActionResult Create()
+        public ActionResult Create(int projekatID, int zadatakID)
         {
             ViewBag.StrukaID = new SelectList(db.Struke, "StrukaID", "StrukaNaziv");
-            ViewBag.ProjekatiID = new SelectList(db.Zadaci, "ProjekatID", "ZadatakNaziv");
+            ViewBag.ProjekatNaziv = db.Projekti.Where(p => p.ProjekatID == projekatID).FirstOrDefault().ProjekatNaziv;
+            ViewBag.ZadatakNaziv = db.Zadaci.Where(z => z.ZadatakID == zadatakID).FirstOrDefault().ZadatakNaziv;
+            ViewBag.ProjekatID = projekatID;
+            ViewBag.ZadatakID = zadatakID;
             return View();
         }
 
@@ -51,7 +54,7 @@ namespace ConstructIT.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "PotrebaStrukeID,PotrebaStrukeOdDatuma,PotrebaStrukeDoDatuma,PotrebaStrukeKolicina,ProjekatiID,ZadatakID,StrukaID")] PotrebaStruke potrebaStruke)
+        public async Task<ActionResult> Create([Bind(Include = "PotrebaStrukeID,PotrebaStrukeOdDatuma,PotrebaStrukeDoDatuma,PotrebaStrukeKolicina,ProjekatID,ZadatakID,StrukaID")] PotrebaStruke potrebaStruke)
         {
             if (ModelState.IsValid)
             {
@@ -61,24 +64,30 @@ namespace ConstructIT.Controllers
             }
 
             ViewBag.StrukaID = new SelectList(db.Struke, "StrukaID", "StrukaNaziv", potrebaStruke.StrukaID);
-            ViewBag.ProjekatiID = new SelectList(db.Zadaci, "ProjekatID", "ZadatakNaziv", potrebaStruke.ProjekatiID);
+            ViewBag.ProjekatNaziv = db.Projekti.Where(p => p.ProjekatID == potrebaStruke.ProjekatID).FirstOrDefault().ProjekatNaziv;
+            ViewBag.ZadatakNaziv = db.Zadaci.Where(z => z.ZadatakID == potrebaStruke.ZadatakID).FirstOrDefault().ZadatakNaziv;
+            ViewBag.ProjekatID = potrebaStruke.ProjekatID;
+            ViewBag.ZadatakID = potrebaStruke.ZadatakID;
             return View(potrebaStruke);
         }
 
         // GET: PotrebaStruke/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        public async Task<ActionResult> Edit(int? potrebaStrukeID)
         {
-            if (id == null)
+            if (potrebaStrukeID == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PotrebaStruke potrebaStruke = await db.PotrebeStruka.FindAsync(id);
+            PotrebaStruke potrebaStruke = await db.PotrebeStruka.FindAsync(potrebaStrukeID);
             if (potrebaStruke == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.StrukaID = new SelectList(db.Struke, "StrukaID", "StrukaNaziv", potrebaStruke.StrukaID);
-            ViewBag.ProjekatiID = new SelectList(db.Zadaci, "ProjekatID", "ZadatakNaziv", potrebaStruke.ProjekatiID);
+
+            ViewBag.StrukaNaziv = db.Struke.Where(s => s.StrukaID == potrebaStruke.StrukaID).FirstOrDefault().StrukaNaziv;
+            ViewBag.ProjekatNaziv = db.Projekti.Where(p => p.ProjekatID == potrebaStruke.ProjekatID).FirstOrDefault().ProjekatNaziv;
+            ViewBag.ZadatakNaziv = db.Zadaci.Where(z => z.ZadatakID == potrebaStruke.ZadatakID).FirstOrDefault().ZadatakNaziv;
+
             return View(potrebaStruke);
         }
 
@@ -87,7 +96,7 @@ namespace ConstructIT.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "PotrebaStrukeID,PotrebaStrukeOdDatuma,PotrebaStrukeDoDatuma,PotrebaStrukeKolicina,ProjekatiID,ZadatakID,StrukaID")] PotrebaStruke potrebaStruke)
+        public async Task<ActionResult> Edit([Bind(Include = "PotrebaStrukeID,PotrebaStrukeOdDatuma,PotrebaStrukeDoDatuma,PotrebaStrukeKolicina,ProjekatID,ZadatakID,StrukaID")] PotrebaStruke potrebaStruke)
         {
             if (ModelState.IsValid)
             {
@@ -95,19 +104,20 @@ namespace ConstructIT.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.StrukaID = new SelectList(db.Struke, "StrukaID", "StrukaNaziv", potrebaStruke.StrukaID);
-            ViewBag.ProjekatiID = new SelectList(db.Zadaci, "ProjekatID", "ZadatakNaziv", potrebaStruke.ProjekatiID);
+            ViewBag.StrukaNaziv = db.Struke.Where(s => s.StrukaID == potrebaStruke.StrukaID).FirstOrDefault().StrukaNaziv;
+            ViewBag.ProjekatNaziv = db.Projekti.Where(p => p.ProjekatID == potrebaStruke.ProjekatID).FirstOrDefault().ProjekatNaziv;
+            ViewBag.ZadatakNaziv = db.Zadaci.Where(z => z.ZadatakID == potrebaStruke.ZadatakID).FirstOrDefault().ZadatakNaziv;
             return View(potrebaStruke);
         }
 
         // GET: PotrebaStruke/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        public async Task<ActionResult> Delete(int? potrebaStrukeID)
         {
-            if (id == null)
+            if (potrebaStrukeID == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PotrebaStruke potrebaStruke = await db.PotrebeStruka.FindAsync(id);
+            PotrebaStruke potrebaStruke = await db.PotrebeStruka.FindAsync(potrebaStrukeID);
             if (potrebaStruke == null)
             {
                 return HttpNotFound();

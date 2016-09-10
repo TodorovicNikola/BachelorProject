@@ -39,10 +39,13 @@ namespace ConstructIT.Controllers
         }
 
         // GET: PotrebaTipaMasine/Create
-        public ActionResult Create()
+        public ActionResult Create(int projekatID, int zadatakID)
         {
             ViewBag.TipMasineID = new SelectList(db.TipoviMasina, "TipMasineID", "TipMasineNaziv");
-            ViewBag.ProjekatID = new SelectList(db.Zadaci, "ProjekatID", "ZadatakNaziv");
+            ViewBag.ProjekatNaziv = db.Projekti.Where(p => p.ProjekatID == projekatID).FirstOrDefault().ProjekatNaziv;
+            ViewBag.ZadatakNaziv = db.Zadaci.Where(z => z.ZadatakID == zadatakID).FirstOrDefault().ZadatakNaziv;
+            ViewBag.ProjekatID = projekatID;
+            ViewBag.ZadatakID = zadatakID;
             return View();
         }
 
@@ -61,24 +64,30 @@ namespace ConstructIT.Controllers
             }
 
             ViewBag.TipMasineID = new SelectList(db.TipoviMasina, "TipMasineID", "TipMasineNaziv", potrebaTipaMasine.TipMasineID);
-            ViewBag.ProjekatID = new SelectList(db.Zadaci, "ProjekatID", "ZadatakNaziv", potrebaTipaMasine.ProjekatID);
+            ViewBag.ProjekatNaziv = db.Projekti.Where(p => p.ProjekatID == potrebaTipaMasine.ProjekatID).FirstOrDefault().ProjekatNaziv;
+            ViewBag.ZadatakNaziv = db.Zadaci.Where(z => z.ZadatakID == potrebaTipaMasine.ZadatakID).FirstOrDefault().ZadatakNaziv;
+            ViewBag.ProjekatID = potrebaTipaMasine.ProjekatID;
+            ViewBag.ZadatakID = potrebaTipaMasine.ZadatakID;
             return View(potrebaTipaMasine);
         }
 
         // GET: PotrebaTipaMasine/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        public async Task<ActionResult> Edit(int? potrebaTipaMasineID)
         {
-            if (id == null)
+            if (potrebaTipaMasineID == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PotrebaTipaMasine potrebaTipaMasine = await db.PotrebeTipovaMasina.FindAsync(id);
+            PotrebaTipaMasine potrebaTipaMasine = await db.PotrebeTipovaMasina.FindAsync(potrebaTipaMasineID);
             if (potrebaTipaMasine == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.TipMasineID = new SelectList(db.TipoviMasina, "TipMasineID", "TipMasineNaziv", potrebaTipaMasine.TipMasineID);
-            ViewBag.ProjekatID = new SelectList(db.Zadaci, "ProjekatID", "ZadatakNaziv", potrebaTipaMasine.ProjekatID);
+
+            ViewBag.TipMasineNaziv = db.TipoviMasina.Where(t => t.TipMasineID == potrebaTipaMasine.TipMasineID).FirstOrDefault().TipMasineNaziv;
+            ViewBag.ProjekatNaziv = db.Projekti.Where(p => p.ProjekatID == potrebaTipaMasine.ProjekatID).FirstOrDefault().ProjekatNaziv;
+            ViewBag.ZadatakNaziv = db.Zadaci.Where(z => z.ZadatakID == potrebaTipaMasine.ZadatakID).FirstOrDefault().ZadatakNaziv;
+
             return View(potrebaTipaMasine);
         }
 
@@ -95,19 +104,22 @@ namespace ConstructIT.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.TipMasineID = new SelectList(db.TipoviMasina, "TipMasineID", "TipMasineNaziv", potrebaTipaMasine.TipMasineID);
-            ViewBag.ProjekatID = new SelectList(db.Zadaci, "ProjekatID", "ZadatakNaziv", potrebaTipaMasine.ProjekatID);
+
+            ViewBag.TipMasineNaziv = db.TipoviMasina.Where(t => t.TipMasineID == potrebaTipaMasine.TipMasineID).FirstOrDefault().TipMasineNaziv;
+            ViewBag.ProjekatNaziv = db.Projekti.Where(p => p.ProjekatID == potrebaTipaMasine.ProjekatID).FirstOrDefault().ProjekatNaziv;
+            ViewBag.ZadatakNaziv = db.Zadaci.Where(z => z.ZadatakID == potrebaTipaMasine.ZadatakID).FirstOrDefault().ZadatakNaziv;
+
             return View(potrebaTipaMasine);
         }
 
         // GET: PotrebaTipaMasine/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        public async Task<ActionResult> Delete(int? potrebaTipaMasineID)
         {
-            if (id == null)
+            if (potrebaTipaMasineID == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PotrebaTipaMasine potrebaTipaMasine = await db.PotrebeTipovaMasina.FindAsync(id);
+            PotrebaTipaMasine potrebaTipaMasine = await db.PotrebeTipovaMasina.FindAsync(potrebaTipaMasineID);
             if (potrebaTipaMasine == null)
             {
                 return HttpNotFound();
@@ -118,7 +130,7 @@ namespace ConstructIT.Controllers
         // POST: PotrebaTipaMasine/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public async Task<ActionResult> DeleteConfirmed(int? id)
         {
             PotrebaTipaMasine potrebaTipaMasine = await db.PotrebeTipovaMasina.FindAsync(id);
             db.PotrebeTipovaMasina.Remove(potrebaTipaMasine);

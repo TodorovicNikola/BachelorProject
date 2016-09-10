@@ -10,38 +10,11 @@ namespace ConstructIT.DAL.Models
 {
     public class DodelaMaterijala
     {
-        [Key]
-        [ForeignKey("PotrebaMaterijala")]
-        [Column(Order = 0)]
-        public int ProjekatID { get; set; }
+        public int DodelaMaterijalaID { get; set; }
 
-        [Key]
         [ForeignKey("PotrebaMaterijala")]
-        [Column(Order = 1)]
-        public int ZadatakID { get; set; }
+        public int PotrebaMaterijalaID { get; set; }
 
-        [Key]
-        [ForeignKey("PotrebaMaterijala")]
-        [Column(Order = 2)]
-        public int MaterijalID { get; set; }
-
-        [Key]
-        [ForeignKey("PotrebaMaterijala")]
-        [Column(Order = 3)]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        [Display(Name = "Od datuma")]
-        public DateTime PotrMatOdDatuma { get; set; }
-
-        [Key]
-        [ForeignKey("PotrebaMaterijala")]
-        [Column(Order = 4)]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        [Display(Name = "Do datuma")]
-        public DateTime PotrMatDoDatuma { get; set; }
-
-        [Key, Column(Order = 5)]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "Datum dodele")]
@@ -52,6 +25,7 @@ namespace ConstructIT.DAL.Models
         public double DodMatKolicina { get; set; }
 
 
+        [ForeignKey("PotrebaMaterijalaID")]
         public virtual PotrebaMaterijala PotrebaMaterijala { get; set; }
     }
 }

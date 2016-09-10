@@ -39,10 +39,13 @@ namespace ConstructIT.Controllers
         }
 
         // GET: PotrebaMaterijala/Create
-        public ActionResult Create()
+        public ActionResult Create(int projekatID, int zadatakID)
         {
             ViewBag.MaterijalID = new SelectList(db.Materijali, "MaterijalID", "MaterijalNaziv");
-            ViewBag.ProjekatID = new SelectList(db.Zadaci, "ProjekatID", "ZadatakNaziv");
+            ViewBag.ProjekatNaziv = db.Projekti.Where(p => p.ProjekatID == projekatID).FirstOrDefault().ProjekatNaziv;
+            ViewBag.ZadatakNaziv = db.Zadaci.Where(z => z.ZadatakID == zadatakID).FirstOrDefault().ZadatakNaziv;
+            ViewBag.ProjekatID = projekatID;
+            ViewBag.ZadatakID = zadatakID;
             return View();
         }
 
@@ -61,24 +64,30 @@ namespace ConstructIT.Controllers
             }
 
             ViewBag.MaterijalID = new SelectList(db.Materijali, "MaterijalID", "MaterijalNaziv", potrebaMaterijala.MaterijalID);
-            ViewBag.ProjekatID = new SelectList(db.Zadaci, "ProjekatID", "ZadatakNaziv", potrebaMaterijala.ProjekatID);
+            ViewBag.ProjekatNaziv = db.Projekti.Where(p => p.ProjekatID == potrebaMaterijala.ProjekatID).FirstOrDefault().ProjekatNaziv;
+            ViewBag.ZadatakNaziv = db.Zadaci.Where(z => z.ZadatakID == potrebaMaterijala.ZadatakID).FirstOrDefault().ZadatakNaziv;
+            ViewBag.ProjekatID = potrebaMaterijala.ProjekatID;
+            ViewBag.ZadatakID = potrebaMaterijala.ZadatakID;
             return View(potrebaMaterijala);
         }
 
         // GET: PotrebaMaterijala/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        public async Task<ActionResult> Edit(int? PotrebaMaterijalaID)
         {
-            if (id == null)
+            if (PotrebaMaterijalaID == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PotrebaMaterijala potrebaMaterijala = await db.PotrebeMaterijala.FindAsync(id);
+            PotrebaMaterijala potrebaMaterijala = await db.PotrebeMaterijala.FindAsync(PotrebaMaterijalaID);
             if (potrebaMaterijala == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.MaterijalID = new SelectList(db.Materijali, "MaterijalID", "MaterijalNaziv", potrebaMaterijala.MaterijalID);
-            ViewBag.ProjekatID = new SelectList(db.Zadaci, "ProjekatID", "ZadatakNaziv", potrebaMaterijala.ProjekatID);
+
+            ViewBag.MaterijalNaziv = db.Materijali.Where(m => m.MaterijalID == potrebaMaterijala.MaterijalID).FirstOrDefault().MaterijalNaziv;
+            ViewBag.ProjekatNaziv = db.Projekti.Where(p => p.ProjekatID == potrebaMaterijala.ProjekatID).FirstOrDefault().ProjekatNaziv;
+            ViewBag.ZadatakNaziv = db.Zadaci.Where(z => z.ZadatakID == potrebaMaterijala.ZadatakID).FirstOrDefault().ZadatakNaziv;
+
             return View(potrebaMaterijala);
         }
 
@@ -87,7 +96,7 @@ namespace ConstructIT.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ProjekatID,ZadatakID,MaterijalID,PotrMatOdDatuma,PotrMatDoDatuma,PotrMatKolicina")] PotrebaMaterijala potrebaMaterijala)
+        public async Task<ActionResult> Edit([Bind(Include = "PotrebaMaterijalaID,ProjekatID,ZadatakID,MaterijalID,PotrMatOdDatuma,PotrMatDoDatuma,PotrMatKolicina")] PotrebaMaterijala potrebaMaterijala)
         {
             if (ModelState.IsValid)
             {
@@ -95,19 +104,18 @@ namespace ConstructIT.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.MaterijalID = new SelectList(db.Materijali, "MaterijalID", "MaterijalNaziv", potrebaMaterijala.MaterijalID);
-            ViewBag.ProjekatID = new SelectList(db.Zadaci, "ProjekatID", "ZadatakNaziv", potrebaMaterijala.ProjekatID);
+
+            ViewBag.MaterijalNaziv = db.Materijali.Where(m => m.MaterijalID == potrebaMaterijala.MaterijalID).FirstOrDefault().MaterijalNaziv;
+            ViewBag.ProjekatNaziv = db.Projekti.Where(p => p.ProjekatID == potrebaMaterijala.ProjekatID).FirstOrDefault().ProjekatNaziv;
+            ViewBag.ZadatakNaziv = db.Zadaci.Where(z => z.ZadatakID == potrebaMaterijala.ZadatakID).FirstOrDefault().ZadatakNaziv;
+
             return View(potrebaMaterijala);
         }
 
         // GET: PotrebaMaterijala/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        public async Task<ActionResult> Delete(int potrebaMaterijalaID)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            PotrebaMaterijala potrebaMaterijala = await db.PotrebeMaterijala.FindAsync(id);
+            PotrebaMaterijala potrebaMaterijala = await db.PotrebeMaterijala.Where(p => p.PotrebaMaterijalaID == potrebaMaterijalaID).FirstOrDefaultAsync();
             if (potrebaMaterijala == null)
             {
                 return HttpNotFound();
@@ -118,9 +126,9 @@ namespace ConstructIT.Controllers
         // POST: PotrebaMaterijala/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public async Task<ActionResult> DeleteConfirmed(int potrebaTipaMaterijalaID)
         {
-            PotrebaMaterijala potrebaMaterijala = await db.PotrebeMaterijala.FindAsync(id);
+            PotrebaMaterijala potrebaMaterijala = await db.PotrebeMaterijala.Where(p => p.PotrebaMaterijalaID == potrebaTipaMaterijalaID).FirstOrDefaultAsync();
             db.PotrebeMaterijala.Remove(potrebaMaterijala);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");

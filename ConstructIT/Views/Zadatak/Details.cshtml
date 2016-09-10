@@ -14,7 +14,7 @@
 
 <div>
     <h4 style="padding-left:3%">Projekat - @Html.DisplayFor(model => model.Projekat.ProjekatNaziv)</h4>
-    @Html.ActionLink("Izmeni", "Edit", new { /* id = Model.PrimaryKey */ }, new { @style="position:relative; float:right; top: -10px; right:5%;"})
+    @Html.ActionLink("Izmeni", "Edit", new { /* id = Model.PrimaryKey */ }, new { @style = "position:relative; float:right; top: -10px; right:5%;" })
     <hr />
     <div style="position:relative; float:left; left:5%">
 
@@ -58,161 +58,96 @@
 
     </div>
 </div>
+<br />
 <hr />
+<br />
 <ul class="nav nav-tabs">
-    <li class="dropdown active">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
-            O zadatku <span class="caret"></span>
-        </a>
-        <ul class="dropdown-menu">
-            <li class="active"><a href="#komentari" data-toggle="tab" aria-expanded="true">Komentari</a></li>
-            <li class="divider"></li>
-            <li class=""><a href="#promene" data-toggle="tab" aria-expanded="false">Promene</a></li>
-        </ul>
-    </li>
-    <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
-            Potrebe zadatka <span class="caret"></span>
-        </a>
-        <ul class="dropdown-menu">
-            <li class=""><a href="#proizvRadn" data-toggle="tab" aria-expanded="false">Proizvodni radnici</a></li>
-            <li class="divider"></li>
-            <li class=""><a href="#masine" data-toggle="tab" aria-expanded="false">Mašine</a></li>
-            <li class="divider"></li>
-            <li class=""><a href="#materijali" data-toggle="tab" aria-expanded="false">Materijali</a></li>
-        </ul>
-    </li>
+    <li class="active"><a href="#oZadatku" data-toggle="tab" aria-expanded="true">O zadatku</a></li>
+    <li class=""><a href="#potrebeZadatka" data-toggle="tab" aria-expanded="false">Potrebe zadatka</a></li>
 </ul>
 
 
     @Html.AntiForgeryToken()
 <div id="myTabContent" class="tab-content">
-    <div class="tab-pane fade  active in" id="komentari">
-        <h3>Komentari</h3>
-        <h4 style="padding-left:3%">Postavi komentar</h4>
-        <form style="padding-left:3%" class="form-horizontal">
-            <fieldset>
-                <div class="form-group">
-                    <label for="inputEmail" class="col-lg-2 control-label">Email</label>
-                    <div class="col-lg-10">
-                        <input type="text" class="form-control" id="inputEmail" placeholder="Email">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="textArea" class="col-lg-2 control-label">Textarea</label>
-                    <div class="col-lg-10">
-                        <textarea class="form-control" rows="3" id="textArea"></textarea>
-                        <span class="help-block">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>
-                    </div>
-                </div>
-            </fieldset>
-        </form>
-
+    <div class="tab-pane fade active in" id="oZadatku">
+        <p>Hasan Sakic</p>
     </div>
-    <div class="tab-pane fade" id="promene">
-        <p>promene fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater.</p>
-    </div>
-    <div>
-        <div class="tab-pane fade" id="proizvRadn" style="width:50%; margin: 0, auto;">
 
-            <table class="table">
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => _potrebaStruke.Struka.StrukaNaziv)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => _potrebaStruke.Zadatak.ZadatakNaziv)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => _potrebaStruke.PotrebaStrukeOdDatuma)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => _potrebaStruke.PotrebaStrukeDoDatuma)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => _potrebaStruke.PotrebaStrukeKolicina)
-                    </th>
-                </tr>
+    <div class="tab-pane fade" id="potrebeZadatka">
 
-                @foreach (var item in Model.PotrebeStruka)
-            {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Struka.StrukaNaziv)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Zadatak.ZadatakNaziv)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.PotrebaStrukeOdDatuma)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.PotrebaStrukeDoDatuma)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.PotrebaStrukeKolicina)
-                        </td>
-                    </tr>
-                }
-
-            </table>
-        </div>
-    </div>
-    <div class="tab-pane fade" id="masine">
-        <table class="table">
+        <h2>Potrebe zadatka</h2>
+        <br />
+        <h3 style="padding-left:3%">Potrebe struka</h3>
+        <p style="padding-left:3%">
+            @Html.ActionLink("Dodaj novu", "Create", "PotrebaStruke", new { projekatID = Model.ProjekatID, zadatakID = Model.ZadatakID }, null)
+        </p>
+        <table class="table table-striped table-hover" style="margin-left:3%; margin-right:3%">
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => _potrebaTipaMasine.TipMasine.TipMasineNaziv)
+                    @Html.DisplayNameFor(model => _potrebaStruke.Struka.StrukaNaziv)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => _potrebaTipaMasine.Zadatak.ZadatakNaziv)
+                    @Html.DisplayNameFor(model => _potrebaStruke.PotrebaStrukeOdDatuma)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => _potrebaTipaMasine.PotrTipaMasOdDatuma)
+                    @Html.DisplayNameFor(model => _potrebaStruke.PotrebaStrukeDoDatuma)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => _potrebaTipaMasine.PotrTipaMasDoDatuma)
+                    @Html.DisplayNameFor(model => _potrebaStruke.PotrebaStrukeKolicina)
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => _potrebaTipaMasine.PotrTipaMasKolicina)
+                <th style="position:relative; left:25px">
+                    Akcija
                 </th>
             </tr>
 
-            @foreach (var item in Model.PotrebeTipovaMasina)
+            @foreach (var item in Model.PotrebeStruka)
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.TipMasine.TipMasineNaziv)
+                        @Html.DisplayFor(modelItem => item.Struka.StrukaNaziv)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Zadatak.ZadatakNaziv)
+                        @Html.DisplayFor(modelItem => item.PotrebaStrukeOdDatuma)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.PotrTipaMasOdDatuma)
+                        @Html.DisplayFor(modelItem => item.PotrebaStrukeDoDatuma)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.PotrTipaMasDoDatuma)
+                        @Html.DisplayFor(modelItem => item.PotrebaStrukeKolicina)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.PotrTipaMasKolicina)
+                        @Html.ActionLink("Izmeni", "Edit", "PotrebaStruke", new { potrebaStrukeID = item.PotrebaStrukeID }, null) | @Html.ActionLink("Obriši", "Delete", "PotrebaStruke", new { potrebaStrukeID = item.PotrebaStrukeID }, null)
                     </td>
                 </tr>
             }
 
         </table>
-    </div>
 
-    <div class="tab-pane fade" id="materijali">
-        <table class="table">
+
+        <br />
+        <h3 style="padding-left:3%">Potrebe materijala</h3>
+        <p style="padding-left:3%">
+            @Html.ActionLink("Dodaj novu", "Create", "PotrebaMaterijala", new { projekatID = Model.ProjekatID, zadatakID = Model.ZadatakID }, null)
+        </p>
+        <table class="table table-striped table-hover" style="margin-left:3%; margin-right:3%">
             <tr>
                 <th>
                     @Html.DisplayNameFor(model => _potrebaMaterijala.Materijal.MaterijalNaziv)
                 </th>
+                    
                 <th>
-                    @Html.DisplayNameFor(model => _potrebaMaterijala.Zadatak.ZadatakNaziv)
+                    @Html.DisplayNameFor(model => _potrebaMaterijala.PotrMatOdDatuma)
                 </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => _potrebaMaterijala.PotrMatDoDatuma)
+                </th>
+
                 <th>
                     @Html.DisplayNameFor(model => _potrebaMaterijala.PotrMatKolicina)
+                </th>
+                <th style="position:relative; left:25px">
+                    Akcija
                 </th>
             </tr>
 
@@ -223,13 +158,67 @@
                         @Html.DisplayFor(modelItem => item.Materijal.MaterijalNaziv)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Zadatak.ZadatakNaziv)
+                        @Html.DisplayFor(modelItem => item.PotrMatOdDatuma)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PotrMatDoDatuma)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.PotrMatKolicina)
                     </td>
+                    <td>
+                        @Html.ActionLink("Izmeni", "Edit", "PotrebaMaterijala", new { potrebaMaterijalaID = item.PotrebaMaterijalaID }, null) | @Html.ActionLink("Obriši", "Delete", "PotrebaMaterijala", new { potrebaMaterijalaID = item.PotrebaMaterijalaID }, null)
+                    </td>
                 </tr>
             }
+        </table>
+
+        <br />
+        <h3 style="padding-left:3%">Potrebe tipa mašina</h3>
+        <p style="padding-left:3%">
+            @Html.ActionLink("Dodaj novu", "Create", "PotrebaTipaMasine", new { projekatID = Model.ProjekatID, zadatakID = Model.ZadatakID }, null)
+        </p>
+        <table class="table table-striped table-hover" style="margin-left:3%; margin-right:3%">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => _potrebaTipaMasine.TipMasine.TipMasineNaziv)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => _potrebaTipaMasine.PotrTipaMasOdDatuma)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => _potrebaTipaMasine.PotrTipaMasDoDatuma)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => _potrebaTipaMasine.PotrTipaMasKolicina)
+                </th>
+                <th style="position:relative; left:25px">
+                    Akcija
+                </th>
+            </tr>
+
+            @foreach (var item in Model.PotrebeTipovaMasina)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TipMasine.TipMasineNaziv)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PotrTipaMasOdDatuma)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PotrTipaMasDoDatuma)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PotrTipaMasKolicina)
+                    </td>
+                    <td>
+
+                        @Html.ActionLink("Izmeni", "Edit", "PotrebaTipaMasine", new { potrebaTipaMasineID = item.PotrebaTipaMasineID }, null) | @Html.ActionLink("Obriši", "Delete", "PotrebaTipaMasine", new { potrebaTipaMasineID = item.PotrebaTipaMasineID }, null)
+                    </td>
+                </tr>
+            }
+
         </table>
     </div>
 </div>
