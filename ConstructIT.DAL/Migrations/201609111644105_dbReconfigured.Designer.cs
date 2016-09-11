@@ -7,13 +7,13 @@ namespace ConstructIT.DAL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class potrebasKeys : IMigrationMetadata
+    public sealed partial class dbReconfigured : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(potrebasKeys));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(dbReconfigured));
         
         string IMigrationMetadata.Id
         {
-            get { return "201609100935431_potrebasKeys"; }
+            get { return "201609111644105_dbReconfigured"; }
         }
         
         string IMigrationMetadata.Source

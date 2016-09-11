@@ -1,0 +1,69 @@
+﻿@model IEnumerable<ConstructIT.DAL.Models.EvidencijaAngazovanjaMasine>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Masina.TipMasine.TipMasineNaziv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Masina.MasinaProizvodjac)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Zadatak.Projekat.ProjekatNaziv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Zadatak.ZadatakNaziv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EvidAngMasDatum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EvidAngMasVremeOd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EvidAngMasVremeDo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Masina.TipMasine.TipMasineNaziv)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Masina.MasinaProizvodjac)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Zadatak.Projekat.ProjekatNaziv)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Zadatak.ZadatakNaziv)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EvidAngMasDatum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EvidAngMasVremeOd)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EvidAngMasVremeDo)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.EvidencijaAngazovanjaMasineID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.EvidencijaAngazovanjaMasineID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.EvidencijaAngazovanjaMasineID })
+        </td>
+    </tr>
+}
+
+</table>

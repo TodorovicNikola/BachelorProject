@@ -1,0 +1,63 @@
+﻿@model IEnumerable<ConstructIT.DAL.Models.EvidencijaRadnogVremena>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProizvodniRadnik.ProizvodniRadnikID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Zadatak.Projekat.ProjekatNaziv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Zadatak.ZadatakNaziv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EvRadnVrDatum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EvRadnVrVremeOd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EvRadnVrVremeDo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProizvodniRadnik.ProizvodniRadnikID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Zadatak.Projekat.ProjekatNaziv)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Zadatak.ZadatakNaziv)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EvRadnVrDatum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EvRadnVrVremeOd)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EvRadnVrVremeDo)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.EvidencijaRadnogVremenaID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.EvidencijaRadnogVremenaID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.EvidencijaRadnogVremenaID })
+        </td>
+    </tr>
+}
+
+</table>

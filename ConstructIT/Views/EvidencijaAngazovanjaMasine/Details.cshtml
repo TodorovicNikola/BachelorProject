@@ -1,0 +1,58 @@
+﻿@model ConstructIT.DAL.Models.EvidencijaAngazovanjaMasine
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>EvidencijaAngazovanjaMasine</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Masina.MasinaProizvodjac)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Masina.MasinaProizvodjac)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Zadatak.ZadatakNaziv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Zadatak.ZadatakNaziv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EvidAngMasDatum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EvidAngMasDatum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EvidAngMasVremeOd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EvidAngMasVremeOd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EvidAngMasVremeDo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EvidAngMasVremeDo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.EvidencijaAngazovanjaMasineID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

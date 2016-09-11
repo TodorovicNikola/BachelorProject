@@ -12,14 +12,10 @@ namespace ConstructIT.DAL.Models
     {
         public int ProjekatID { get; set; }
 
+        [Index(IsUnique = true)]
         [StringLength(128, ErrorMessage = "'Naziv Projekta' ne sme biti duži od 128 karaktera!"), Required(ErrorMessage = "'Naziv Projekta' ne sme biti prazan!")]
         [Display(Name = "Naziv Projekta")]
         public String ProjekatNaziv { get; set; }
-
-        [Index(IsUnique = true)]
-        [StringLength(8, ErrorMessage = "'Kod Projekta' ne sme biti duži od 8 karaktera!"), Required(ErrorMessage = "'Kod Projekta' ne sme biti prazan!")]
-        [Display(Name = "Kod projekta")]
-        public String ProjekatKod { get; set; }
 
         [StringLength(1024, ErrorMessage = "'Opis projekta' ne sme biti duži od 1024 karaktera!")]
         [Display(Name = "Opis projekta")]

@@ -1,0 +1,58 @@
+﻿@model ConstructIT.DAL.Models.EvidencijaRadnogVremena
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>EvidencijaRadnogVremena</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ProizvodniRadnik.ProizRadJMBG)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProizvodniRadnik.ProizRadJMBG)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Zadatak.ZadatakNaziv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Zadatak.ZadatakNaziv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EvRadnVrDatum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EvRadnVrDatum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EvRadnVrVremeOd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EvRadnVrVremeOd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EvRadnVrVremeDo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EvRadnVrVremeDo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.EvidencijaRadnogVremenaID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

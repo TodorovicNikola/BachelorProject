@@ -48,8 +48,15 @@ namespace ConstructIT.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ProjekatID,ProjekatNaziv,ProjekatKod,ProjekatOpis,ProjekatAdresa")] Projekat projekat)
+        public async Task<ActionResult> Create([Bind(Include = "ProjekatID,ProjekatNaziv,ProjekatOpis,ProjekatAdresa")] Projekat projekat)
         {
+            Projekat p = db.Projekti.Where(pr => pr.ProjekatNaziv == projekat.ProjekatNaziv).FirstOrDefault();
+
+            if(p != null)
+            {
+                ModelState.AddModelError("ProjekatNaziv", "Već postoji projekat sa unetim nazivom!");
+            }
+
             if (ModelState.IsValid)
             {
                 db.Projekti.Add(projekat);
@@ -80,8 +87,15 @@ namespace ConstructIT.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ProjekatID,ProjekatNaziv,ProjekatKod,ProjekatOpis,ProjekatAdresa")] Projekat projekat)
+        public async Task<ActionResult> Edit([Bind(Include = "ProjekatID,ProjekatNaziv,ProjekatOpis,ProjekatAdresa")] Projekat projekat)
         {
+            Projekat p = db.Projekti.Where(pr => pr.ProjekatNaziv == projekat.ProjekatNaziv && pr.ProjekatID != projekat.ProjekatID).FirstOrDefault();
+
+            if (p != null)
+            {
+                ModelState.AddModelError("ProjekatNaziv", "Već postoji projekat sa unetim nazivom!");
+            }
+
             if (ModelState.IsValid)
             {
                 db.Entry(projekat).State = EntityState.Modified;

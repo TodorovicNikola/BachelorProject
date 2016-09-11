@@ -1,0 +1,42 @@
+﻿@model ConstructIT.DAL.Models.DodelaMaterijala
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DodelaMaterijala</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PotrebaMaterijala.PotrebaMaterijalaID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PotrebaMaterijala.PotrebaMaterijalaID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DodMatDatumDodele)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DodMatDatumDodele)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DodMatKolicina)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DodMatKolicina)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.DodelaMaterijalaID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

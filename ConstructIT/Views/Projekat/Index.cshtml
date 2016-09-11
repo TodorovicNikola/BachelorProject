@@ -16,9 +16,6 @@
                 @Html.DisplayNameFor(model => model.ProjekatNaziv)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ProjekatKod)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.ProjekatOpis)
             </th>
             <th>
@@ -33,17 +30,10 @@
             @Html.ActionLink(item.ProjekatNaziv, "Details", new { id = item.ProjekatID })
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ProjekatKod)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.ProjekatOpis)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ProjekatAdresa)
-        </td>
-        <td>
-            @Html.ActionLink("Izmena", "Edit", new { id=item.ProjekatID }) |
-            @Html.ActionLink("Obriši", "Delete", new { id=item.ProjekatID })
         </td>
     </tr>
 }

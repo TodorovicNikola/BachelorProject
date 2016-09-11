@@ -1,0 +1,57 @@
+﻿@model IEnumerable<ConstructIT.DAL.Models.DodelaMaterijala>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PotrebaMaterijala.PotrebaMaterijalaID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PotrebaMaterijala.Zadatak.Projekat.ProjekatNaziv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PotrebaMaterijala.Zadatak.ZadatakNaziv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DodMatDatumDodele)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DodMatKolicina)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PotrebaMaterijala.PotrebaMaterijalaID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PotrebaMaterijala.Zadatak.ZadatakNaziv)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PotrebaMaterijala.Zadatak.Projekat.ProjekatNaziv)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DodMatDatumDodele)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DodMatKolicina)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.DodelaMaterijalaID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.DodelaMaterijalaID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.DodelaMaterijalaID })
+        </td>
+    </tr>
+}
+
+</table>

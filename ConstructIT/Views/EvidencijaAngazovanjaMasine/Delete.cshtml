@@ -1,0 +1,64 @@
+﻿@model ConstructIT.DAL.Models.EvidencijaAngazovanjaMasine
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>EvidencijaAngazovanjaMasine</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Masina.MasinaProizvodjac)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Masina.MasinaProizvodjac)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Zadatak.ZadatakNaziv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Zadatak.ZadatakNaziv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EvidAngMasDatum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EvidAngMasDatum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EvidAngMasVremeOd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EvidAngMasVremeOd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EvidAngMasVremeDo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EvidAngMasVremeDo)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

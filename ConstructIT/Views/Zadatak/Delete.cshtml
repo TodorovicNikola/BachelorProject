@@ -1,46 +1,25 @@
 ﻿@model ConstructIT.DAL.Models.Zadatak
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Brisanje zadatka";
 }
 
-<h2>Delete</h2>
+<h2>Brisanje</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3 style="padding-left: 3%">Da li ste sigurni da želite da obrišete?</h3>
 <div>
-    <h4>Zadatak</h4>
+
     <hr />
+    <h4>Zadatak</h4>
+    <br />
+
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.KorisnikKomJeDodeljen.KorisnikLozinka)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.KorisnikKomJeDodeljen.KorisnikLozinka)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Prioritet.PrioritetNaziv)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Prioritet.PrioritetNaziv)
-        </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.Projekat.ProjekatNaziv)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Projekat.ProjekatNaziv)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Status.StatusNaziv)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Status.StatusNaziv)
         </dd>
 
         <dt>
@@ -68,6 +47,22 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.Prioritet.PrioritetNaziv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prioritet.PrioritetNaziv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status.StatusNaziv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status.StatusNaziv)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.ZadatakOpis)
         </dt>
 
@@ -75,14 +70,21 @@
             @Html.DisplayFor(model => model.ZadatakOpis)
         </dd>
 
+        <dt>
+            Dodeljen korisniku
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KorisnikKomJeDodeljen.KorisnikEMail)
+        </dd>
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm(new { id = Model.ZadatakID })) {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Obriši" class="btn btn-default" /> |
+            @Html.ActionLink("Odustani", "Details", "Zadatak", new { id = Model.ZadatakID }, null)
         </div>
     }
 </div>

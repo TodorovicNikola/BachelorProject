@@ -10,31 +10,31 @@
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(ConstructIT.DAL.ConstructITDBContext context)
-        {/*
+        {
             context.Korisnici.AddOrUpdate(
-                new Korisnik { KorisnikEMail = "nikola5tod@yahoo.com", KorisnikIme = "Nikola", KorisnikPrezime = "Todorović", KorisnikLozinka = "nikola", KorisnikTip = "admin" },
-                new Korisnik { KorisnikEMail = "nenadTod@gmail.com", KorisnikIme = "Nenad", KorisnikPrezime = "Todorović", KorisnikLozinka = "nenad", KorisnikTip = "tehnOsoblje" },
-                new Korisnik { KorisnikEMail = "pero@dummy.com", KorisnikIme = "Pero", KorisnikPrezime = "Todorović", KorisnikLozinka = "pero", KorisnikTip = "tehnOsoblje" },
-                new Korisnik { KorisnikEMail = "marija@dummy.com", KorisnikIme = "Marija", KorisnikPrezime = "Todorović Siterić", KorisnikLozinka = "marija", KorisnikTip = "tehnOsoblje" },
-                new Korisnik { KorisnikEMail = "bane@dummy.com", KorisnikIme = "Branimir", KorisnikPrezime = "Todorović", KorisnikLozinka = "branimir", KorisnikTip = "tehnOsoblje" },
-                new Korisnik { KorisnikEMail = "ana@dummy.com", KorisnikIme = "Ana", KorisnikPrezime = "Todorović", KorisnikLozinka = "ana", KorisnikTip = "klijent" },
-                new Korisnik { KorisnikEMail = "nikolina@dummy.com", KorisnikIme = "Nikolina", KorisnikPrezime = "Vasić", KorisnikLozinka = "nikolina", KorisnikTip = "tehnOsoblje" },
-                new Korisnik { KorisnikEMail = "aleksandra@dummy.com", KorisnikIme = "Aleksandra", KorisnikPrezime = "Stupar", KorisnikLozinka = "aleksandra", KorisnikTip = "klijent" },
-                new Korisnik { KorisnikEMail = "babaAna@dummy.com", KorisnikIme = "Ana", KorisnikPrezime = "Siterić", KorisnikLozinka = "ana", KorisnikTip = "tehnOsoblje" }
+                new Korisnik { KorisnikEMail = "nikola5tod@yahoo.com", KorisnikIme = "Nikola", KorisnikPrezime = "Todorović", KorisnikLozinka = "nikola", KorisnikPotvrdaLozinke = "nikola", KorisnikTip = "admin" },
+                new Korisnik { KorisnikEMail = "nenadTod@gmail.com", KorisnikIme = "Nenad", KorisnikPrezime = "Todorović", KorisnikLozinka = "nenad", KorisnikPotvrdaLozinke = "nenad", KorisnikTip = "tehnOsoblje" },
+                new Korisnik { KorisnikEMail = "pero@dummy.com", KorisnikIme = "Pero", KorisnikPrezime = "Todorović", KorisnikLozinka = "pero", KorisnikPotvrdaLozinke = "pero", KorisnikTip = "tehnOsoblje" },
+                new Korisnik { KorisnikEMail = "marija@dummy.com", KorisnikIme = "Marija", KorisnikPrezime = "Todorović Siterić", KorisnikLozinka = "marija", KorisnikPotvrdaLozinke = "marija", KorisnikTip = "tehnOsoblje" },
+                new Korisnik { KorisnikEMail = "bane@dummy.com", KorisnikIme = "Branimir", KorisnikPrezime = "Todorović", KorisnikLozinka = "branimir", KorisnikPotvrdaLozinke = "branimir", KorisnikTip = "tehnOsoblje" },
+                new Korisnik { KorisnikEMail = "ana@dummy.com", KorisnikIme = "Ana", KorisnikPrezime = "Todorović", KorisnikLozinka = "ana", KorisnikPotvrdaLozinke = "ana", KorisnikTip = "klijent" },
+                new Korisnik { KorisnikEMail = "nikolina@dummy.com", KorisnikIme = "Nikolina", KorisnikPrezime = "Vasić", KorisnikLozinka = "nikolina", KorisnikPotvrdaLozinke = "nikolina", KorisnikTip = "tehnOsoblje" },
+                new Korisnik { KorisnikEMail = "aleksandra@dummy.com", KorisnikIme = "Aleksandra", KorisnikPrezime = "Stupar", KorisnikLozinka = "aleksandra", KorisnikPotvrdaLozinke = "aleksandra", KorisnikTip = "klijent" },
+                new Korisnik { KorisnikEMail = "babaAna@dummy.com", KorisnikIme = "Ana", KorisnikPrezime = "Siterić", KorisnikLozinka = "ana", KorisnikPotvrdaLozinke = "ana", KorisnikTip = "tehnOsoblje" }
                 );
 
             context.SaveChanges();
-            
+
             context.Projekti.AddOrUpdate(
-                new Projekat { ProjekatNaziv = "Kolektor II", ProjekatKod = "KII", ProjekatOpis = "postea dissentiunt pri eu", ProjekatAdresa = "Bulevar oslobodjenja 15 Novi Sad" },
-                new Projekat { ProjekatNaziv = "Obnova Sokolskog doma", ProjekatKod = "OSD", ProjekatOpis = "lucilius constituam", ProjekatAdresa = "Kireska 4/6 Subotica" },
-                new Projekat { ProjekatNaziv = "Izgradnja silosa", ProjekatKod = "IS", ProjekatOpis = "His et possim alterum", ProjekatAdresa = "Djure Djakovica 15 Subotica" },
-                new Projekat { ProjekatNaziv = "Postavljanje spomenika", ProjekatKod = "WS", ProjekatOpis = "vix te assum menandri", ProjekatAdresa = "Ilirska 5/a Subotica" },
-                new Projekat { ProjekatNaziv = "Obnova crkve", ProjekatKod = "M2", ProjekatOpis = "Nec eu modo clita iisque", ProjekatAdresa = "Knez Mihajlova 14 Beograd" }
+                new Projekat { ProjekatNaziv = "Kolektor II", ProjekatOpis = "postea dissentiunt pri eu", ProjekatAdresa = "Bulevar oslobodjenja 15 Novi Sad" },
+                new Projekat { ProjekatNaziv = "Obnova Sokolskog doma", ProjekatOpis = "lucilius constituam", ProjekatAdresa = "Kireska 4/6 Subotica" },
+                new Projekat { ProjekatNaziv = "Izgradnja silosa", ProjekatOpis = "His et possim alterum", ProjekatAdresa = "Djure Djakovica 15 Subotica" },
+                new Projekat { ProjekatNaziv = "Postavljanje spomenika", ProjekatOpis = "vix te assum menandri", ProjekatAdresa = "Ilirska 5/a Subotica" },
+                new Projekat { ProjekatNaziv = "Obnova crkve", ProjekatOpis = "Nec eu modo clita iisque", ProjekatAdresa = "Knez Mihajlova 14 Beograd" }
             );
 
             context.SaveChanges();
@@ -92,7 +92,7 @@
                 new Materijal { MaterijalNaziv = "Silikon", MaterijalOpis = "raesent sed vehicula mauris", MaterijalProizvodjac = "Zada", MaterijalRaspolozivaKolicina = 250.0f },
                 new Materijal { MaterijalNaziv = "Malter", MaterijalOpis = "Vivamus pharetra rhoncus dolor", MaterijalProizvodjac = "Moler", MaterijalRaspolozivaKolicina = 400.0f },
                 new Materijal { MaterijalNaziv = "Gips", MaterijalOpis = "vehicula arcu quam", MaterijalProizvodjac = "Zada", MaterijalRaspolozivaKolicina = 200.0f },
-                new Materijal { MaterijalNaziv = "Drvene ploèe 35x15", MaterijalOpis = "metus sit amet imperdiet maximus", MaterijalProizvodjac = "Hipopotamus", MaterijalRaspolozivaKolicina = 85.0f },
+                new Materijal { MaterijalNaziv = "Drvene ploče 35x15", MaterijalOpis = "metus sit amet imperdiet maximus", MaterijalProizvodjac = "Hipopotamus", MaterijalRaspolozivaKolicina = 85.0f },
                 new Materijal { MaterijalNaziv = "Šaraf 3cm", MaterijalOpis = "Nullam imperdiet elit", MaterijalProizvodjac = "Moler", MaterijalRaspolozivaKolicina = 80.0f },
                 new Materijal { MaterijalNaziv = "Ekser 5cm", MaterijalOpis = "Vivamus pharetra rhoncus dolor", MaterijalProizvodjac = "Puma", MaterijalRaspolozivaKolicina = 250.0f },
                 new Materijal { MaterijalNaziv = "Pur pena", MaterijalOpis = "raesent sed vehicula mauris", MaterijalProizvodjac = "Hipopotamus", MaterijalRaspolozivaKolicina = 60.0f }
@@ -113,21 +113,21 @@
 
             context.ProizvodniRadnici.AddOrUpdate(
                 new ProizvodniRadnik { ProizRadIme = "Nikola", ProizRadPrezime = "Todorović", ProizRadEMail = "dami@yahoo.com", ProizRadJMBG = "1535353452231", ProizRadAdresa = "", StrukaID = 1 },
-                new ProizvodniRadnik { ProizRadIme = "Nenad", ProizRadPrezime = "Todorović", ProizRadEMail = "dami@yahoo.com", ProizRadJMBG = "", ProizRadTelKucni = "0612421419", ProizRadAdresa = "", StrukaID = 1, },
-                new ProizvodniRadnik { ProizRadIme = "Branimir", ProizRadPrezime = "Todorović", ProizRadEMail = "dami@yahoo.com", ProizRadJMBG = "", ProizRadTelKucni = "0614253429", ProizRadAdresa = "", StrukaID = 1, },
-                new ProizvodniRadnik { ProizRadIme = "Pero", ProizRadPrezime = "Todorović", ProizRadEMail = "dami@yahoo.com", ProizRadJMBG = "1242342525241", ProizRadTelKucni = "0623425659", ProizRadAdresa = "", StrukaID = 1, ProizRadTelMob = "0625252329" },
-                new ProizvodniRadnik { ProizRadIme = "Mujo", ProizRadPrezime = "Mujić", ProizRadEMail = "dami@yahoo.com", ProizRadJMBG = "", ProizRadTelKucni = "0625235239", ProizRadAdresa = "", StrukaID = 2 },
+                new ProizvodniRadnik { ProizRadIme = "Nenad", ProizRadPrezime = "Todorović", ProizRadEMail = "dami@yahoo.com", ProizRadJMBG = "", ProizRadAdresa = "", StrukaID = 1, },
+                new ProizvodniRadnik { ProizRadIme = "Branimir", ProizRadPrezime = "Todorović", ProizRadEMail = "dami@yahoo.com", ProizRadJMBG = "", ProizRadAdresa = "", StrukaID = 1, },
+                new ProizvodniRadnik { ProizRadIme = "Pero", ProizRadPrezime = "Todorović", ProizRadEMail = "dami@yahoo.com", ProizRadJMBG = "1242342525241", ProizRadAdresa = "", StrukaID = 1, ProizRadTelMob = "0625252329" },
+                new ProizvodniRadnik { ProizRadIme = "Mujo", ProizRadPrezime = "Mujić", ProizRadEMail = "dami@yahoo.com", ProizRadJMBG = "", ProizRadAdresa = "", StrukaID = 2 },
                 new ProizvodniRadnik { ProizRadIme = "Haso", ProizRadPrezime = "Hasić", ProizRadEMail = "dami@yahoo.com", ProizRadJMBG = "", ProizRadAdresa = "", StrukaID = 2 },
                 new ProizvodniRadnik { ProizRadIme = "Bosanac", ProizRadPrezime = "Bosančić", ProizRadEMail = "dami@yahoo.com", ProizRadJMBG = "", ProizRadAdresa = "", StrukaID = 2 },
                 new ProizvodniRadnik { ProizRadIme = "Petar", ProizRadPrezime = "Petrović", ProizRadEMail = "dami@yahoo.com", ProizRadJMBG = "1324523512531", ProizRadAdresa = "", StrukaID = 2, ProizRadTelMob = "0634536439" },
                 new ProizvodniRadnik { ProizRadIme = "Vedran", ProizRadPrezime = "Vedrić", ProizRadEMail = "dami@yahoo.com", ProizRadJMBG = "", ProizRadAdresa = "", StrukaID = 3 },
                 new ProizvodniRadnik { ProizRadIme = "Savo", ProizRadPrezime = "Oroz", ProizRadEMail = "dami@yahoo.com", ProizRadJMBG = "", ProizRadAdresa = "", StrukaID = 3 },
                 new ProizvodniRadnik { ProizRadIme = "Milun", ProizRadPrezime = "Milutinović", ProizRadEMail = "dami@yahoo.com", ProizRadJMBG = "", ProizRadAdresa = "", StrukaID = 3 },
-                new ProizvodniRadnik { ProizRadIme = "Vladan", ProizRadPrezime = "Vladanov", ProizRadEMail = "dami@yahoo.com", ProizRadJMBG = "", ProizRadTelKucni = "0623425219", ProizRadAdresa = "", StrukaID = 4, ProizRadTelMob = "0612435239" },
+                new ProizvodniRadnik { ProizRadIme = "Vladan", ProizRadPrezime = "Vladanov", ProizRadEMail = "dami@yahoo.com", ProizRadJMBG = "", ProizRadAdresa = "", StrukaID = 4, ProizRadTelMob = "0612435239" },
                 new ProizvodniRadnik { ProizRadIme = "Žarko", ProizRadPrezime = "Žarkić", ProizRadEMail = "dami@yahoo.com", ProizRadJMBG = "", ProizRadAdresa = "", StrukaID = 4 },
-                new ProizvodniRadnik { ProizRadIme = "Ognjen", ProizRadPrezime = "Ognjenović", ProizRadEMail = "dami@yahoo.com", ProizRadJMBG = "", ProizRadTelKucni = "0623362222", ProizRadAdresa = "", StrukaID = 4, ProizRadTelMob = "0623452563" },
+                new ProizvodniRadnik { ProizRadIme = "Ognjen", ProizRadPrezime = "Ognjenović", ProizRadEMail = "dami@yahoo.com", ProizRadJMBG = "", ProizRadAdresa = "", StrukaID = 4, ProizRadTelMob = "0623452563" },
                 new ProizvodniRadnik { ProizRadIme = "Garan", ProizRadPrezime = "Garić", ProizRadEMail = "dami@yahoo.com", ProizRadJMBG = "1223445235231", ProizRadAdresa = "", StrukaID = 6, },
-                new ProizvodniRadnik { ProizRadIme = "Goran", ProizRadPrezime = "Gorić", ProizRadEMail = "dami@yahoo.com", ProizRadJMBG = "1263565634531", ProizRadTelKucni = "0365636329", ProizRadAdresa = "", StrukaID = 6, ProizRadTelMob = "0636335329" },
+                new ProizvodniRadnik { ProizRadIme = "Goran", ProizRadPrezime = "Gorić", ProizRadEMail = "dami@yahoo.com", ProizRadJMBG = "1263565634531", ProizRadAdresa = "", StrukaID = 6, ProizRadTelMob = "0636335329" },
                 new ProizvodniRadnik { ProizRadIme = "Zoran", ProizRadPrezime = "Zorić", ProizRadEMail = "dami@yahoo.com", ProizRadJMBG = "", ProizRadAdresa = "", StrukaID = 6 },
                 new ProizvodniRadnik { ProizRadIme = "Miša", ProizRadPrezime = "Mitrović", ProizRadEMail = "dami@yahoo.com", ProizRadJMBG = "", ProizRadAdresa = "", StrukaID = 6 },
                 new ProizvodniRadnik { ProizRadIme = "Gliša", ProizRadPrezime = "Glišić", ProizRadEMail = "dami@yahoo.com", ProizRadJMBG = "", ProizRadAdresa = "", StrukaID = 5, ProizRadTelMob = "0324532229" }
@@ -165,7 +165,7 @@
                 new Masina { MasinaProizvodjac = "Aurora borealis", MasinaOpis = "Donec dui sem", TipMasineID = 8, MasinaDostupnaKolicina = 4 }
             );
 
-            context.SaveChanges();*/
+            context.SaveChanges(); 
         }
     }
 }

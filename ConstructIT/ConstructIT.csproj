@@ -197,6 +197,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DodelaMaterijalaController.cs" />
+    <Compile Include="Controllers\EvidencijaAngazovanjaMasineController.cs" />
+    <Compile Include="Controllers\EvidencijaRadnogVremenaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KomentarZadatakController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -337,6 +340,21 @@
     <Content Include="Views\KomentarZadatak\Details.cshtml" />
     <Content Include="Views\KomentarZadatak\Edit.cshtml" />
     <Content Include="Views\KomentarZadatak\Index.cshtml" />
+    <Content Include="Views\EvidencijaAngazovanjaMasine\Create.cshtml" />
+    <Content Include="Views\EvidencijaAngazovanjaMasine\Delete.cshtml" />
+    <Content Include="Views\EvidencijaAngazovanjaMasine\Details.cshtml" />
+    <Content Include="Views\EvidencijaAngazovanjaMasine\Edit.cshtml" />
+    <Content Include="Views\EvidencijaAngazovanjaMasine\Index.cshtml" />
+    <Content Include="Views\EvidencijaRadnogVremena\Create.cshtml" />
+    <Content Include="Views\EvidencijaRadnogVremena\Delete.cshtml" />
+    <Content Include="Views\EvidencijaRadnogVremena\Details.cshtml" />
+    <Content Include="Views\EvidencijaRadnogVremena\Edit.cshtml" />
+    <Content Include="Views\EvidencijaRadnogVremena\Index.cshtml" />
+    <Content Include="Views\DodelaMaterijala\Create.cshtml" />
+    <Content Include="Views\DodelaMaterijala\Delete.cshtml" />
+    <Content Include="Views\DodelaMaterijala\Details.cshtml" />
+    <Content Include="Views\DodelaMaterijala\Edit.cshtml" />
+    <Content Include="Views\DodelaMaterijala\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

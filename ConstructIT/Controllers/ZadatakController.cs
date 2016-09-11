@@ -39,11 +39,12 @@ namespace ConstructIT.Controllers
         }
 
         // GET: Zadatak/Create
-        public ActionResult Create()
+        public ActionResult Create(int projekatID)
         {
+            ViewBag.ProjekatNaziv = db.Projekti.Where(p => p.ProjekatID == projekatID).FirstOrDefault().ProjekatNaziv;
+            ViewBag.ProjekatID = projekatID;
             ViewBag.KorisnikID = new SelectList(db.Korisnici, "KorisnikID", "KorisnikLozinka");
             ViewBag.PrioritetID = new SelectList(db.Prioriteti, "PrioritetID", "PrioritetNaziv");
-            ViewBag.ProjekatID = new SelectList(db.Projekti, "ProjekatID", "ProjekatNaziv");
             ViewBag.StatusID = new SelectList(db.Statusi, "StatusID", "StatusNaziv");
             return View();
         }
@@ -55,6 +56,14 @@ namespace ConstructIT.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "ProjekatID,ZadatakID,ZadatakNaziv,ZadatakDatumPocetka,ZadatakDatumZavrsetka,ZadatakOpis,StatusID,PrioritetID,KorisnikID")] Zadatak zadatak)
         {
+            Zadatak z = db.Zadaci.Where(za => za.ProjekatID == zadatak.ProjekatID && za.ZadatakNaziv == zadatak.ZadatakNaziv).FirstOrDefault();
+
+            if(z != null)
+            {
+                ModelState.AddModelError("ZadatakNaziv", "U ovom projektu već postoji zadatak sa unetim nazivom!");
+            }
+
+
             if (ModelState.IsValid)
             {
                 db.Zadaci.Add(zadatak);
@@ -62,9 +71,10 @@ namespace ConstructIT.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.ProjekatNaziv = db.Projekti.Where(p => p.ProjekatID == zadatak.ProjekatID).FirstOrDefault().ProjekatNaziv;
+            ViewBag.ProjekatID = zadatak.ProjekatID;
             ViewBag.KorisnikID = new SelectList(db.Korisnici, "KorisnikID", "KorisnikLozinka", zadatak.KorisnikID);
-            ViewBag.PrioritetID = new SelectList(db.Prioriteti, "PrioritetID", "PrioritetNaziv", zadatak.PrioritetID);
-            ViewBag.ProjekatID = new SelectList(db.Projekti, "ProjekatID", "ProjekatNaziv", zadatak.ProjekatID);
+            ViewBag.PrioritetID = new SelectList(db.Prioriteti, "PrioritetID", "PrioritetNaziv");
             ViewBag.StatusID = new SelectList(db.Statusi, "StatusID", "StatusNaziv", zadatak.StatusID);
             return View(zadatak);
         }
@@ -95,6 +105,13 @@ namespace ConstructIT.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "ProjekatID,ZadatakID,ZadatakNaziv,ZadatakDatumPocetka,ZadatakDatumZavrsetka,ZadatakOpis,StatusID,PrioritetID,KorisnikID")] Zadatak zadatak)
         {
+            Zadatak z = db.Zadaci.Where(za => za.ProjekatID == zadatak.ProjekatID && za.ZadatakID != zadatak.ZadatakID && za.ZadatakNaziv == zadatak.ZadatakNaziv).FirstOrDefault();
+
+            if (z != null)
+            {
+                ModelState.AddModelError("ZadatakNaziv", "U ovom projektu već postoji zadatak sa unetim nazivom!");
+            }
+
             if (ModelState.IsValid)
             {
                 db.Entry(zadatak).State = EntityState.Modified;
@@ -115,7 +132,8 @@ namespace ConstructIT.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Zadatak zadatak = await db.Zadaci.FindAsync(id);
+            Zadatak zadatak = await db.Zadaci.Where(z => z.ZadatakID == id).FirstOrDefaultAsync();
+
             if (zadatak == null)
             {
                 return HttpNotFound();
@@ -128,7 +146,7 @@ namespace ConstructIT.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Zadatak zadatak = await db.Zadaci.FindAsync(id);
+            Zadatak zadatak = await db.Zadaci.Where(z => z.ZadatakID == id).FirstOrDefaultAsync();
             db.Zadaci.Remove(zadatak);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");

@@ -3,7 +3,7 @@ namespace ConstructIT.DAL.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class init : DbMigration
+    public partial class dbReconfigured : DbMigration
     {
         public override void Up()
         {
@@ -11,17 +11,14 @@ namespace ConstructIT.DAL.Migrations
                 "dbo.DodelaMaterijala",
                 c => new
                     {
-                        ProjekatID = c.Int(nullable: false),
-                        ZadatakID = c.Int(nullable: false),
-                        MaterijalID = c.Int(nullable: false),
-                        PotrMatOdDatuma = c.DateTime(nullable: false),
-                        PotrMatDoDatuma = c.DateTime(nullable: false),
+                        DodelaMaterijalaID = c.Int(nullable: false, identity: true),
+                        PotrebaMaterijalaID = c.Int(nullable: false),
                         DodMatDatumDodele = c.DateTime(nullable: false),
                         DodMatKolicina = c.Double(nullable: false),
                     })
-                .PrimaryKey(t => new { t.ProjekatID, t.ZadatakID, t.MaterijalID, t.PotrMatOdDatuma, t.PotrMatDoDatuma, t.DodMatDatumDodele })
-                .ForeignKey("dbo.PotrebaMaterijala", t => new { t.ProjekatID, t.ZadatakID, t.MaterijalID, t.PotrMatOdDatuma, t.PotrMatDoDatuma })
-                .Index(t => new { t.ProjekatID, t.ZadatakID, t.MaterijalID, t.PotrMatOdDatuma, t.PotrMatDoDatuma });
+                .PrimaryKey(t => t.DodelaMaterijalaID)
+                .ForeignKey("dbo.PotrebaMaterijala", t => t.PotrebaMaterijalaID)
+                .Index(t => t.PotrebaMaterijalaID);
             
             CreateTable(
                 "dbo.PotrebaMaterijala",
@@ -30,11 +27,12 @@ namespace ConstructIT.DAL.Migrations
                         ProjekatID = c.Int(nullable: false),
                         ZadatakID = c.Int(nullable: false),
                         MaterijalID = c.Int(nullable: false),
+                        PotrebaMaterijalaID = c.Int(nullable: false, identity: true),
                         PotrMatOdDatuma = c.DateTime(nullable: false),
                         PotrMatDoDatuma = c.DateTime(nullable: false),
                         PotrMatKolicina = c.Double(nullable: false),
                     })
-                .PrimaryKey(t => new { t.ProjekatID, t.ZadatakID, t.MaterijalID, t.PotrMatOdDatuma, t.PotrMatDoDatuma })
+                .PrimaryKey(t => t.PotrebaMaterijalaID)
                 .ForeignKey("dbo.Materijal", t => t.MaterijalID)
                 .ForeignKey("dbo.Zadatak", t => new { t.ProjekatID, t.ZadatakID })
                 .Index(t => new { t.ProjekatID, t.ZadatakID })
@@ -162,7 +160,6 @@ namespace ConstructIT.DAL.Migrations
                         ProizRadPrezime = c.String(nullable: false, maxLength: 64),
                         ProizRadEMail = c.String(maxLength: 64),
                         ProizRadAdresa = c.String(maxLength: 64),
-                        ProizRadTelKucni = c.String(maxLength: 32),
                         ProizRadTelMob = c.String(maxLength: 32),
                         StrukaID = c.Int(nullable: false),
                     })
@@ -183,7 +180,7 @@ namespace ConstructIT.DAL.Migrations
                 "dbo.PotrebaStruke",
                 c => new
                     {
-                        ProjekatiID = c.Int(nullable: false),
+                        ProjekatID = c.Int(nullable: false),
                         ZadatakID = c.Int(nullable: false),
                         PotrebaStrukeID = c.Int(nullable: false, identity: true),
                         PotrebaStrukeOdDatuma = c.DateTime(nullable: false),
@@ -193,8 +190,8 @@ namespace ConstructIT.DAL.Migrations
                     })
                 .PrimaryKey(t => t.PotrebaStrukeID)
                 .ForeignKey("dbo.Struka", t => t.StrukaID)
-                .ForeignKey("dbo.Zadatak", t => new { t.ProjekatiID, t.ZadatakID })
-                .Index(t => new { t.ProjekatiID, t.ZadatakID })
+                .ForeignKey("dbo.Zadatak", t => new { t.ProjekatID, t.ZadatakID })
+                .Index(t => new { t.ProjekatID, t.ZadatakID })
                 .Index(t => t.StrukaID);
             
             CreateTable(
@@ -222,9 +219,11 @@ namespace ConstructIT.DAL.Migrations
                     {
                         KorisnikID = c.Int(nullable: false, identity: true),
                         KorisnikLozinka = c.String(nullable: false, maxLength: 64),
+                        KorisnikPotvrdaLozinke = c.String(maxLength: 64),
                         KorisnikIme = c.String(nullable: false, maxLength: 64),
                         KorisnikPrezime = c.String(nullable: false, maxLength: 64),
                         KorisnikEMail = c.String(nullable: false, maxLength: 64),
+                        KorisnikTelefon = c.String(maxLength: 32),
                         KorisnikTip = c.String(nullable: false),
                     })
                 .PrimaryKey(t => t.KorisnikID)
@@ -266,12 +265,11 @@ namespace ConstructIT.DAL.Migrations
                     {
                         ProjekatID = c.Int(nullable: false, identity: true),
                         ProjekatNaziv = c.String(nullable: false, maxLength: 128),
-                        ProjekatKod = c.String(nullable: false, maxLength: 8),
                         ProjekatOpis = c.String(maxLength: 1024),
                         ProjekatAdresa = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.ProjekatID)
-                .Index(t => t.ProjekatKod, unique: true);
+                .Index(t => t.ProjekatNaziv, unique: true);
             
             CreateTable(
                 "dbo.Slika",
@@ -346,7 +344,7 @@ namespace ConstructIT.DAL.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.DodelaMaterijala", new[] { "ProjekatID", "ZadatakID", "MaterijalID", "PotrMatOdDatuma", "PotrMatDoDatuma" }, "dbo.PotrebaMaterijala");
+            DropForeignKey("dbo.DodelaMaterijala", "PotrebaMaterijalaID", "dbo.PotrebaMaterijala");
             DropForeignKey("dbo.PotrebaMaterijala", new[] { "ProjekatID", "ZadatakID" }, "dbo.Zadatak");
             DropForeignKey("dbo.Zadatak", "StatusID", "dbo.Status");
             DropForeignKey("dbo.Zadatak", "ProjekatID", "dbo.Projekat");
@@ -367,7 +365,7 @@ namespace ConstructIT.DAL.Migrations
             DropForeignKey("dbo.EvidencijaRadnogVremena", new[] { "ProjekatID", "ZadatakID" }, "dbo.Zadatak");
             DropForeignKey("dbo.EvidencijaRadnogVremena", "ProizvodniRadnikID", "dbo.ProizvodniRadnik");
             DropForeignKey("dbo.ProizvodniRadnik", "StrukaID", "dbo.Struka");
-            DropForeignKey("dbo.PotrebaStruke", new[] { "ProjekatiID", "ZadatakID" }, "dbo.Zadatak");
+            DropForeignKey("dbo.PotrebaStruke", new[] { "ProjekatID", "ZadatakID" }, "dbo.Zadatak");
             DropForeignKey("dbo.PotrebaStruke", "StrukaID", "dbo.Struka");
             DropForeignKey("dbo.EvidencijaAngazovanjaMasine", new[] { "ProjekatID", "ZadatakID" }, "dbo.Zadatak");
             DropForeignKey("dbo.EvidencijaAngazovanjaMasine", "MasinaID", "dbo.Masina");
@@ -382,7 +380,7 @@ namespace ConstructIT.DAL.Migrations
             DropIndex("dbo.PromenaZadatka", new[] { "PZ_StatusID" });
             DropIndex("dbo.PromenaZadatka", new[] { "ProjekatID", "ZadatakID" });
             DropIndex("dbo.Slika", new[] { "ProjekatID", "GalerijaDatum" });
-            DropIndex("dbo.Projekat", new[] { "ProjekatKod" });
+            DropIndex("dbo.Projekat", new[] { "ProjekatNaziv" });
             DropIndex("dbo.Galerija", new[] { "ProjekatID" });
             DropIndex("dbo.KomentarGalerija", new[] { "KorisnikID" });
             DropIndex("dbo.KomentarGalerija", new[] { "ProjekatID", "GalerijaDatum" });
@@ -390,7 +388,7 @@ namespace ConstructIT.DAL.Migrations
             DropIndex("dbo.KomentarZadatak", new[] { "KorisnikID" });
             DropIndex("dbo.KomentarZadatak", new[] { "ProjekatID", "ZadatakID" });
             DropIndex("dbo.PotrebaStruke", new[] { "StrukaID" });
-            DropIndex("dbo.PotrebaStruke", new[] { "ProjekatiID", "ZadatakID" });
+            DropIndex("dbo.PotrebaStruke", new[] { "ProjekatID", "ZadatakID" });
             DropIndex("dbo.ProizvodniRadnik", new[] { "StrukaID" });
             DropIndex("dbo.EvidencijaRadnogVremena", new[] { "ProizvodniRadnikID" });
             DropIndex("dbo.EvidencijaRadnogVremena", new[] { "ProjekatID", "ZadatakID" });
@@ -404,7 +402,7 @@ namespace ConstructIT.DAL.Migrations
             DropIndex("dbo.Zadatak", new[] { "ProjekatID" });
             DropIndex("dbo.PotrebaMaterijala", new[] { "MaterijalID" });
             DropIndex("dbo.PotrebaMaterijala", new[] { "ProjekatID", "ZadatakID" });
-            DropIndex("dbo.DodelaMaterijala", new[] { "ProjekatID", "ZadatakID", "MaterijalID", "PotrMatOdDatuma", "PotrMatDoDatuma" });
+            DropIndex("dbo.DodelaMaterijala", new[] { "PotrebaMaterijalaID" });
             DropTable("dbo.ProjekatKorisnik");
             DropTable("dbo.Status");
             DropTable("dbo.Prioritet");

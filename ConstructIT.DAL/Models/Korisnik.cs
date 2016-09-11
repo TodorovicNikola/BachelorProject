@@ -16,6 +16,11 @@ namespace ConstructIT.DAL.Models
         [Display(Name = "Lozinka")]
         public String KorisnikLozinka { get; set; }
 
+        [StringLength(64)]
+        [Display(Name = "Potvrda lozinke")]
+        [Compare("KorisnikLozinka", ErrorMessage = "'Lozinka' se ne poklapa sa poljem 'Potvrda lozinke'!")]
+        public String KorisnikPotvrdaLozinke { get; set; }
+
         [StringLength(64, ErrorMessage = "'Ime' ne sme biti duže od 64 karaktera!"), Required(ErrorMessage = "'Ime' ne sme biti neodređeno!")]
         [Display(Name = "Ime")]
         public String KorisnikIme { get; set; }
@@ -32,6 +37,11 @@ namespace ConstructIT.DAL.Models
         [StringLength(64, ErrorMessage = "'E-Mail' ne sme biti duži od 64 karaktera!")]
         [Display(Name = "E-Mail")]
         public String KorisnikEMail { get; set; }
+
+        [RegularExpression(@"^\+?(\d[\d-. ]+)?(\([\d-. ]+\))?[\d-. ]+\d$", ErrorMessage = "Nepravilan unos za 'Telefon'!")]
+        [StringLength(32, ErrorMessage = "'Telefon' ne sme biti duži od 32 karaktera!")]
+        [Display(Name = "Telefon")]
+        public String KorisnikTelefon { get; set; }
 
         [Required]
         public String KorisnikTip { get; set; }

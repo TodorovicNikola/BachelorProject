@@ -10,6 +10,7 @@ namespace ConstructIT.DAL.Models
 {
     public class PotrebaMaterijala
     {
+        [Display(Name = "Šifra potrebe materijala")]
         public int PotrebaMaterijalaID { get; set; }
 
         [ForeignKey("Zadatak")]

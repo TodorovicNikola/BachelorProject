@@ -14,7 +14,7 @@
 
 <div>
     <h4 style="padding-left:3%">Projekat - @Html.DisplayFor(model => model.Projekat.ProjekatNaziv)</h4>
-    @Html.ActionLink("Izmeni", "Edit", new { /* id = Model.PrimaryKey */ }, new { @style = "position:relative; float:right; top: -10px; right:5%;" })
+    @Html.ActionLink("Izmeni", "Edit", new {  id = Model.ZadatakID  }, new { @style = "position:relative; float:right; top: -10px; right:150px;" })  @Html.ActionLink("Obriši", "Delete", "Zadatak", new { id = Model.ZadatakID }, new { @style = "position:relative; float:right; top: -10px; right:55px;" })
     <hr />
     <div style="position:relative; float:left; left:5%">
 
