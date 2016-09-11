@@ -1,0 +1,74 @@
+﻿@model ConstructIT.DAL.Models.Korisnik
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Korisnik</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.KorisnikLozinka)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KorisnikLozinka)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KorisnikPotvrdaLozinke)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KorisnikPotvrdaLozinke)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KorisnikIme)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KorisnikIme)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KorisnikPrezime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KorisnikPrezime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KorisnikEMail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KorisnikEMail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KorisnikTelefon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KorisnikTelefon)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KorisnikTip)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KorisnikTip)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.KorisnikID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

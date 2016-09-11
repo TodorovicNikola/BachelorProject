@@ -202,6 +202,7 @@
     <Compile Include="Controllers\EvidencijaRadnogVremenaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KomentarZadatakController.cs" />
+    <Compile Include="Controllers\KorisnikController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MasinaController.cs" />
     <Compile Include="Controllers\MaterijalController.cs" />
@@ -355,6 +356,11 @@
     <Content Include="Views\DodelaMaterijala\Details.cshtml" />
     <Content Include="Views\DodelaMaterijala\Edit.cshtml" />
     <Content Include="Views\DodelaMaterijala\Index.cshtml" />
+    <Content Include="Views\Korisnik\Create.cshtml" />
+    <Content Include="Views\Korisnik\Delete.cshtml" />
+    <Content Include="Views\Korisnik\Details.cshtml" />
+    <Content Include="Views\Korisnik\Edit.cshtml" />
+    <Content Include="Views\Korisnik\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

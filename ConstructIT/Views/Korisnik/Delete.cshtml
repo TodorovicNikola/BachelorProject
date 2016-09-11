@@ -1,0 +1,67 @@
+﻿@model ConstructIT.DAL.Models.Korisnik
+
+@{
+    ViewBag.Title = "Brisanje korisnika";
+}
+
+<h2>Brisanje</h2>
+
+<h3 style="padding-left: 3%">Da li ste sigurni da želite da obrišete?</h3>
+<div>
+    
+    <hr />
+    <h4>Korisnik</h4>
+    <br />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KorisnikEMail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KorisnikEMail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KorisnikIme)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KorisnikIme)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KorisnikPrezime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KorisnikPrezime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KorisnikTelefon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KorisnikTelefon)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KorisnikTip)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KorisnikTip)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Obriši" class="btn btn-default" /> |
+            @Html.ActionLink("Odustani", "Index")
+        </div>
+    }
+</div>

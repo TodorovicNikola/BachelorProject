@@ -14,11 +14,13 @@ namespace ConstructIT.DAL.Models
 
         [StringLength(64, ErrorMessage = "'Lozinka' ne sme biti duža od 64 karaktera!"), Required(ErrorMessage = "'Lozinka' ne sme biti neodređena!")]
         [Display(Name = "Lozinka")]
+        [DataType(DataType.Password)]
         public String KorisnikLozinka { get; set; }
 
         [StringLength(64)]
         [Display(Name = "Potvrda lozinke")]
         [Compare("KorisnikLozinka", ErrorMessage = "'Lozinka' se ne poklapa sa poljem 'Potvrda lozinke'!")]
+        [DataType(DataType.Password)]
         public String KorisnikPotvrdaLozinke { get; set; }
 
         [StringLength(64, ErrorMessage = "'Ime' ne sme biti duže od 64 karaktera!"), Required(ErrorMessage = "'Ime' ne sme biti neodređeno!")]
