@@ -1,18 +1,23 @@
 ﻿@model IEnumerable<ConstructIT.DAL.Models.EvidencijaRadnogVremena>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Evidencija radnog vremena";
 }
 
-<h2>Index</h2>
+<h2>Evidencija radnog vremena</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+<hr />
+
+<table class="table table-striped table-hover">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.ProizvodniRadnik.ProizvodniRadnikID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProizvodniRadnik.ProizRadIme)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProizvodniRadnik.ProizRadPrezime)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Zadatak.Projekat.ProjekatNaziv)
@@ -38,6 +43,12 @@
             @Html.DisplayFor(modelItem => item.ProizvodniRadnik.ProizvodniRadnikID)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.ProizvodniRadnik.ProizRadIme)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProizvodniRadnik.ProizRadPrezime)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Zadatak.Projekat.ProjekatNaziv)
         </td>
         <td>
@@ -53,9 +64,8 @@
             @Html.DisplayFor(modelItem => item.EvRadnVrVremeDo)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.EvidencijaRadnogVremenaID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.EvidencijaRadnogVremenaID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.EvidencijaRadnogVremenaID })
+            @Html.ActionLink("Izmeni", "Edit", new { id=item.EvidencijaRadnogVremenaID }) |
+            @Html.ActionLink("Obriši", "Delete", new { id=item.EvidencijaRadnogVremenaID })
         </td>
     </tr>
 }

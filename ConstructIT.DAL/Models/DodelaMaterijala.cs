@@ -17,7 +17,7 @@ namespace ConstructIT.DAL.Models
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        [Display(Name = "Datum dodele")]
+        [Display(Name = "Datum")]
         public DateTime DodMatDatumDodele { get; set; }
 
         [Required(ErrorMessage = "'Dodeljena količina' ne sme biti neodređena!")]

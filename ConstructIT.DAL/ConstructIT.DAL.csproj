@@ -95,7 +95,9 @@
       <DependentUpon>201609120651127_StoredProcedures.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Sql\CREATE_TRIG\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Sql\CREATE_PR\CREATE_PR_AUTO_ASSIGN_MACHINES.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -106,13 +108,13 @@
     <Content Include="Sql\CREATE_PR\CREATE_PR_AUTO_ASSIGN_WORKERS.sql">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Sql\DROP_PR_AUTO_ASSIGN_MACHINES.sql">
+    <Content Include="Sql\DROP_PR\DROP_PR_AUTO_ASSIGN_MACHINES.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Sql\DROP_PR_AUTO_ASSIGN_MATERIAL.sql">
+    <Content Include="Sql\DROP_PR\DROP_PR_AUTO_ASSIGN_MATERIAL.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Sql\DROP_PR_AUTO_ASSIGN_WORKERS.sql">
+    <Content Include="Sql\DROP_PR\DROP_PR_AUTO_ASSIGN_WORKERS.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

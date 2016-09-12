@@ -1,15 +1,14 @@
 ﻿@model IEnumerable<ConstructIT.DAL.Models.EvidencijaAngazovanjaMasine>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Evidencija angažovanja mašine";
 }
 
-<h2>Index</h2>
+<h2>Evidencija angažovanja mašine</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+<hr />
+
+<table class="table table-striped table-hover">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Masina.TipMasine.TipMasineNaziv)
@@ -59,9 +58,8 @@
             @Html.DisplayFor(modelItem => item.EvidAngMasVremeDo)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.EvidencijaAngazovanjaMasineID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.EvidencijaAngazovanjaMasineID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.EvidencijaAngazovanjaMasineID })
+            @Html.ActionLink("Izmeni", "Edit", new { id=item.EvidencijaAngazovanjaMasineID }) |
+            @Html.ActionLink("Obriši", "Delete", new { id=item.EvidencijaAngazovanjaMasineID })
         </td>
     </tr>
 }

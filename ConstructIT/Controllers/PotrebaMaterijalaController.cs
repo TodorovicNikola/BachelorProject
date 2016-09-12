@@ -19,7 +19,9 @@ namespace ConstructIT.Controllers
         // GET: PotrebaMaterijala
         public async Task<ActionResult> Index()
         {
-            var potrebeMaterijala = db.PotrebeMaterijala.Include(p => p.Materijal).Include(p => p.Zadatak);
+            DateTime today = DateTime.Today;
+
+            var potrebeMaterijala = db.PotrebeMaterijala.Include(p => p.Materijal).Include(p => p.Zadatak).Where(pm => pm.PotrMatKolicina > 0 && DbFunctions.TruncateTime(pm.PotrMatOdDatuma) <= today && DbFunctions.TruncateTime(pm.PotrMatDoDatuma) >= today);
             return View(await potrebeMaterijala.ToListAsync());
         }
 
@@ -60,7 +62,7 @@ namespace ConstructIT.Controllers
             {
                 db.PotrebeMaterijala.Add(potrebaMaterijala);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Zadatak", new { id = potrebaMaterijala.ZadatakID });
             }
 
             ViewBag.MaterijalID = new SelectList(db.Materijali, "MaterijalID", "MaterijalNaziv", potrebaMaterijala.MaterijalID);
@@ -102,7 +104,7 @@ namespace ConstructIT.Controllers
             {
                 db.Entry(potrebaMaterijala).State = EntityState.Modified;
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Zadatak", new { id = potrebaMaterijala.ZadatakID });
             }
 
             ViewBag.MaterijalNaziv = db.Materijali.Where(m => m.MaterijalID == potrebaMaterijala.MaterijalID).FirstOrDefault().MaterijalNaziv;
@@ -131,7 +133,14 @@ namespace ConstructIT.Controllers
             PotrebaMaterijala potrebaMaterijala = await db.PotrebeMaterijala.Where(p => p.PotrebaMaterijalaID == potrebaTipaMaterijalaID).FirstOrDefaultAsync();
             db.PotrebeMaterijala.Remove(potrebaMaterijala);
             await db.SaveChangesAsync();
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", "Zadatak", new { id = potrebaMaterijala.ZadatakID });
+        }
+
+        public async Task<ActionResult> AutoAssignMaterial()
+        {
+            await db.Database.ExecuteSqlCommandAsync("PR_AUTO_ASSIGN_MATERIAL");
+
+            return RedirectToAction("Index", "DodelaMaterijala");
         }
 
         protected override void Dispose(bool disposing)

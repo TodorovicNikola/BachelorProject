@@ -1,15 +1,14 @@
 ﻿@model IEnumerable<ConstructIT.DAL.Models.PotrebaMaterijala>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Potrebe materijala";
 }
 
-<h2>Index</h2>
+<h2>Potrebe materijala</h2>
+@Html.ActionLink("Automatski dodeli za današnji dan", "AutoAssignMaterial", "PotrebaMaterijala")
+<hr />
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+<table class="table table-striped table-hover">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Materijal.MaterijalNaziv)
@@ -33,11 +32,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.PotrMatKolicina)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
         </td>
     </tr>
 }

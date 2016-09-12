@@ -19,7 +19,9 @@ namespace ConstructIT.Controllers
         // GET: PotrebaTipaMasine
         public async Task<ActionResult> Index()
         {
-            var potrebeTipovaMasina = db.PotrebeTipovaMasina.Include(p => p.TipMasine).Include(p => p.Zadatak);
+            DateTime today = DateTime.Today;
+
+            var potrebeTipovaMasina = db.PotrebeTipovaMasina.Include(p => p.TipMasine).Include(p => p.Zadatak).Where(ptm => DbFunctions.TruncateTime(ptm.PotrTipaMasOdDatuma) <= today && DbFunctions.TruncateTime(ptm.PotrTipaMasDoDatuma) >= today);
             return View(await potrebeTipovaMasina.ToListAsync());
         }
 
@@ -60,7 +62,7 @@ namespace ConstructIT.Controllers
             {
                 db.PotrebeTipovaMasina.Add(potrebaTipaMasine);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Zadatak", new { id = potrebaTipaMasine.ZadatakID });
             }
 
             ViewBag.TipMasineID = new SelectList(db.TipoviMasina, "TipMasineID", "TipMasineNaziv", potrebaTipaMasine.TipMasineID);
@@ -102,7 +104,7 @@ namespace ConstructIT.Controllers
             {
                 db.Entry(potrebaTipaMasine).State = EntityState.Modified;
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Zadatak", new { id = potrebaTipaMasine.ZadatakID });
             }
 
             ViewBag.TipMasineNaziv = db.TipoviMasina.Where(t => t.TipMasineID == potrebaTipaMasine.TipMasineID).FirstOrDefault().TipMasineNaziv;
@@ -135,7 +137,14 @@ namespace ConstructIT.Controllers
             PotrebaTipaMasine potrebaTipaMasine = await db.PotrebeTipovaMasina.FindAsync(id);
             db.PotrebeTipovaMasina.Remove(potrebaTipaMasine);
             await db.SaveChangesAsync();
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", "Zadatak", new { id = potrebaTipaMasine.ZadatakID });
+        }
+
+        public async Task<ActionResult> AutoAssignMachines()
+        {
+            await db.Database.ExecuteSqlCommandAsync("PR_AUTO_ASSIGN_MACHINES");
+
+            return RedirectToAction("Index", "EvidencijaRadnogVremena");
         }
 
         protected override void Dispose(bool disposing)

@@ -1,18 +1,20 @@
 ﻿@model IEnumerable<ConstructIT.DAL.Models.DodelaMaterijala>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Dodela materijala";
 }
 
-<h2>Index</h2>
+<h2>Dodela materijala</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+<hr />
+
+<table class="table table-striped table-hover">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.PotrebaMaterijala.PotrebaMaterijalaID)
+            @Html.DisplayNameFor(model => model.PotrebaMaterijala.Materijal.MaterijalNaziv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PotrebaMaterijala.Materijal.MaterijalProizvodjac)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.PotrebaMaterijala.Zadatak.Projekat.ProjekatNaziv)
@@ -32,13 +34,16 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.PotrebaMaterijala.PotrebaMaterijalaID)
+            @Html.DisplayFor(modelItem => item.PotrebaMaterijala.Materijal.MaterijalNaziv)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.PotrebaMaterijala.Zadatak.ZadatakNaziv)
+            @Html.DisplayFor(modelItem => item.PotrebaMaterijala.Materijal.MaterijalProizvodjac)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.PotrebaMaterijala.Zadatak.Projekat.ProjekatNaziv)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PotrebaMaterijala.Zadatak.ZadatakNaziv)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.DodMatDatumDodele)
@@ -47,9 +52,8 @@
             @Html.DisplayFor(modelItem => item.DodMatKolicina)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.DodelaMaterijalaID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.DodelaMaterijalaID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.DodelaMaterijalaID })
+            @Html.ActionLink("Izmeni", "Edit", new { id=item.DodelaMaterijalaID }) |
+            @Html.ActionLink("Obriši", "Delete", new { id=item.DodelaMaterijalaID })
         </td>
     </tr>
 }

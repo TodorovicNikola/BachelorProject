@@ -1,18 +1,21 @@
 ﻿@model IEnumerable<ConstructIT.DAL.Models.PotrebaTipaMasine>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Potrebe tipova mašina";
 }
 
-<h2>Index</h2>
+<h2>Potrebe tipova mašina</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+@Html.ActionLink("Automatski dodeli za današnji dan", "AutoAssignMachines", "PotrebaTipaMasine")
+<hr />
+
+<table class="table table-striped table-hover">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.TipMasine.TipMasineNaziv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Zadatak.Projekat.ProjekatNaziv)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Zadatak.ZadatakNaziv)
@@ -35,6 +38,9 @@
             @Html.DisplayFor(modelItem => item.TipMasine.TipMasineNaziv)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.Zadatak.Projekat.ProjekatNaziv)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Zadatak.ZadatakNaziv)
         </td>
         <td>
@@ -45,11 +51,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.PotrTipaMasKolicina)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PotrebaTipaMasineID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.PotrebaTipaMasineID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.PotrebaTipaMasineID })
         </td>
     </tr>
 }

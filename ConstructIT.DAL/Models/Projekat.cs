@@ -14,7 +14,7 @@ namespace ConstructIT.DAL.Models
 
         [Index(IsUnique = true)]
         [StringLength(128, ErrorMessage = "'Naziv Projekta' ne sme biti duži od 128 karaktera!"), Required(ErrorMessage = "'Naziv Projekta' ne sme biti prazan!")]
-        [Display(Name = "Naziv Projekta")]
+        [Display(Name = "Naziv projekta")]
         public String ProjekatNaziv { get; set; }
 
         [StringLength(1024, ErrorMessage = "'Opis projekta' ne sme biti duži od 1024 karaktera!")]

@@ -10,7 +10,7 @@ namespace ConstructIT.DAL.Models
 {
     public class ProizvodniRadnik
     {
-        [Display(Name = "MBR")]
+        [Display(Name = "MBR radnika")]
         public int ProizvodniRadnikID { get; set; }
 
         [StringLength(13, ErrorMessage = "'JMBG' mora biti tačno 13 karaktera!"), RegularExpression(@"^[0-9]{13}$", ErrorMessage = "Uneseni JMBG ne zadovoljava formu standardnog JMBG-a!")]

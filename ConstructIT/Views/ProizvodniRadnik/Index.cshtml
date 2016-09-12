@@ -7,9 +7,11 @@
 <h2>Proizvodni radnici</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Dodaj novog", "Create")
 </p>
-<table class="table">
+<hr />
+
+<table class="table table-striped table-hover">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.ProizvodniRadnikID)
@@ -65,9 +67,8 @@
             @Html.DisplayFor(modelItem => item.ProizRadTelMob)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ProizvodniRadnikID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ProizvodniRadnikID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ProizvodniRadnikID })
+            @Html.ActionLink("Izmeni", "Edit", new { id=item.ProizvodniRadnikID }) |
+            @Html.ActionLink("Obriši", "Delete", new { id=item.ProizvodniRadnikID })
         </td>
     </tr>
 }

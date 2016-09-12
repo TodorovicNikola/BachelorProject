@@ -19,7 +19,9 @@ namespace ConstructIT.Controllers
         // GET: PotrebaStruke
         public async Task<ActionResult> Index()
         {
-            var potrebeStruka = db.PotrebeStruka.Include(p => p.Struka).Include(p => p.Zadatak);
+            DateTime today = DateTime.Today;
+
+            var potrebeStruka = db.PotrebeStruka.Include(p => p.Struka).Include(p => p.Zadatak).Where(ps => DbFunctions.TruncateTime(ps.PotrebaStrukeOdDatuma) <= today && DbFunctions.TruncateTime(ps.PotrebaStrukeDoDatuma) >= today);
             return View(await potrebeStruka.ToListAsync());
         }
 
@@ -60,7 +62,7 @@ namespace ConstructIT.Controllers
             {
                 db.PotrebeStruka.Add(potrebaStruke);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Zadatak", new { id = potrebaStruke.ZadatakID });
             }
 
             ViewBag.StrukaID = new SelectList(db.Struke, "StrukaID", "StrukaNaziv", potrebaStruke.StrukaID);
@@ -102,7 +104,7 @@ namespace ConstructIT.Controllers
             {
                 db.Entry(potrebaStruke).State = EntityState.Modified;
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Zadatak", new { id = potrebaStruke.ZadatakID });
             }
             ViewBag.StrukaNaziv = db.Struke.Where(s => s.StrukaID == potrebaStruke.StrukaID).FirstOrDefault().StrukaNaziv;
             ViewBag.ProjekatNaziv = db.Projekti.Where(p => p.ProjekatID == potrebaStruke.ProjekatID).FirstOrDefault().ProjekatNaziv;
@@ -133,7 +135,14 @@ namespace ConstructIT.Controllers
             PotrebaStruke potrebaStruke = await db.PotrebeStruka.FindAsync(id);
             db.PotrebeStruka.Remove(potrebaStruke);
             await db.SaveChangesAsync();
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", "Zadatak", new { id = potrebaStruke.ZadatakID });
+        }
+
+        public async Task<ActionResult> AutoAssignWorkers()
+        {
+            await db.Database.ExecuteSqlCommandAsync("PR_AUTO_ASSIGN_WORKERS");
+
+            return RedirectToAction("Index", "EvidencijaRadnogVremena");
         }
 
         protected override void Dispose(bool disposing)

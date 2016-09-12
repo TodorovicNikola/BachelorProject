@@ -1,15 +1,18 @@
 ﻿@model IEnumerable<ConstructIT.DAL.Models.TipMasine>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Tipovi masina";
 }
 
-<h2>Index</h2>
+<h2>Tipovi mašina</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Dodaj novi", "Create")
 </p>
-<table class="table">
+
+<hr />
+
+<table class="table table-striped table-hover">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.TipMasineNaziv)
@@ -23,9 +26,8 @@
             @Html.DisplayFor(modelItem => item.TipMasineNaziv)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.TipMasineID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.TipMasineID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.TipMasineID })
+            @Html.ActionLink("Izmeni", "Edit", new { id=item.TipMasineID }) |
+            @Html.ActionLink("Obriši", "Delete", new { id=item.TipMasineID })
         </td>
     </tr>
 }
