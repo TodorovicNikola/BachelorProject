@@ -4,6 +4,7 @@
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
+    using System.IO;
     using System.Linq;
 
     internal sealed class Configuration : DbMigrationsConfiguration<ConstructIT.DAL.ConstructITDBContext>
@@ -14,7 +15,7 @@
         }
 
         protected override void Seed(ConstructIT.DAL.ConstructITDBContext context)
-        {
+        {/*
             context.Korisnici.AddOrUpdate(
                 new Korisnik { KorisnikEMail = "nikola5tod@yahoo.com", KorisnikIme = "Nikola", KorisnikPrezime = "Todorović", KorisnikLozinka = "nikola", KorisnikPotvrdaLozinke = "nikola", KorisnikTip = "admin" },
                 new Korisnik { KorisnikEMail = "nenadTod@gmail.com", KorisnikIme = "Nenad", KorisnikPrezime = "Todorović", KorisnikLozinka = "nenad", KorisnikPotvrdaLozinke = "nenad", KorisnikTip = "tehnOsoblje" },
@@ -166,6 +167,12 @@
             );
 
             context.SaveChanges(); 
+
+            foreach (var file in Directory.GetFiles(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Sql\\CREATE_PR"), "*.sql"))
+            {
+                context.Database.ExecuteSqlCommand(File.ReadAllText(file), new object[0]);
+            }
+            */
         }
     }
 }

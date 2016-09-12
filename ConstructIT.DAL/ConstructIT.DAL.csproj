@@ -54,6 +54,10 @@
     <Compile Include="Migrations\201609111644105_dbReconfigured.Designer.cs">
       <DependentUpon>201609111644105_dbReconfigured.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609120651127_StoredProcedures.cs" />
+    <Compile Include="Migrations\201609120651127_StoredProcedures.Designer.cs">
+      <DependentUpon>201609120651127_StoredProcedures.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DodelaMaterijala.cs" />
     <Compile Include="Models\EvidencijaAngazovanjaMasine.cs" />
@@ -87,6 +91,30 @@
     <EmbeddedResource Include="Migrations\201609111644105_dbReconfigured.resx">
       <DependentUpon>201609111644105_dbReconfigured.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609120651127_StoredProcedures.resx">
+      <DependentUpon>201609120651127_StoredProcedures.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Sql\CREATE_PR\CREATE_PR_AUTO_ASSIGN_MACHINES.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sql\CREATE_PR\CREATE_PR_AUTO_ASSIGN_MATERIAL.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sql\CREATE_PR\CREATE_PR_AUTO_ASSIGN_WORKERS.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sql\DROP_PR_AUTO_ASSIGN_MACHINES.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sql\DROP_PR_AUTO_ASSIGN_MATERIAL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sql\DROP_PR_AUTO_ASSIGN_WORKERS.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
