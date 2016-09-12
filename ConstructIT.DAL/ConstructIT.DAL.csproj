@@ -58,6 +58,30 @@
     <Compile Include="Migrations\201609120651127_StoredProcedures.Designer.cs">
       <DependentUpon>201609120651127_StoredProcedures.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609121512009_zadatakOpis.cs" />
+    <Compile Include="Migrations\201609121512009_zadatakOpis.Designer.cs">
+      <DependentUpon>201609121512009_zadatakOpis.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609121537403_korisnikKojiJeUklonjen.cs" />
+    <Compile Include="Migrations\201609121537403_korisnikKojiJeUklonjen.Designer.cs">
+      <DependentUpon>201609121537403_korisnikKojiJeUklonjen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609121632054_stareInoveVrednosti.cs" />
+    <Compile Include="Migrations\201609121632054_stareInoveVrednosti.Designer.cs">
+      <DependentUpon>201609121632054_stareInoveVrednosti.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609121658093_dunno.cs" />
+    <Compile Include="Migrations\201609121658093_dunno.Designer.cs">
+      <DependentUpon>201609121658093_dunno.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609121745120_dateTimeNotNull.cs" />
+    <Compile Include="Migrations\201609121745120_dateTimeNotNull.Designer.cs">
+      <DependentUpon>201609121745120_dateTimeNotNull.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609121747560_idNullable.cs" />
+    <Compile Include="Migrations\201609121747560_idNullable.Designer.cs">
+      <DependentUpon>201609121747560_idNullable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DodelaMaterijala.cs" />
     <Compile Include="Models\EvidencijaAngazovanjaMasine.cs" />
@@ -93,6 +117,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609120651127_StoredProcedures.resx">
       <DependentUpon>201609120651127_StoredProcedures.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609121512009_zadatakOpis.resx">
+      <DependentUpon>201609121512009_zadatakOpis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609121537403_korisnikKojiJeUklonjen.resx">
+      <DependentUpon>201609121537403_korisnikKojiJeUklonjen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609121632054_stareInoveVrednosti.resx">
+      <DependentUpon>201609121632054_stareInoveVrednosti.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609121658093_dunno.resx">
+      <DependentUpon>201609121658093_dunno.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609121745120_dateTimeNotNull.resx">
+      <DependentUpon>201609121745120_dateTimeNotNull.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609121747560_idNullable.resx">
+      <DependentUpon>201609121747560_idNullable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +18,11 @@ namespace ConstructIT.DAL.Models
 
 
         public ICollection<Zadatak> Zadaci { get; set; }
-        public ICollection<PromenaZadatka> PromeneZadataka { get; set; }
+
+        [InverseProperty("StatusStari")]
+        public ICollection<PromenaZadatka> PromeneZadatakaStari { get; set; }
+
+        [InverseProperty("StatusNovi")]
+        public ICollection<PromenaZadatka> PromeneZadatakaNovi { get; set; }
     }
 }

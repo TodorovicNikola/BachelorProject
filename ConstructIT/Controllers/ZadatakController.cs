@@ -19,7 +19,7 @@ namespace ConstructIT.Controllers
         // GET: Zadatak
         public async Task<ActionResult> Index()
         {
-            var zadaci = db.Zadaci.Include(z => z.KorisnikKomJeDodeljen).Include(z => z.Prioritet).Include(z => z.Projekat).Include(z => z.Status);
+            var zadaci = db.Zadaci.Include(z => z.KorisnikKomJeDodeljen).Include(z => z.Prioritet).Include(z => z.Projekat).Include(z => z.Status).Include(z => z.PromeneZadatka).Include(z => z.KomentariNaZadatak);
             return View(await zadaci.ToListAsync());
         }
 
@@ -86,7 +86,7 @@ namespace ConstructIT.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Zadatak zadatak = await db.Zadaci.FindAsync(id);
+            Zadatak zadatak = await db.Zadaci.Where(z => z.ZadatakID == id).FirstOrDefaultAsync();
             if (zadatak == null)
             {
                 return HttpNotFound();
@@ -114,7 +114,95 @@ namespace ConstructIT.Controllers
 
             if (ModelState.IsValid)
             {
-                db.Entry(zadatak).State = EntityState.Modified;
+                PromenaZadatka _promenaZadatka = new PromenaZadatka();
+
+                Zadatak _zadatakIzBaze = db.Zadaci.Where(zd => zd.ZadatakID == zadatak.ZadatakID).FirstOrDefault();
+
+                bool trulyChanged = false;
+
+                if(_zadatakIzBaze.ZadatakNaziv != zadatak.ZadatakNaziv)
+                {
+                    _promenaZadatka.PZ_ZadatakNazivStari = _zadatakIzBaze.ZadatakNaziv;
+                    _promenaZadatka.PZ_ZadatakNazivNovi = zadatak.ZadatakNaziv;
+
+                    _zadatakIzBaze.ZadatakNaziv = zadatak.ZadatakNaziv;
+
+                    trulyChanged = true;
+                }
+
+                if(_zadatakIzBaze.ZadatakOpis != zadatak.ZadatakOpis)
+                {
+                    _promenaZadatka.PZ_ZadatakOpisStari = _zadatakIzBaze.ZadatakOpis;
+                    _promenaZadatka.PZ_ZadatakOpisNovi = zadatak.ZadatakOpis;
+
+                    _zadatakIzBaze.ZadatakOpis = zadatak.ZadatakOpis;
+
+                    trulyChanged = true;
+                }
+
+                if(_zadatakIzBaze.ZadatakDatumPocetka != zadatak.ZadatakDatumPocetka)
+                {
+                    _promenaZadatka.PZ_ZadatakDatumPocetkaStari = _zadatakIzBaze.ZadatakDatumPocetka;
+                    _promenaZadatka.PZ_ZadatakDatumPocetkaNovi = zadatak.ZadatakDatumPocetka;
+
+                    _zadatakIzBaze.ZadatakDatumPocetka = zadatak.ZadatakDatumPocetka;
+
+                    trulyChanged = true;
+                }
+
+                if(_zadatakIzBaze.ZadatakDatumZavrsetka != zadatak.ZadatakDatumZavrsetka)
+                {
+                    _promenaZadatka.PZ_ZadatakDatumZavrsetkaStari = _zadatakIzBaze.ZadatakDatumZavrsetka;
+                    _promenaZadatka.PZ_ZadatakDatumZavrsetkaNovi = zadatak.ZadatakDatumZavrsetka;
+
+                    _zadatakIzBaze.ZadatakDatumZavrsetka = zadatak.ZadatakDatumZavrsetka;
+
+                    trulyChanged = true;
+                }
+
+                if(_zadatakIzBaze.PrioritetID != zadatak.PrioritetID)
+                {
+                    _promenaZadatka.PZ_PrioritetIDStari = _zadatakIzBaze.PrioritetID;
+                    _promenaZadatka.PZ_PrioritetIDNovi = zadatak.PrioritetID;
+
+                    _zadatakIzBaze.PrioritetID = zadatak.PrioritetID;
+
+                    trulyChanged = true;
+                }
+
+                if (_zadatakIzBaze.StatusID != zadatak.StatusID)
+                {
+                    _promenaZadatka.PZ_StatusIDStari = _zadatakIzBaze.StatusID;
+                    _promenaZadatka.PZ_StatusIDNovi = zadatak.StatusID;
+
+                    _zadatakIzBaze.StatusID = zadatak.StatusID;
+
+                    trulyChanged = true;
+                }
+
+                if (_zadatakIzBaze.KorisnikID != zadatak.KorisnikID)
+                {
+                    _promenaZadatka.PZ_KorisnikID = (int)zadatak.KorisnikID;
+
+                    _zadatakIzBaze.KorisnikID = zadatak.KorisnikID;
+
+                    trulyChanged = true;
+                }
+
+                if (trulyChanged)
+                {
+                    _promenaZadatka.PZ_VremeIzmene = DateTime.Now;
+
+                    Korisnik _korisnikKojiJeIzmenio = (Korisnik)Session["korisnik"];
+                    _promenaZadatka.PZ_KorisnikIzmenioID = _korisnikKojiJeIzmenio.KorisnikID;
+
+                    _promenaZadatka.ZadatakID = zadatak.ZadatakID;
+                    _promenaZadatka.ProjekatID = zadatak.ProjekatID;
+
+                    db.PromeneZadataka.Add(_promenaZadatka);
+                }
+
+                db.Entry(_zadatakIzBaze).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }

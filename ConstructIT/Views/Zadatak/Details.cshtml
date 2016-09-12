@@ -1,5 +1,7 @@
 ﻿@model ConstructIT.DAL.Models.Zadatak
 @using ConstructIT.DAL.Models
+@using System.Collections.Generic
+@using System
 
 @{
     ViewBag.Title = "Zadatak " + @Html.DisplayFor(model => model.ZadatakNaziv);
@@ -8,6 +10,7 @@
     var _potrebaMaterijala = new PotrebaMaterijala();
     var _potrebaStruke = new PotrebaStruke();
     var _potrebaTipaMasine = new PotrebaTipaMasine();
+    var _promenaZadatka = new PromenaZadatka();
 }
 
 <h2>Zadatak - @Html.DisplayFor(model => model.ZadatakNaziv)</h2> 
@@ -70,7 +73,86 @@
     @Html.AntiForgeryToken()
 <div id="myTabContent" class="tab-content">
     <div class="tab-pane fade active in" id="oZadatku">
-        <p>Hasan Sakic</p>
+        <h2>O zadatku</h2>
+
+        <br />
+
+        <h3 style="padding-left:3%">Komentari</h3>
+
+        <hr style="margin-left:3%; margin-right:3%" />
+
+        @foreach (var item in Model.KomentariNaZadatak)
+        {
+            
+        }
+
+        <br />
+        <h3 style="padding-left:3%">Hronologija promena</h3>
+
+        <hr style="margin-left:3%; margin-right:3%"/>
+
+        @foreach (var item in Model.PromeneZadatka)
+        {
+            <div style="padding-left:3%; padding-right:3%;">
+                <div style="padding-left:1%; background-color:#F8F9F9">
+                    <b>
+
+                        Vreme izmene: @item.PZ_VremeIzmene
+                        <br />
+                        Izmenio korisnik: @item.KorisnikKojiJeIzmenio.KorisnikIme @item.KorisnikKojiJeIzmenio.KorisnikPrezime ( @item.KorisnikKojiJeIzmenio.KorisnikEMail )
+
+                    </b>
+                </div>
+                <div style="padding-left:3%;">
+                @{
+                    if (item.PZ_ZadatakNazivNovi != null)
+                    {
+
+                        @:Naziv zadatka: '@item.PZ_ZadatakNazivStari' promenjeno u '@item.PZ_ZadatakNazivNovi'
+                    <br />
+
+                    }
+
+                    if (item.PZ_ZadatakOpisNovi != null)
+                    {
+
+                        @:Opis zadatka: '@item.PZ_ZadatakOpisStari' promenjeno u '@item.PZ_ZadatakOpisNovi'
+                        <br />
+                    }
+
+                    if (item.PZ_ZadatakDatumPocetkaNovi != null)
+                    {
+
+                        @:Početak zadatka: '@item.PZ_ZadatakDatumPocetkaStari' promenjeno u '@item.PZ_ZadatakDatumPocetkaNovi'
+                        <br />
+                    }
+
+                    if (item.PZ_ZadatakDatumZavrsetkaNovi != null)
+                    {
+
+                        @:Završetak zadatka: '@item.PZ_ZadatakDatumZavrsetkaStari' promenjeno u '@item.PZ_ZadatakDatumZavrsetkaNovi'
+                        <br />
+                    }
+
+                    if (item.PZ_StatusIDNovi != null)
+                    {
+
+                        @:Status zadatka: '@item.StatusStari.StatusNaziv' promenjeno u '@item.StatusNovi.StatusNaziv'
+                        <br />
+                    }
+
+                    if (item.PZ_PrioritetIDNovi != null)
+                    {
+
+                        @:Prioritet zadatka: '@item.PrioritetStari.PrioritetNaziv' promenjeno u '@item.PrioritetNovi.PrioritetNaziv'
+                        <br />
+                    }
+                }
+                </div>
+            </div>
+        }
+
+
     </div>
 
     <div class="tab-pane fade" id="potrebeZadatka">
