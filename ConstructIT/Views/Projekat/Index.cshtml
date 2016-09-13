@@ -32,7 +32,18 @@
             @Html.ActionLink(item.ProjekatNaziv, "Details", new { id = item.ProjekatID })
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ProjekatOpis)
+
+            @if (item.ProjekatOpis.Length > 105)
+            {
+                @item.ProjekatOpis.Substring(0, 100)@:...
+            }
+            else
+            {
+                @Html.DisplayFor(modelItem => item.ProjekatOpis)
+            }
+
+
+
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ProjekatAdresa)

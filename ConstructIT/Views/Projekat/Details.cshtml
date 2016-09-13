@@ -84,10 +84,10 @@
                     @Html.ActionLink(item.ZadatakNaziv, "Details", "Zadatak", new { id = item.ZadatakID }, null)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ZadatakDatumPocetka)
+                    @item.ZadatakDatumPocetka.ToString("dd.MM.yyyy.")
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ZadatakDatumZavrsetka)
+                    @item.ZadatakDatumZavrsetka.ToString("dd.MM.yyyy.")
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Prioritet.PrioritetNaziv)

@@ -25,13 +25,13 @@
 
             @Html.DisplayNameFor(model => model.ZadatakDatumPocetka):
 
-            @Html.DisplayFor(model => model.ZadatakDatumPocetka)
+            @Model.ZadatakDatumPocetka.ToString("dd.MM.yyyy.")
 
         </blockquote>
         <blockquote>
             @Html.DisplayNameFor(model => model.ZadatakDatumZavrsetka):
 
-            @Html.DisplayFor(model => model.ZadatakDatumZavrsetka)
+            @Model.ZadatakDatumZavrsetka.ToString("dd.MM.yyyy.")
         </blockquote>
 
     </div>

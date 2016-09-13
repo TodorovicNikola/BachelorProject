@@ -1,12 +1,12 @@
 ﻿@model ConstructIT.DAL.Models.Projekat
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Brisanje projekta";
 }
 
-<h2>Delete</h2>
+<h2>Brisanje</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3 style="padding-left: 3%">Da li ste sigurni da želite da obrišete?</h3>
 <div>
     <h4>Projekat</h4>
     <hr />
@@ -41,8 +41,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Obriši" class="btn btn-default" /> |
+            @Html.ActionLink("Odustani", "Details", new { id = Model.ProjekatID })
         </div>
     }
 </div>

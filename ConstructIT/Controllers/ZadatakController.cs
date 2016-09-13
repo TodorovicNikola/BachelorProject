@@ -68,7 +68,7 @@ namespace ConstructIT.Controllers
             {
                 db.Zadaci.Add(zadatak);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Projekat", new { id = zadatak.ProjekatID });
             }
 
             ViewBag.ProjekatNaziv = db.Projekti.Where(p => p.ProjekatID == zadatak.ProjekatID).FirstOrDefault().ProjekatNaziv;
@@ -204,7 +204,7 @@ namespace ConstructIT.Controllers
 
                 db.Entry(_zadatakIzBaze).State = EntityState.Modified;
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", new { id = _zadatakIzBaze.ZadatakID });
             }
             ViewBag.KorisnikID = new SelectList(db.Korisnici, "KorisnikID", "KorisnikLozinka", zadatak.KorisnikID);
             ViewBag.PrioritetID = new SelectList(db.Prioriteti, "PrioritetID", "PrioritetNaziv", zadatak.PrioritetID);
@@ -237,7 +237,7 @@ namespace ConstructIT.Controllers
             Zadatak zadatak = await db.Zadaci.Where(z => z.ZadatakID == id).FirstOrDefaultAsync();
             db.Zadaci.Remove(zadatak);
             await db.SaveChangesAsync();
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", "Projekat", new { id = zadatak.ProjekatID });
         }
 
         protected override void Dispose(bool disposing)

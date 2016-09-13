@@ -38,6 +38,7 @@ namespace ConstructIT.DAL.Models
 
         [StringLength(2048, ErrorMessage = "'Opis zadatka' ne sme biti duži od 2048 karaktera!"), Required(ErrorMessage = "'Opis zadatka' ne sme biti prazan!")]
         [Display(Name = "Opis zadatka")]
+        [DataType(DataType.MultilineText)]
         public String ZadatakOpis { get; set; }
 
         [Required]

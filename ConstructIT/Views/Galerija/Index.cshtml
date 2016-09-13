@@ -1,14 +1,17 @@
 ﻿@model IEnumerable<ConstructIT.DAL.Models.Galerija>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Galerije";
 }
 
-<h2>Index</h2>
+<h2>Galerije projekta '@Model.First().Projekat.ProjekatNaziv'</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create", new { projekatID = ViewData["projekatID"] })
+    @Html.ActionLink("Dodaj novu", "Create", new { projekatID = ViewData["projekatID"] })
 </p>
+
+<hr />
+
 <table class="table table-striped table-hover">
     <tr>
         <th>

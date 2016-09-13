@@ -100,7 +100,7 @@ namespace ConstructIT.Controllers
             {
                 db.Entry(projekat).State = EntityState.Modified;
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", new { id = projekat.ProjekatID });
             }
             return View(projekat);
         }
