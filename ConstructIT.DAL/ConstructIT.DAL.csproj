@@ -82,6 +82,14 @@
     <Compile Include="Migrations\201609121747560_idNullable.Designer.cs">
       <DependentUpon>201609121747560_idNullable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609130622413_GalleryAndImages.cs" />
+    <Compile Include="Migrations\201609130622413_GalleryAndImages.Designer.cs">
+      <DependentUpon>201609130622413_GalleryAndImages.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609130715525_galleryKey.cs" />
+    <Compile Include="Migrations\201609130715525_galleryKey.Designer.cs">
+      <DependentUpon>201609130715525_galleryKey.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DodelaMaterijala.cs" />
     <Compile Include="Models\EvidencijaAngazovanjaMasine.cs" />
@@ -135,6 +143,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609121747560_idNullable.resx">
       <DependentUpon>201609121747560_idNullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609130622413_GalleryAndImages.resx">
+      <DependentUpon>201609130622413_GalleryAndImages.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609130715525_galleryKey.resx">
+      <DependentUpon>201609130715525_galleryKey.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

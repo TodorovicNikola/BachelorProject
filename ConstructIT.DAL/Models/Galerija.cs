@@ -17,7 +17,9 @@ namespace ConstructIT.DAL.Models
 
         [Key]
         [Column(Order = 1)]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
+        [Display(Name = "Galerija za datum")]
         public DateTime GalerijaDatum { get; set; }
 
 

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<ConstructIT.DAL.Models.Slika>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Galerija.ProjekatID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SlikaNaziv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SlikaOpis)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Galerija.ProjekatID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SlikaNaziv)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SlikaOpis)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.SlikaID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.SlikaID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.SlikaID })
+        </td>
+    </tr>
+}
+
+</table>

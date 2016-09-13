@@ -8,85 +8,98 @@
 <h2>
     Projekat - @Html.DisplayFor(model => model.ProjekatNaziv)
 </h2>
+
 @Html.ActionLink("Izmeni", "Edit", new { id = Model.ProjekatID }, new { @style = "position:relative; float:right; top: -10px; right:150px;" }) @Html.ActionLink("Obriši", "Delete", "Projekat", new { id = Model.ProjekatID }, new { @style = "position:relative; float:right; top: -10px; right:55px;" })
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ProjekatNaziv)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ProjekatNaziv)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ProjekatOpis)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ProjekatOpis)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ProjekatAdresa)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ProjekatAdresa)
-        </dd>
-
-    </dl>
-</div>
 
 <hr />
+<div>
 
-<h3>Zadaci</h3>
-<p>
-    @Html.ActionLink("Dodaj novi", "Create", "Zadatak", new { projekatID = Model.ProjekatID  }, null)
-</p>
+    <div style="position:relative; float:left; left:5%">
 
-@{ var zadatak = new Zadatak(); }
+        <blockquote>
 
-<table class="table table-striped table-hover">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => zadatak.ZadatakNaziv)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => zadatak.ZadatakDatumPocetka)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => zadatak.ZadatakDatumZavrsetka)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => zadatak.Prioritet.PrioritetNaziv)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => zadatak.Status.StatusNaziv)
-        </th>
-    </tr>
+            @Html.DisplayNameFor(model => model.ProjekatNaziv):
 
-    @foreach (var item in Model.Zadaci)
-    {
+            @Html.DisplayFor(model => model.ProjekatNaziv)
+
+        </blockquote>
+
+    </div>
+
+    <div style="position:relative; float:right; right:17%">
+
+        <blockquote>
+
+            @Html.DisplayNameFor(model => model.ProjekatAdresa):
+
+            @Html.DisplayFor(model => model.ProjekatAdresa)
+
+        </blockquote>
+
+    </div>
+    <div style="clear:both"></div>
+    <div style="margin-left:10%; margin-right:10%;">
+
+        <h4>@Html.DisplayNameFor(model => model.ProjekatOpis)</h4>
+
+        <p style="margin-left:3%; margin-right:3%">@Html.DisplayFor(model => model.ProjekatOpis)</p>
+
+    </div>
+    @Html.ActionLink("Galerije", "Index", "Galerija", new { projekatID = Model.ProjekatID }, new { @class= "btn btn-success", @style = "position:relative; float:right; top: 9px; right:90px;" })
+</div>
+<br />
+<hr style="position:relative; top:20px"/>
+
+<div style="position:relative; top:20px">
+    <h3>Zadaci</h3>
+    <p>
+        @Html.ActionLink("Dodaj novi", "Create", "Zadatak", new { projekatID = Model.ProjekatID }, null)
+    </p>
+
+    @{ var zadatak = new Zadatak(); }
+
+    <table class="table table-striped table-hover">
         <tr>
-            <td>
-                @Html.ActionLink(item.ZadatakNaziv, "Details", "Zadatak", new { id = item.ZadatakID }, null )
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ZadatakDatumPocetka)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ZadatakDatumZavrsetka)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Prioritet.PrioritetNaziv)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status.StatusNaziv)
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => zadatak.ZadatakNaziv)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => zadatak.ZadatakDatumPocetka)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => zadatak.ZadatakDatumZavrsetka)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => zadatak.Prioritet.PrioritetNaziv)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => zadatak.Status.StatusNaziv)
+            </th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model.Zadaci)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.ZadatakNaziv, "Details", "Zadatak", new { id = item.ZadatakID }, null)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ZadatakDatumPocetka)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ZadatakDatumZavrsetka)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Prioritet.PrioritetNaziv)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status.StatusNaziv)
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+<br />
+
 

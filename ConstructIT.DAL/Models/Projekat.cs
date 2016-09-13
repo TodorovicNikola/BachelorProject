@@ -21,8 +21,8 @@ namespace ConstructIT.DAL.Models
         [Display(Name = "Opis projekta")]
         public String ProjekatOpis { get; set; }
 
-        [StringLength(128, ErrorMessage = "'Adresa Projekta' ne sme biti duža od 128 karaktera!")]
-        [Display(Name = "Adresa projekta")]
+        [StringLength(128, ErrorMessage = "'Adresa' ne sme biti duža od 128 karaktera!")]
+        [Display(Name = "Adresa")]
         public String ProjekatAdresa { get; set; }
 
 

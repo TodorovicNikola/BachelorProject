@@ -200,6 +200,7 @@
     <Compile Include="Controllers\DodelaMaterijalaController.cs" />
     <Compile Include="Controllers\EvidencijaAngazovanjaMasineController.cs" />
     <Compile Include="Controllers\EvidencijaRadnogVremenaController.cs" />
+    <Compile Include="Controllers\GalerijaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KomentarZadatakController.cs" />
     <Compile Include="Controllers\KorisnikController.cs" />
@@ -212,6 +213,7 @@
     <Compile Include="Controllers\ProizvodniRadnikController.cs" />
     <Compile Include="Controllers\ProjekatController.cs" />
     <Compile Include="Controllers\SessionController.cs" />
+    <Compile Include="Controllers\SlikaController.cs" />
     <Compile Include="Controllers\StrukaController.cs" />
     <Compile Include="Controllers\TipMasineController.cs" />
     <Compile Include="Controllers\ZadatakController.cs" />
@@ -361,9 +363,20 @@
     <Content Include="Views\Korisnik\Details.cshtml" />
     <Content Include="Views\Korisnik\Edit.cshtml" />
     <Content Include="Views\Korisnik\Index.cshtml" />
+    <Content Include="Views\Galerija\Create.cshtml" />
+    <Content Include="Views\Galerija\Delete.cshtml" />
+    <Content Include="Views\Galerija\Details.cshtml" />
+    <Content Include="Views\Galerija\Edit.cshtml" />
+    <Content Include="Views\Galerija\Index.cshtml" />
+    <Content Include="Views\Slika\Create.cshtml" />
+    <Content Include="Views\Slika\Delete.cshtml" />
+    <Content Include="Views\Slika\Details.cshtml" />
+    <Content Include="Views\Slika\Edit.cshtml" />
+    <Content Include="Views\Slika\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

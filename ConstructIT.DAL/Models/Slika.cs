@@ -10,19 +10,19 @@ namespace ConstructIT.DAL.Models
 {
     public class Slika
     {
-        [Key]
-        [ForeignKey("Galerija")]
-        [Column(Order = 0)]
-        public int ProjekatID { get; set; }
+        public int SlikaID { get; set; }
 
-        [Key]
+        public String SlikaNaziv { get; set; }
+
+        public String SlikaOpis { get; set; }
+
         [ForeignKey("Galerija")]
         [Column(Order = 1)]
-        public DateTime GalerijaDatum { get; set; }
+        public int ProjekatID { get; set; }
 
-        [Key]
+        [ForeignKey("Galerija")]
         [Column(Order = 2)]
-        public String SlikaNaziv { get; set; }
+        public DateTime GalerijaDatum { get; set; }
 
 
         public virtual Galerija Galerija { get; set; }
