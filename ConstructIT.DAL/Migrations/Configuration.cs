@@ -172,6 +172,13 @@
             {
                 context.Database.ExecuteSqlCommand(File.ReadAllText(file), new object[0]);
             }
+            
+
+            foreach (var file in Directory.GetFiles(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Sql\\CREATE_TRIG"), "*.sql"))
+            {
+                context.Database.ExecuteSqlCommand(File.ReadAllText(file), new object[0]);
+            }
+
             */
         }
     }
