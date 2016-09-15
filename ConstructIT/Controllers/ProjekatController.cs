@@ -40,6 +40,7 @@ namespace ConstructIT.Controllers
         // GET: Projekat/Create
         public ActionResult Create()
         {
+            ViewData["korisnici"] = db.Korisnici.Where(k => k.KorisnikTip == "klijent" || k.KorisnikTip == "tehnOsoblje").ToList();
             return View();
         }
 
@@ -48,8 +49,9 @@ namespace ConstructIT.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ProjekatID,ProjekatNaziv,ProjekatOpis,ProjekatAdresa")] Projekat projekat)
+        public async Task<ActionResult> Create([Bind(Include = "ProjekatID,ProjekatNaziv,ProjekatOpis,ProjekatAdresa,OdabraniKorisnici")] Projekat projekat)
         {
+
             Projekat p = db.Projekti.Where(pr => pr.ProjekatNaziv == projekat.ProjekatNaziv).FirstOrDefault();
 
             if(p != null)
@@ -59,7 +61,17 @@ namespace ConstructIT.Controllers
 
             if (ModelState.IsValid)
             {
+                projekat.Korisnici = new List<Korisnik>();
+
+                foreach (int korisnikID in projekat.OdabraniKorisnici)
+                {
+
+                    projekat.Korisnici.Add(db.Korisnici.Where(k => k.KorisnikID == korisnikID).FirstOrDefault());
+                }
+
+
                 db.Projekti.Add(projekat);
+
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }

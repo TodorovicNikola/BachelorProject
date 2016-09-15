@@ -28,7 +28,9 @@ namespace ConstructIT.DAL.Models
 
 
         public ICollection<Zadatak> Zadaci { get; set; }
-        public ICollection<Korisnik> TehnickoOsoblje { get; set; }
+        public ICollection<Korisnik> Korisnici { get; set; }
         public ICollection<Galerija> Galerije { get; set; }
+
+        public List<int> OdabraniKorisnici { get; set; }
     }
 }

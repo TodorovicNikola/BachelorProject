@@ -110,6 +110,10 @@
     <Compile Include="Migrations\201609141736148_komentarSlika.Designer.cs">
       <DependentUpon>201609141736148_komentarSlika.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609150845057_korisnici.cs" />
+    <Compile Include="Migrations\201609150845057_korisnici.Designer.cs">
+      <DependentUpon>201609150845057_korisnici.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DodelaMaterijala.cs" />
     <Compile Include="Models\EvidencijaAngazovanjaMasine.cs" />
@@ -184,6 +188,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609141736148_komentarSlika.resx">
       <DependentUpon>201609141736148_komentarSlika.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609150845057_korisnici.resx">
+      <DependentUpon>201609150845057_korisnici.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
