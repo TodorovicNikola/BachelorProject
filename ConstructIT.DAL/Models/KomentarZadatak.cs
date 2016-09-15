@@ -42,12 +42,6 @@ namespace ConstructIT.DAL.Models
         [Required]
         public DateTime KomentarZadatakVremePostavljanja { get; set; }
 
-        //[DataType(DataType.Date)]
-        //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        [Display(Name = "Vreme izmene")]
-        [Required]
-        public DateTime KomentarZadatakVremeIzmene { get; set; }
-
         [Required]
         [ForeignKey("Korisnik")]
         public int KorisnikID { get; set; }

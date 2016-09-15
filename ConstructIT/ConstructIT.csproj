@@ -202,7 +202,6 @@
     <Compile Include="Controllers\EvidencijaRadnogVremenaController.cs" />
     <Compile Include="Controllers\GalerijaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\KomentarZadatakController.cs" />
     <Compile Include="Controllers\KorisnikController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MasinaController.cs" />
@@ -338,11 +337,6 @@
     <Content Include="Views\PotrebaStruke\Details.cshtml" />
     <Content Include="Views\PotrebaStruke\Edit.cshtml" />
     <Content Include="Views\PotrebaStruke\Index.cshtml" />
-    <Content Include="Views\KomentarZadatak\Create.cshtml" />
-    <Content Include="Views\KomentarZadatak\Delete.cshtml" />
-    <Content Include="Views\KomentarZadatak\Details.cshtml" />
-    <Content Include="Views\KomentarZadatak\Edit.cshtml" />
-    <Content Include="Views\KomentarZadatak\Index.cshtml" />
     <Content Include="Views\EvidencijaAngazovanjaMasine\Create.cshtml" />
     <Content Include="Views\EvidencijaAngazovanjaMasine\Delete.cshtml" />
     <Content Include="Views\EvidencijaAngazovanjaMasine\Details.cshtml" />

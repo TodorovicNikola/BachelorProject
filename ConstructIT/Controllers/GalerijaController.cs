@@ -30,7 +30,7 @@ namespace ConstructIT.Controllers
         public async Task<ActionResult> Details(int projekatID, DateTime datum)
         {
 
-            Galerija galerija = await db.Galerije.Where(g => g.ProjekatID == projekatID && g.GalerijaDatum == datum).Include(g => g.Slike).Include(g => g.Projekat).FirstOrDefaultAsync();
+            Galerija galerija = await db.Galerije.Where(g => g.ProjekatID == projekatID && g.GalerijaDatum == datum).Include(g => g.Slike).Include(g => g.Projekat).Include(g => g.KomentariNaGaleriju).FirstOrDefaultAsync();
             if (galerija == null)
             {
                 return HttpNotFound();
@@ -145,6 +145,28 @@ namespace ConstructIT.Controllers
             }
 
             return RedirectToAction("Details", new { projekatID = projekatID, datum = datum});
+        }
+
+        public ActionResult AddComment(int projekatID, String GalerijaDatum, String komentarNaslov, String komentarSadrzaj)
+        {
+            KomentarGalerija kG = new KomentarGalerija();
+
+            kG.GalerijaDatum = DateTime.Parse(GalerijaDatum);
+            kG.ProjekatID = projekatID;
+            kG.KomentarGalerijaNaslov = komentarNaslov;
+            kG.KomentarGalerijaSadrzaj = komentarSadrzaj;
+
+            Korisnik k = (Korisnik)Session["korisnik"];
+
+            kG.KorisnikID = k.KorisnikID;
+
+            kG.KomentarGalerijaVremePostavljanja = DateTime.Now;
+
+            db.KomentariNaGalerije.Add(kG);
+
+            db.SaveChanges();
+
+            return RedirectToAction("Details", new { projekatID = projekatID, datum = kG.GalerijaDatum });
         }
 
         protected override void Dispose(bool disposing)

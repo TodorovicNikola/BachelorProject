@@ -94,6 +94,22 @@
     <Compile Include="Migrations\201609140553445_trigger.Designer.cs">
       <DependentUpon>201609140553445_trigger.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609141615293_kz-datetime.cs" />
+    <Compile Include="Migrations\201609141615293_kz-datetime.Designer.cs">
+      <DependentUpon>201609141615293_kz-datetime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609141616459_bla.cs" />
+    <Compile Include="Migrations\201609141616459_bla.Designer.cs">
+      <DependentUpon>201609141616459_bla.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609141659061_vremeIzmeneUklonjeno.cs" />
+    <Compile Include="Migrations\201609141659061_vremeIzmeneUklonjeno.Designer.cs">
+      <DependentUpon>201609141659061_vremeIzmeneUklonjeno.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609141736148_komentarSlika.cs" />
+    <Compile Include="Migrations\201609141736148_komentarSlika.Designer.cs">
+      <DependentUpon>201609141736148_komentarSlika.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DodelaMaterijala.cs" />
     <Compile Include="Models\EvidencijaAngazovanjaMasine.cs" />
@@ -156,6 +172,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609140553445_trigger.resx">
       <DependentUpon>201609140553445_trigger.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609141615293_kz-datetime.resx">
+      <DependentUpon>201609141615293_kz-datetime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609141616459_bla.resx">
+      <DependentUpon>201609141616459_bla.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609141659061_vremeIzmeneUklonjeno.resx">
+      <DependentUpon>201609141659061_vremeIzmeneUklonjeno.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609141736148_komentarSlika.resx">
+      <DependentUpon>201609141736148_komentarSlika.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

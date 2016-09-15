@@ -240,6 +240,28 @@ namespace ConstructIT.Controllers
             return RedirectToAction("Details", "Projekat", new { id = zadatak.ProjekatID });
         }
 
+        public ActionResult AddComment(int projekatID, int zadatakID, String komentarNaslov, String komentarSadrzaj)
+        {
+            KomentarZadatak kZ = new KomentarZadatak();
+
+            kZ.ZadatakID = zadatakID;
+            kZ.ProjekatID = projekatID;
+            kZ.KomentarZadatakNaslov = komentarNaslov;
+            kZ.KomentarZadatakSadrzaj = komentarSadrzaj;
+
+            Korisnik k = (Korisnik)Session["korisnik"];
+
+            kZ.KorisnikID = k.KorisnikID;
+
+            kZ.KomentarZadatakVremePostavljanja = DateTime.Now;
+
+            db.KomentariNaZadatke.Add(kZ);
+
+            db.SaveChanges();
+
+            return RedirectToAction("Details", new { id = zadatakID });
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

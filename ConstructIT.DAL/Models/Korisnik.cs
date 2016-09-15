@@ -53,6 +53,7 @@ namespace ConstructIT.DAL.Models
         public ICollection<Zadatak> DodeljeniZadaci { get; set; }
         public ICollection<KomentarZadatak> KomentariNaZadatke { get; set; }
         public ICollection<KomentarGalerija> KomentariNaGalerije { get; set; }
+        public ICollection<KomentarSlika> KomentariNaSlike { get; set; }
 
         [InverseProperty("KorisnikKojiJeIzmenio")]
         public ICollection<PromenaZadatka> PromeneKojeJeKorisnikIzvrsio { get; set; }

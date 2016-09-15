@@ -30,7 +30,7 @@ namespace ConstructIT.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Slika slika = await db.Slike.Where(s => s.SlikaNaziv == naziv).FirstOrDefaultAsync();
+            Slika slika = await db.Slike.Where(s => s.SlikaNaziv == naziv).Include(s => s.KomentariNaSliku).FirstOrDefaultAsync();
             if (slika == null)
             {
                 return HttpNotFound();
@@ -120,6 +120,28 @@ namespace ConstructIT.Controllers
             db.Slike.Remove(slika);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult AddComment(int slikaID, String komentarNaslov, String komentarSadrzaj)
+        {
+            KomentarSlika kS = new KomentarSlika();
+
+            kS.SlikaID = slikaID;
+
+            kS.KomentarSlikaNaslov = komentarNaslov;
+            kS.KomentarSlikaSadrzaj = komentarSadrzaj;
+
+            Korisnik k = (Korisnik)Session["korisnik"];
+
+            kS.KorisnikID = k.KorisnikID;
+
+            kS.KomentarSlikaVremePostavljanja = DateTime.Now;
+
+            db.KomentariNaSlike.Add(kS);
+
+            db.SaveChanges();
+
+            return RedirectToAction("Details", new { naziv = db.Slike.Where(s => s.SlikaID == slikaID).FirstOrDefault().SlikaNaziv });
         }
 
         protected override void Dispose(bool disposing)

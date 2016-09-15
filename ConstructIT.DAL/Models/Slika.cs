@@ -26,5 +26,7 @@ namespace ConstructIT.DAL.Models
 
 
         public virtual Galerija Galerija { get; set; }
+
+        public ICollection<KomentarSlika> KomentariNaSliku { get; set; }
     }
 }

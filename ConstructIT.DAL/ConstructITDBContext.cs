@@ -19,6 +19,7 @@ namespace ConstructIT.DAL
         public virtual DbSet<Galerija> Galerije { get; set; }
         public virtual DbSet<Slika> Slike { get; set; }
         public virtual DbSet<KomentarGalerija> KomentariNaGalerije { get; set; }
+        public virtual DbSet<KomentarSlika> KomentariNaSlike { get; set; }
         public virtual DbSet<Status> Statusi { get; set; }
         public virtual DbSet<Prioritet> Prioriteti { get; set; }
         public virtual DbSet<PromenaZadatka> PromeneZadataka { get; set; }

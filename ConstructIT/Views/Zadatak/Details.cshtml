@@ -79,11 +79,22 @@
 
         <h3 style="padding-left:3%">Komentari</h3>
 
+        <p style="padding-left:3%">
+            <a href="#" data-toggle="modal" data-target="#commentModal" >Dodaj novi</a>
+        </p>
+
         <hr style="margin-left:3%; margin-right:3%" />
 
         @foreach (var item in Model.KomentariNaZadatak)
         {
-            
+            <div class="panel panel-success" style="margin-left:15%; margin-right:15%">
+                <div class="panel-heading">
+                    <h3 class="panel-title">"@item.KomentarZadatakNaslov" <span style="position:relative; float:right">@item.Korisnik.KorisnikIme @item.Korisnik.KorisnikPrezime - @item.KomentarZadatakVremePostavljanja</span></h3>
+                </div>
+                <div class="panel-body">
+                    "@item.KomentarZadatakSadrzaj"
+                </div>
+            </div>
         }
 
         <br />
@@ -93,7 +104,7 @@
 
         @foreach (var item in Model.PromeneZadatka)
         {
-            <div style="padding-left:3%; padding-right:3%;">
+            <div style="padding-left:3%; padding-right:3%;" >
                 <div style="padding-left:1%; background-color:#F8F9F9">
                     <b>
 
@@ -302,5 +313,57 @@
             }
 
         </table>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="commentModal" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Zatvori</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    Komentar na zadatak
+                </h4>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+
+                <form role="form" action="~/Zadatak/AddComment">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Naslov komentara</label>
+                        <input type="text" class="form-control" name="komentarNaslov"
+                               id="exampleInputEmail1" placeholder="Unesite naslov..."  required oninvalid="this.setCustomValidity('Naslov mora biti unet!')" oninput="setCustomValidity('')" />
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Komentar</label>
+                        <textarea class="form-control" name="komentarSadrzaj"
+                               id="exampleInputPassword1" rows="3" maxlength="1024" required minlength="1" oninvalid="this.setCustomValidity('Komentar mora biti unet!')" oninput="setCustomValidity('')"></textarea>
+                    </div>
+                    
+                    @Html.HiddenFor(m => m.ProjekatID)
+                    @Html.HiddenFor(m => m.ZadatakID)
+
+                    <button type="submit" class="btn btn-default">Sačuvaj</button>
+                </form>
+
+
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal">
+                    Zatvori
+                </button>
+            </div>
+        </div>
     </div>
 </div>
