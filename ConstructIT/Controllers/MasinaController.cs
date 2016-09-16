@@ -17,10 +17,21 @@ namespace ConstructIT.Controllers
         private ConstructITDBContext db = new ConstructITDBContext();
 
         // GET: Masina
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(String parametarPretrage)
         {
-            var masine = db.Masine.Include(m => m.TipMasine);
-            return View(await masine.ToListAsync());
+            IOrderedQueryable<Masina> masine = null;
+
+            if (!String.IsNullOrEmpty(parametarPretrage))
+            {
+                masine = db.Masine.Include(m => m.TipMasine).Where(m => m.TipMasine.TipMasineNaziv.Contains(parametarPretrage) || m.MasinaProizvodjac.Contains(parametarPretrage)).OrderBy(m => m.TipMasine.TipMasineNaziv);
+            }
+            else
+            {
+                masine = db.Masine.Include(m => m.TipMasine).OrderBy(m => m.TipMasine.TipMasineNaziv);
+            }
+
+
+                return View(await masine.ToListAsync());
         }
 
         // GET: Masina/Details/5

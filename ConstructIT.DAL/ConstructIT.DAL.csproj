@@ -114,6 +114,10 @@
     <Compile Include="Migrations\201609150845057_korisnici.Designer.cs">
       <DependentUpon>201609150845057_korisnici.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609161444078_client-user-sepparation.cs" />
+    <Compile Include="Migrations\201609161444078_client-user-sepparation.Designer.cs">
+      <DependentUpon>201609161444078_client-user-sepparation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DodelaMaterijala.cs" />
     <Compile Include="Models\EvidencijaAngazovanjaMasine.cs" />
@@ -191,6 +195,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609150845057_korisnici.resx">
       <DependentUpon>201609150845057_korisnici.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609161444078_client-user-sepparation.resx">
+      <DependentUpon>201609161444078_client-user-sepparation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

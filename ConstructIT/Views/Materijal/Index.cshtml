@@ -10,6 +10,19 @@
     @Html.ActionLink("Dodaj novi", "Create")
 </p>
 
+
+@using (Html.BeginForm("Index", "Materijal", FormMethod.Post, new { @class = "searchForm form-inline" }))
+{
+    <div class="form-group">
+        <div class="input-group">
+            <input type="text" class="form-control input-sm" placeholder="Pretraga..." name="parametarPretrage">
+            <span class="input-group-btn">
+                <button class="btn btn-success btn-sm" type="submit">Pretraži</button>
+            </span>
+        </div>
+    </div>
+}
+
 <hr />
 <table class="table table-striped table-hover">
     <tr>

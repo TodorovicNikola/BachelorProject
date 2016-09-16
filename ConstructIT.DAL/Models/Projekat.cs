@@ -28,7 +28,12 @@ namespace ConstructIT.DAL.Models
 
 
         public ICollection<Zadatak> Zadaci { get; set; }
+
+        [InverseProperty("Projekti")]
         public ICollection<Korisnik> Korisnici { get; set; }
+
+        [InverseProperty("KlijentovProjekat")]
+        public ICollection<Korisnik> Klijenti { get; set; }
         public ICollection<Galerija> Galerije { get; set; }
 
         public List<int> OdabraniKorisnici { get; set; }

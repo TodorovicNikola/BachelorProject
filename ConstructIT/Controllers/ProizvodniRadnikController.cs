@@ -17,9 +17,16 @@ namespace ConstructIT.Controllers
         private ConstructITDBContext db = new ConstructITDBContext();
 
         // GET: ProizvodniRadnik
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(String parametarPretrage)
         {
             var proizvodniRadnici = db.ProizvodniRadnici.Include(p => p.Struka);
+
+            if (!String.IsNullOrEmpty(parametarPretrage))
+            {
+                proizvodniRadnici = proizvodniRadnici.Where(pr => pr.Struka.StrukaNaziv.Contains(parametarPretrage) || pr.ProizRadIme.Contains(parametarPretrage) || pr.ProizRadPrezime.Contains(parametarPretrage) || pr.ProizvodniRadnikID.ToString() == parametarPretrage);
+            }
+
+            
             return View(await proizvodniRadnici.ToListAsync());
         }
 

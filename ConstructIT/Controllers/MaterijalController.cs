@@ -17,9 +17,21 @@ namespace ConstructIT.Controllers
         private ConstructITDBContext db = new ConstructITDBContext();
 
         // GET: Materijal
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(String parametarPretrage)
         {
-            return View(await db.Materijali.ToListAsync());
+            IOrderedQueryable<Materijal> materijali = null;
+
+            if (!String.IsNullOrEmpty(parametarPretrage))
+            {
+                materijali = db.Materijali.Where(m => m.MaterijalNaziv.Contains(parametarPretrage) || m.MaterijalProizvodjac.Contains(parametarPretrage)).OrderBy(m => m.MaterijalNaziv);
+            }
+            else
+            {
+                materijali = db.Materijali.OrderBy(m => m.MaterijalNaziv);
+            }
+
+
+            return View(await materijali.ToListAsync());
         }
 
         // GET: Materijal/Details/5

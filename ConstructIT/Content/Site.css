@@ -73,3 +73,10 @@ img.imageSingle{
 btn.dropdown-toggle {
     width:280px !important;
 }
+
+form.searchForm {
+    position:relative;
+    float:right;
+    width:215px;
+    top:-25px;
+}

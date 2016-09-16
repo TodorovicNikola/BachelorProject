@@ -49,12 +49,18 @@ namespace ConstructIT.DAL.Models
         [Display(Name = "Tip korisnika")]
         public String KorisnikTip { get; set; }
 
+        [ForeignKey("KlijentovProjekat")]
+        public int? KlijentovProjekatID { get; set; }
+
 
         public ICollection<Projekat> Projekti { get; set; }
         public ICollection<Zadatak> DodeljeniZadaci { get; set; }
         public ICollection<KomentarZadatak> KomentariNaZadatke { get; set; }
         public ICollection<KomentarGalerija> KomentariNaGalerije { get; set; }
         public ICollection<KomentarSlika> KomentariNaSlike { get; set; }
+
+        [ForeignKey("KlijentovProjekatID")]
+        public Projekat KlijentovProjekat { get; set; }
 
         [InverseProperty("KorisnikKojiJeIzmenio")]
         public ICollection<PromenaZadatka> PromeneKojeJeKorisnikIzvrsio { get; set; }
