@@ -23,6 +23,7 @@ namespace ConstructIT.Controllers
         {
             var galerije = db.Galerije.Include(g => g.Projekat).Where(p => p.ProjekatID == projekatID);
             ViewData["projekatID"] = projekatID;
+            ViewData["projekatNaziv"] = db.Projekti.Where(p => p.ProjekatID == projekatID).FirstOrDefault().ProjekatNaziv;
             return View(await galerije.ToListAsync());
         }
 

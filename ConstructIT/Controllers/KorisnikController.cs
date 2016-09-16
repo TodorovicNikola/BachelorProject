@@ -40,6 +40,12 @@ namespace ConstructIT.Controllers
         // GET: Korisnik/Create
         public ActionResult Create()
         {
+            List<String> korisnikTip = new List<String>();
+            korisnikTip.Add("Tehn. Osoblje");
+            korisnikTip.Add("Klijent");
+            korisnikTip.Add("Administrator");
+
+            ViewBag.KorisnikTip = new SelectList(korisnikTip, "Tehn. Osoblje");
             return View();
         }
 
@@ -57,6 +63,13 @@ namespace ConstructIT.Controllers
                 return RedirectToAction("Index");
             }
 
+            List<String> korisnikTip = new List<String>();
+            korisnikTip.Add("Tehn. Osoblje");
+            korisnikTip.Add("Klijent");
+            korisnikTip.Add("Administrator");
+
+            ViewBag.KorisnikTip = new SelectList(korisnikTip, korisnik.KorisnikTip);
+
             return View(korisnik);
         }
 
@@ -72,6 +85,14 @@ namespace ConstructIT.Controllers
             {
                 return HttpNotFound();
             }
+
+            List<String> korisnikTip = new List<String>();
+            korisnikTip.Add("Tehn. Osoblje");
+            korisnikTip.Add("Klijent");
+            korisnikTip.Add("Administrator");
+
+            ViewBag.KorisnikTip = new SelectList(korisnikTip, korisnik.KorisnikTip);
+
             return View(korisnik);
         }
 
@@ -88,6 +109,14 @@ namespace ConstructIT.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
+
+            List<String> korisnikTip = new List<String>();
+            korisnikTip.Add("Tehn. Osoblje");
+            korisnikTip.Add("Klijent");
+            korisnikTip.Add("Administrator");
+
+            ViewBag.KorisnikTip = new SelectList(korisnikTip, korisnik.KorisnikTip);
+
             return View(korisnik);
         }
 

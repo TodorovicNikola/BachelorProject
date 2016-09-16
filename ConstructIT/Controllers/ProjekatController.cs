@@ -40,7 +40,7 @@ namespace ConstructIT.Controllers
         // GET: Projekat/Create
         public ActionResult Create()
         {
-            ViewData["korisnici"] = db.Korisnici.Where(k => k.KorisnikTip == "klijent" || k.KorisnikTip == "tehnOsoblje").ToList();
+            ViewData["korisnici"] = db.Korisnici.Where(k => k.KorisnikTip == "Klijent" || k.KorisnikTip == "Tehn. Osoblje").ToList();
             return View();
         }
 
@@ -86,11 +86,12 @@ namespace ConstructIT.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Projekat projekat = await db.Projekti.FindAsync(id);
+            Projekat projekat = await db.Projekti.Where(p => p.ProjekatID == id).Include(p => p.Korisnici).FirstOrDefaultAsync();
             if (projekat == null)
             {
                 return HttpNotFound();
             }
+            ViewData["korisnici"] = db.Korisnici.Where(k => k.KorisnikTip == "Klijent" || k.KorisnikTip == "Tehn. Osoblje").ToList();
             return View(projekat);
         }
 
@@ -99,7 +100,7 @@ namespace ConstructIT.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ProjekatID,ProjekatNaziv,ProjekatOpis,ProjekatAdresa")] Projekat projekat)
+        public async Task<ActionResult> Edit([Bind(Include = "ProjekatID,ProjekatNaziv,ProjekatOpis,ProjekatAdresa,OdabraniKorisnici")] Projekat projekat)
         {
             Projekat p = db.Projekti.Where(pr => pr.ProjekatNaziv == projekat.ProjekatNaziv && pr.ProjekatID != projekat.ProjekatID).FirstOrDefault();
 
@@ -111,7 +112,24 @@ namespace ConstructIT.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(projekat).State = EntityState.Modified;
+                db.SaveChanges();
+
+                Projekat dbProjekat = db.Projekti.Where(pr => pr.ProjekatID == projekat.ProjekatID).Include(pr => pr.Korisnici).FirstOrDefault();
+                
+                if(dbProjekat.Korisnici == null)
+                {
+                    dbProjekat.Korisnici = new List<Korisnik>();
+                }
+
+                dbProjekat.Korisnici.Clear();
+
+                foreach (int korisnikID in projekat.OdabraniKorisnici)
+                {
+                    dbProjekat.Korisnici.Add(db.Korisnici.Where(k => k.KorisnikID == korisnikID).FirstOrDefault());
+                }
+
                 await db.SaveChangesAsync();
+
                 return RedirectToAction("Details", new { id = projekat.ProjekatID });
             }
             return View(projekat);

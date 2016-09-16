@@ -1,14 +1,20 @@
 ﻿@model IEnumerable<ConstructIT.DAL.Models.Galerija>
-
+@using ConstructIT.DAL.Models
 @{
     ViewBag.Title = "Galerije";
+
+    Korisnik korisnik = (Korisnik)Session["korisnik"];
 }
 
-<h2>Galerije projekta '@Model.First().Projekat.ProjekatNaziv'</h2>
+<h2>Galerije projekta '@ViewData["projekatNaziv"]'</h2>
 
-<p>
-    @Html.ActionLink("Dodaj novu", "Create", new { projekatID = ViewData["projekatID"] })
-</p>
+@if (korisnik.KorisnikTip != "Klijent")
+{
+    <p>
+        @Html.ActionLink("Dodaj novu", "Create", new { projekatID = ViewData["projekatID"] })
+    </p>
+}
+
 
 <hr />
 
@@ -17,7 +23,10 @@
         <th>
             @Html.DisplayNameFor(model => model.GalerijaDatum)
         </th>
+@if (korisnik.KorisnikTip != "klijent")
+{
         <th></th>
+}
     </tr>
 
 @foreach (var item in Model) {
@@ -25,9 +34,12 @@
         <td>
             @Html.ActionLink(item.GalerijaDatum.ToString("[yyyy-MM-dd]"), "Details", new { projekatID = item.ProjekatID, datum = item.GalerijaDatum })
         </td>
+@if (korisnik.KorisnikTip != "klijent")
+{
         <td>
             @Html.ActionLink("Obriši", "Delete", new { projekatID = item.ProjekatID, datum = item.GalerijaDatum })
         </td>
+}
     </tr>
 }
 

@@ -158,7 +158,14 @@
                         @:Prioritet zadatka: '@item.PrioritetStari.PrioritetNaziv' promenjeno u '@item.PrioritetNovi.PrioritetNaziv'
                         <br />
                     }
-                }
+
+                    if (item.PZ_KorisnikID != null)
+                    {
+
+                        @:Zaduženi za zadatak: sa zadatka je uklonjen korisnik '@item.KorisnikKojiJeUklonjen.KorisnikIme @item.KorisnikKojiJeUklonjen.KorisnikPrezime'
+                        <br />
+    }
+}
                 </div>
             </div>
         }
@@ -200,10 +207,10 @@
                         @Html.DisplayFor(modelItem => item.Struka.StrukaNaziv)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.PotrebaStrukeOdDatuma)
+                        @item.PotrebaStrukeOdDatuma.ToString("dd.MM.yyyy.")
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.PotrebaStrukeDoDatuma)
+                        @item.PotrebaStrukeDoDatuma.ToString("dd.MM.yyyy.")
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.PotrebaStrukeKolicina)
@@ -251,10 +258,10 @@
                         @Html.DisplayFor(modelItem => item.Materijal.MaterijalNaziv)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.PotrMatOdDatuma)
+                        @item.PotrMatOdDatuma.ToString("dd.MM.yyyy.")
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.PotrMatDoDatuma)
+                        @item.PotrMatDoDatuma.ToString("dd.MM.yyyy.")
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.PotrMatKolicina)
@@ -297,10 +304,10 @@
                         @Html.DisplayFor(modelItem => item.TipMasine.TipMasineNaziv)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.PotrTipaMasOdDatuma)
+                        @item.PotrTipaMasOdDatuma.ToString("dd.MM.yyyy.")
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.PotrTipaMasDoDatuma)
+                        @item.PotrTipaMasDoDatuma.ToString("dd.MM.yyyy.")
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.PotrTipaMasKolicina)

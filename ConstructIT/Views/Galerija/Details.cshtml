@@ -1,7 +1,8 @@
 ﻿@model ConstructIT.DAL.Models.Galerija
-
+@using ConstructIT.DAL.Models
 @{
     ViewBag.Title = "Details";
+    Korisnik korisnik = (Korisnik)Session["korisnik"];
 }
 
 <h2>Galerija</h2>
@@ -9,18 +10,17 @@
 <div>
     <h3 style="padding-left:3%">Projekat '@Model.Projekat.ProjekatNaziv' za datum @Model.GalerijaDatum.ToString("dd.MM.yyyy.")</h3>
 
-    @using (Html.BeginForm("Upload", "Galerija", new { projekatID = Model.ProjekatID, datum = Model.GalerijaDatum }, FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-inline", @style = "position:relative; float:right; top: -40px" }))
+    @if (korisnik.KorisnikTip != "Klijent")
     {
-        <div class="form-group">
-            <label class="btn btn-success">
-                Odaberi sliku
-                <input type="file" name="FileUpload" style="display:none" />
-            </label>
-        </div>
-
-        <div class="form-group">
-            <input class="btn btn-success" type="submit" name="submit" id="Submit" value="Sačuvaj" />
-        </div>
+        using (Html.BeginForm("Upload", "Galerija", new { projekatID = Model.ProjekatID, datum = Model.GalerijaDatum }, FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-inline", @style = "position:relative; float:right; top: -40px" }))
+        {
+            <div class="form-group">
+                <label class="btn btn-success">
+                    Odaberi sliku
+                    <input type="file" name="FileUpload" style="display:none" onchange="this.form.submit();" />
+                </label>
+            </div>
+        }
     }
 
     <hr />

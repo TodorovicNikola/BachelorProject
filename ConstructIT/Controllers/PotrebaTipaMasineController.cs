@@ -43,7 +43,7 @@ namespace ConstructIT.Controllers
         // GET: PotrebaTipaMasine/Create
         public ActionResult Create(int projekatID, int zadatakID)
         {
-            ViewBag.TipMasineID = new SelectList(db.TipoviMasina, "TipMasineID", "TipMasineNaziv");
+            ViewBag.TipMasineID = new SelectList(db.TipoviMasina.OrderBy(tm => tm.TipMasineNaziv), "TipMasineID", "TipMasineNaziv");
             ViewBag.ProjekatNaziv = db.Projekti.Where(p => p.ProjekatID == projekatID).FirstOrDefault().ProjekatNaziv;
             ViewBag.ZadatakNaziv = db.Zadaci.Where(z => z.ZadatakID == zadatakID).FirstOrDefault().ZadatakNaziv;
             ViewBag.ProjekatID = projekatID;
@@ -65,7 +65,7 @@ namespace ConstructIT.Controllers
                 return RedirectToAction("Details", "Zadatak", new { id = potrebaTipaMasine.ZadatakID });
             }
 
-            ViewBag.TipMasineID = new SelectList(db.TipoviMasina, "TipMasineID", "TipMasineNaziv", potrebaTipaMasine.TipMasineID);
+            ViewBag.TipMasineID = new SelectList(db.TipoviMasina.OrderBy(tm => tm.TipMasineNaziv), "TipMasineID", "TipMasineNaziv", potrebaTipaMasine.TipMasineID);
             ViewBag.ProjekatNaziv = db.Projekti.Where(p => p.ProjekatID == potrebaTipaMasine.ProjekatID).FirstOrDefault().ProjekatNaziv;
             ViewBag.ZadatakNaziv = db.Zadaci.Where(z => z.ZadatakID == potrebaTipaMasine.ZadatakID).FirstOrDefault().ZadatakNaziv;
             ViewBag.ProjekatID = potrebaTipaMasine.ProjekatID;

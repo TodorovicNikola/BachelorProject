@@ -1,10 +1,20 @@
 ﻿@model IEnumerable<ConstructIT.DAL.Models.Korisnik>
+@using ConstructIT.DAL.Models
 
 @{
     ViewBag.Title = "Korisnici";
+
+    Korisnik korisnik = (Korisnik)Session["korisnik"];
 }
 
 <h2>Korisnici</h2>
+
+@if (korisnik.KorisnikTip == "Administrator")
+{
+    <p>
+        @Html.ActionLink("Dodaj novog", "Create")
+    </p>
+}
 
 <hr />
 
@@ -25,7 +35,11 @@
         <th>
             @Html.DisplayNameFor(model => model.KorisnikTip)
         </th>
-        <th></th>
+        @if (korisnik.KorisnikTip == "admin")
+        {
+            <th></th>
+        }
+        
     </tr>
 
 @foreach (var item in Model) {
@@ -46,10 +60,14 @@
         <td>
             @Html.DisplayFor(modelItem => item.KorisnikTip)
         </td>
-        <td>
-            @Html.ActionLink("Izmeni", "Edit", new { id=item.KorisnikID }) |
-            @Html.ActionLink("Obriši", "Delete", new { id=item.KorisnikID })
-        </td>
+        @if (korisnik.KorisnikTip == "Administrator")
+        {
+            <td>
+                @Html.ActionLink("Izmeni", "Edit", new { id = item.KorisnikID }) |
+                @Html.ActionLink("Obriši", "Delete", new { id = item.KorisnikID })
+            </td>
+        }
+
     </tr>
 }
 

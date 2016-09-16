@@ -17,15 +17,15 @@
         protected override void Seed(ConstructIT.DAL.ConstructITDBContext context)
         {/*
             context.Korisnici.AddOrUpdate(
-                new Korisnik { KorisnikEMail = "nikola5tod@yahoo.com", KorisnikIme = "Nikola", KorisnikPrezime = "Todorović", KorisnikLozinka = "nikola", KorisnikPotvrdaLozinke = "nikola", KorisnikTip = "admin" },
-                new Korisnik { KorisnikEMail = "nenadTod@gmail.com", KorisnikIme = "Nenad", KorisnikPrezime = "Todorović", KorisnikLozinka = "nenad", KorisnikPotvrdaLozinke = "nenad", KorisnikTip = "tehnOsoblje" },
-                new Korisnik { KorisnikEMail = "pero@dummy.com", KorisnikIme = "Pero", KorisnikPrezime = "Todorović", KorisnikLozinka = "pero", KorisnikPotvrdaLozinke = "pero", KorisnikTip = "tehnOsoblje" },
-                new Korisnik { KorisnikEMail = "marija@dummy.com", KorisnikIme = "Marija", KorisnikPrezime = "Todorović Siterić", KorisnikLozinka = "marija", KorisnikPotvrdaLozinke = "marija", KorisnikTip = "tehnOsoblje" },
-                new Korisnik { KorisnikEMail = "bane@dummy.com", KorisnikIme = "Branimir", KorisnikPrezime = "Todorović", KorisnikLozinka = "branimir", KorisnikPotvrdaLozinke = "branimir", KorisnikTip = "tehnOsoblje" },
-                new Korisnik { KorisnikEMail = "ana@dummy.com", KorisnikIme = "Ana", KorisnikPrezime = "Todorović", KorisnikLozinka = "ana", KorisnikPotvrdaLozinke = "ana", KorisnikTip = "klijent" },
-                new Korisnik { KorisnikEMail = "nikolina@dummy.com", KorisnikIme = "Nikolina", KorisnikPrezime = "Vasić", KorisnikLozinka = "nikolina", KorisnikPotvrdaLozinke = "nikolina", KorisnikTip = "tehnOsoblje" },
-                new Korisnik { KorisnikEMail = "aleksandra@dummy.com", KorisnikIme = "Aleksandra", KorisnikPrezime = "Stupar", KorisnikLozinka = "aleksandra", KorisnikPotvrdaLozinke = "aleksandra", KorisnikTip = "klijent" },
-                new Korisnik { KorisnikEMail = "babaAna@dummy.com", KorisnikIme = "Ana", KorisnikPrezime = "Siterić", KorisnikLozinka = "ana", KorisnikPotvrdaLozinke = "ana", KorisnikTip = "tehnOsoblje" }
+                new Korisnik { KorisnikEMail = "nikola5tod@yahoo.com", KorisnikIme = "Nikola", KorisnikPrezime = "Todorović", KorisnikLozinka = "nikola", KorisnikPotvrdaLozinke = "nikola", KorisnikTip = "Administrator" },
+                new Korisnik { KorisnikEMail = "nenadTod@gmail.com", KorisnikIme = "Nenad", KorisnikPrezime = "Todorović", KorisnikLozinka = "nenad", KorisnikPotvrdaLozinke = "nenad", KorisnikTip = "Tehn. Osoblje" },
+                new Korisnik { KorisnikEMail = "pero@dummy.com", KorisnikIme = "Pero", KorisnikPrezime = "Todorović", KorisnikLozinka = "pero", KorisnikPotvrdaLozinke = "pero", KorisnikTip = "Tehn. Osoblje" },
+                new Korisnik { KorisnikEMail = "marija@dummy.com", KorisnikIme = "Marija", KorisnikPrezime = "Todorović Siterić", KorisnikLozinka = "marija", KorisnikPotvrdaLozinke = "marija", KorisnikTip = "Tehn. Osoblje" },
+                new Korisnik { KorisnikEMail = "bane@dummy.com", KorisnikIme = "Branimir", KorisnikPrezime = "Todorović", KorisnikLozinka = "branimir", KorisnikPotvrdaLozinke = "branimir", KorisnikTip = "Tehn. Osoblje" },
+                new Korisnik { KorisnikEMail = "ana@dummy.com", KorisnikIme = "Ana", KorisnikPrezime = "Todorović", KorisnikLozinka = "ana", KorisnikPotvrdaLozinke = "ana", KorisnikTip = "Klijent" },
+                new Korisnik { KorisnikEMail = "nikolina@dummy.com", KorisnikIme = "Nikolina", KorisnikPrezime = "Vasić", KorisnikLozinka = "nikolina", KorisnikPotvrdaLozinke = "nikolina", KorisnikTip = "Tehn. Osoblje" },
+                new Korisnik { KorisnikEMail = "aleksandra@dummy.com", KorisnikIme = "Aleksandra", KorisnikPrezime = "Stupar", KorisnikLozinka = "aleksandra", KorisnikPotvrdaLozinke = "aleksandra", KorisnikTip = "Klijent" },
+                new Korisnik { KorisnikEMail = "babaAna@dummy.com", KorisnikIme = "Ana", KorisnikPrezime = "Siterić", KorisnikLozinka = "ana", KorisnikPotvrdaLozinke = "ana", KorisnikTip = "Tehn. Osoblje" }
                 );
 
             context.SaveChanges();

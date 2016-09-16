@@ -1,30 +1,41 @@
-﻿using System;
+﻿using ConstructIT.DAL;
+using ConstructIT.DAL.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
 
 namespace ConstructIT.Controllers
 {
     public class HomeController : Controller
     {
+        private ConstructITDBContext db = new ConstructITDBContext();
+
         public ActionResult Index()
         {
-            return View();
-        }
+            if(Session["korisnik"] != null)
+            {
+                Korisnik korisnik = (Korisnik)Session["korisnik"];
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
+               if(korisnik.KorisnikTip == "Administrator" || korisnik.KorisnikTip== "Tehn. Osoblje")
+                {
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("Details", "Projekat", new { id = db.Korisnici.Where(k => k.KorisnikID == korisnik.KorisnikID).Include(k => k.Projekti).FirstOrDefault().Projekti.FirstOrDefault().ProjekatID });
+                }
 
-            return View();
-        }
+            }
+            else
+            {
+                return RedirectToAction("Login", "Session", null);
+            }
+            
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
 
-            return View();
         }
     }
 }

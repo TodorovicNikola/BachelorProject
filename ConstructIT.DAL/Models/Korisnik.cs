@@ -46,6 +46,7 @@ namespace ConstructIT.DAL.Models
         public String KorisnikTelefon { get; set; }
 
         [Required]
+        [Display(Name = "Tip korisnika")]
         public String KorisnikTip { get; set; }
 
 

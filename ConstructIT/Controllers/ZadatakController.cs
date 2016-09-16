@@ -43,7 +43,7 @@ namespace ConstructIT.Controllers
         {
             ViewBag.ProjekatNaziv = db.Projekti.Where(p => p.ProjekatID == projekatID).FirstOrDefault().ProjekatNaziv;
             ViewBag.ProjekatID = projekatID;
-            ViewBag.KorisnikID = new SelectList(db.Korisnici, "KorisnikID", "KorisnikLozinka");
+            ViewBag.KorisnikID = new SelectList((from k in db.Projekti.Where(pr => pr.ProjekatID == projekatID).Include(pr => pr.Korisnici).FirstOrDefault().Korisnici.Where(k => k.KorisnikTip == "Tehn. Osoblje").ToList() select new { korisnikID = k.KorisnikID, PunoIme = k.KorisnikIme + " " + k.KorisnikPrezime }), "KorisnikID", "PunoIme", null);
             ViewBag.PrioritetID = new SelectList(db.Prioriteti, "PrioritetID", "PrioritetNaziv");
             ViewBag.StatusID = new SelectList(db.Statusi, "StatusID", "StatusNaziv");
             return View();
@@ -73,7 +73,7 @@ namespace ConstructIT.Controllers
 
             ViewBag.ProjekatNaziv = db.Projekti.Where(p => p.ProjekatID == zadatak.ProjekatID).FirstOrDefault().ProjekatNaziv;
             ViewBag.ProjekatID = zadatak.ProjekatID;
-            ViewBag.KorisnikID = new SelectList(db.Korisnici, "KorisnikID", "KorisnikLozinka", zadatak.KorisnikID);
+            ViewBag.KorisnikID = new SelectList((from k in db.Projekti.Where(pr => pr.ProjekatID == zadatak.ProjekatID).Include(pr => pr.Korisnici).FirstOrDefault().Korisnici.Where(k => k.KorisnikTip == "tehnOsoblje").ToList() select new { korisnikID = k.KorisnikID, PunoIme = k.KorisnikIme + " " + k.KorisnikPrezime }), "KorisnikID", "PunoIme", zadatak.KorisnikID);
             ViewBag.PrioritetID = new SelectList(db.Prioriteti, "PrioritetID", "PrioritetNaziv");
             ViewBag.StatusID = new SelectList(db.Statusi, "StatusID", "StatusNaziv", zadatak.StatusID);
             return View(zadatak);
@@ -91,7 +91,7 @@ namespace ConstructIT.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.KorisnikID = new SelectList(db.Korisnici, "KorisnikID", "KorisnikLozinka", zadatak.KorisnikID);
+            ViewBag.KorisnikID = new SelectList((from k in db.Projekti.Where(pr => pr.ProjekatID == zadatak.ProjekatID).Include(pr => pr.Korisnici).FirstOrDefault().Korisnici.Where(k => k.KorisnikTip == "tehnOsoblje").ToList() select new { korisnikID = k.KorisnikID, PunoIme = k.KorisnikIme + " " + k.KorisnikPrezime }), "KorisnikID", "PunoIme", zadatak.KorisnikID);
             ViewBag.PrioritetID = new SelectList(db.Prioriteti, "PrioritetID", "PrioritetNaziv", zadatak.PrioritetID);
             ViewBag.ProjekatID = new SelectList(db.Projekti, "ProjekatID", "ProjekatNaziv", zadatak.ProjekatID);
             ViewBag.StatusID = new SelectList(db.Statusi, "StatusID", "StatusNaziv", zadatak.StatusID);
@@ -206,7 +206,7 @@ namespace ConstructIT.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Details", new { id = _zadatakIzBaze.ZadatakID });
             }
-            ViewBag.KorisnikID = new SelectList(db.Korisnici, "KorisnikID", "KorisnikLozinka", zadatak.KorisnikID);
+            ViewBag.KorisnikID = new SelectList((from k in db.Projekti.Where(pr => pr.ProjekatID == zadatak.ProjekatID).Include(pr => pr.Korisnici).FirstOrDefault().Korisnici.Where(k => k.KorisnikTip == "Tehn. Osoblje").ToList() select new { korisnikID = k.KorisnikID, PunoIme = k.KorisnikIme + " " + k.KorisnikPrezime }), "KorisnikID", "PunoIme", zadatak.KorisnikID);
             ViewBag.PrioritetID = new SelectList(db.Prioriteti, "PrioritetID", "PrioritetNaziv", zadatak.PrioritetID);
             ViewBag.ProjekatID = new SelectList(db.Projekti, "ProjekatID", "ProjekatNaziv", zadatak.ProjekatID);
             ViewBag.StatusID = new SelectList(db.Statusi, "StatusID", "StatusNaziv", zadatak.StatusID);

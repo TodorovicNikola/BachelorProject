@@ -43,7 +43,7 @@ namespace ConstructIT.Controllers
         // GET: PotrebaStruke/Create
         public ActionResult Create(int projekatID, int zadatakID)
         {
-            ViewBag.StrukaID = new SelectList(db.Struke, "StrukaID", "StrukaNaziv");
+            ViewBag.StrukaID = new SelectList(db.Struke.OrderBy(s => s.StrukaNaziv), "StrukaID", "StrukaNaziv");
             ViewBag.ProjekatNaziv = db.Projekti.Where(p => p.ProjekatID == projekatID).FirstOrDefault().ProjekatNaziv;
             ViewBag.ZadatakNaziv = db.Zadaci.Where(z => z.ZadatakID == zadatakID).FirstOrDefault().ZadatakNaziv;
             ViewBag.ProjekatID = projekatID;
@@ -65,7 +65,7 @@ namespace ConstructIT.Controllers
                 return RedirectToAction("Details", "Zadatak", new { id = potrebaStruke.ZadatakID });
             }
 
-            ViewBag.StrukaID = new SelectList(db.Struke, "StrukaID", "StrukaNaziv", potrebaStruke.StrukaID);
+            ViewBag.StrukaID = new SelectList(db.Struke.OrderBy(s => s.StrukaNaziv), "StrukaID", "StrukaNaziv", potrebaStruke.StrukaID);
             ViewBag.ProjekatNaziv = db.Projekti.Where(p => p.ProjekatID == potrebaStruke.ProjekatID).FirstOrDefault().ProjekatNaziv;
             ViewBag.ZadatakNaziv = db.Zadaci.Where(z => z.ZadatakID == potrebaStruke.ZadatakID).FirstOrDefault().ZadatakNaziv;
             ViewBag.ProjekatID = potrebaStruke.ProjekatID;
