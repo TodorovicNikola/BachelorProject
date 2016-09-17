@@ -25,7 +25,7 @@ namespace ConstructIT.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("Details", "Projekat", new { id = db.Korisnici.Where(k => k.KorisnikID == korisnik.KorisnikID).Include(k => k.Projekti).FirstOrDefault().Projekti.FirstOrDefault().ProjekatID });
+                    return RedirectToAction("Details", "Projekat", new { id = korisnik.KlijentovProjekatID });
                 }
 
             }

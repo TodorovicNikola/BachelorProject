@@ -118,8 +118,11 @@ namespace ConstructIT.Controllers
         {
             Slika slika = await db.Slike.FindAsync(id);
             db.Slike.Remove(slika);
+
+            System.IO.File.Delete(Server.MapPath("~/Content/Images/") + slika.SlikaNaziv);
+
             await db.SaveChangesAsync();
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", "Galerija", new { projekatID = slika.ProjekatID, datum = slika.GalerijaDatum });
         }
 
         public ActionResult AddComment(int slikaID, String komentarNaslov, String komentarSadrzaj)

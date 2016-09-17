@@ -6,6 +6,10 @@
 
 <h2>Slika - datum: @Model.GalerijaDatum.ToString("dd.MM.yyyy.")</h2>
 
+<p style="position:relative; float:right; top:-10px">
+    @Html.ActionLink("Obriši", "Delete", new { id = Model.SlikaID })
+</p>
+
 <div>
     <hr />
     <div class="imageSingleDiv">

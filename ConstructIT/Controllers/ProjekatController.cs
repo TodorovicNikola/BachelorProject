@@ -40,7 +40,7 @@ namespace ConstructIT.Controllers
         // GET: Projekat/Create
         public ActionResult Create()
         {
-            ViewData["korisnici"] = db.Korisnici.Where(k => k.KorisnikTip == "Klijent" || k.KorisnikTip == "Tehn. Osoblje").ToList();
+            ViewData["korisnici"] = db.Korisnici.Where(k => (k.KorisnikTip == "Klijent" && k.KlijentovProjekatID == null) || k.KorisnikTip == "Tehn. Osoblje").ToList();
             return View();
         }
 
@@ -62,13 +62,14 @@ namespace ConstructIT.Controllers
             if (ModelState.IsValid)
             {
                 projekat.Korisnici = new List<Korisnik>();
+                projekat.Klijenti = new LinkedList<Korisnik>();
 
                 foreach (int korisnikID in projekat.OdabraniKorisnici)
                 {
+                    projekat.Korisnici.Add(db.Korisnici.Where(k => k.KorisnikID == korisnikID && k.KorisnikTip == "Tehn. Osoblje").FirstOrDefault());
 
-                    projekat.Korisnici.Add(db.Korisnici.Where(k => k.KorisnikID == korisnikID).FirstOrDefault());
+                    projekat.Klijenti.Add(db.Korisnici.Where(k => k.KorisnikID == korisnikID && k.KorisnikTip == "Klijent").FirstOrDefault());
                 }
-
 
                 db.Projekti.Add(projekat);
 
@@ -86,12 +87,12 @@ namespace ConstructIT.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Projekat projekat = await db.Projekti.Where(p => p.ProjekatID == id).Include(p => p.Korisnici).FirstOrDefaultAsync();
+            Projekat projekat = await db.Projekti.Where(p => p.ProjekatID == id).Include(p => p.Korisnici).Include(p => p.Klijenti).FirstOrDefaultAsync();
             if (projekat == null)
             {
                 return HttpNotFound();
             }
-            ViewData["korisnici"] = db.Korisnici.Where(k => k.KorisnikTip == "Klijent" || k.KorisnikTip == "Tehn. Osoblje").ToList();
+            ViewData["korisnici"] = db.Korisnici.Where(k => (k.KorisnikTip == "Klijent" && k.KlijentovProjekatID == id ) || (k.KorisnikTip == "Klijent" && k.KlijentovProjekatID == null) || k.KorisnikTip == "Tehn. Osoblje").ToList();
             return View(projekat);
         }
 
@@ -114,18 +115,27 @@ namespace ConstructIT.Controllers
                 db.Entry(projekat).State = EntityState.Modified;
                 db.SaveChanges();
 
-                Projekat dbProjekat = db.Projekti.Where(pr => pr.ProjekatID == projekat.ProjekatID).Include(pr => pr.Korisnici).FirstOrDefault();
+                Projekat dbProjekat = db.Projekti.Where(pr => pr.ProjekatID == projekat.ProjekatID).Include(pr => pr.Korisnici).Include(pr => pr.Klijenti).FirstOrDefault();
                 
                 if(dbProjekat.Korisnici == null)
                 {
                     dbProjekat.Korisnici = new List<Korisnik>();
                 }
 
+                if(dbProjekat.Klijenti == null)
+                {
+                    dbProjekat.Klijenti = new List<Korisnik>();
+                }
+
                 dbProjekat.Korisnici.Clear();
+                dbProjekat.Klijenti.Clear();
 
                 foreach (int korisnikID in projekat.OdabraniKorisnici)
                 {
-                    dbProjekat.Korisnici.Add(db.Korisnici.Where(k => k.KorisnikID == korisnikID).FirstOrDefault());
+                    dbProjekat.Korisnici.Add(db.Korisnici.Where(k => k.KorisnikID == korisnikID && k.KorisnikTip == "Tehn. Osoblje").FirstOrDefault());
+
+                    dbProjekat.Klijenti.Add(db.Korisnici.Where(k => k.KorisnikID == korisnikID && k.KorisnikTip == "Klijent").FirstOrDefault());
+
                 }
 
                 await db.SaveChangesAsync();

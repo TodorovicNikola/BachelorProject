@@ -44,9 +44,10 @@
 
                         foreach (var korisnikProjekta in Model.Korisnici)
                         {
-                            if(korisnikProjekta.KorisnikID == item.KorisnikID)
+                            if(korisnikProjekta.KorisnikID == item.KorisnikID )
                             {
                                 found = true;
+                                break;
                             }
                         }
 
@@ -56,9 +57,24 @@
                         }
                         else
                         {
-                            <option value="@item.KorisnikID">@item.KorisnikIme @item.KorisnikPrezime (@item.KorisnikEMail)</option>
+                            foreach (var klijentProjekta in Model.Klijenti)
+                            {
+                                if (klijentProjekta.KorisnikID == item.KorisnikID)
+                                {
+                                    found = true;
+                                    break;
+                                }
+                            }
+
+                            if (found)
+                            {
+                                <option value="@item.KorisnikID" selected>@item.KorisnikIme @item.KorisnikPrezime (@item.KorisnikEMail)</option>
+                            }
+                            else
+                            {
+                                <option value="@item.KorisnikID">@item.KorisnikIme @item.KorisnikPrezime (@item.KorisnikEMail)</option>
+                            }
                         }
-                        
                     }
                 </select>
             </div>
