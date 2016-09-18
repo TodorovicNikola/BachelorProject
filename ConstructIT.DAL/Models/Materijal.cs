@@ -15,16 +15,12 @@ namespace ConstructIT.DAL.Models
         [Display(Name = "Naziv materijala")]
         public String MaterijalNaziv { get; set; }
 
-        [StringLength(64, ErrorMessage = "'Proizvođač' ne sme biti duži od 64 karaktera!"), Required(ErrorMessage = "'Proizvođač' ne sme biti prazan!")]
-        [Display(Name = "Proizvođač")]
-        public String MaterijalProizvodjac { get; set; }
-
         [StringLength(1024, ErrorMessage = "'Opis materijala' ne sme biti duži od 1024 karaktera!")]
         [Display(Name = "Opis materijala")]
         public String MaterijalOpis { get; set; }
 
-        [Display(Name = "Raspoloživa količina")]
-        [Required(ErrorMessage = "'Raspoloživa količina' ne sme biti neodređena!")]
+        [Display(Name = "Raspoloživa količina materijala")]
+        [Required(ErrorMessage = "'Raspoloživa količina materijala' ne sme biti neodređena!")]
         public double MaterijalRaspolozivaKolicina { get; set; }
 
 

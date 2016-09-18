@@ -23,7 +23,7 @@ namespace ConstructIT.Controllers
 
             if (!String.IsNullOrEmpty(parametarPretrage))
             {
-                materijali = db.Materijali.Where(m => m.MaterijalNaziv.Contains(parametarPretrage) || m.MaterijalProizvodjac.Contains(parametarPretrage)).OrderBy(m => m.MaterijalNaziv);
+                materijali = db.Materijali.Where(m => m.MaterijalNaziv.Contains(parametarPretrage)).OrderBy(m => m.MaterijalNaziv);
             }
             else
             {
@@ -60,7 +60,7 @@ namespace ConstructIT.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "MaterijalID,MaterijalNaziv,MaterijalProizvodjac,MaterijalOpis,MaterijalRaspolozivaKolicina")] Materijal materijal)
+        public async Task<ActionResult> Create([Bind(Include = "MaterijalID,MaterijalNaziv,MaterijalOpis,MaterijalRaspolozivaKolicina")] Materijal materijal)
         {
             if (ModelState.IsValid)
             {
@@ -92,7 +92,7 @@ namespace ConstructIT.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "MaterijalID,MaterijalNaziv,MaterijalProizvodjac,MaterijalOpis,MaterijalRaspolozivaKolicina")] Materijal materijal)
+        public async Task<ActionResult> Edit([Bind(Include = "MaterijalID,MaterijalNaziv,MaterijalOpis,MaterijalRaspolozivaKolicina")] Materijal materijal)
         {
             if (ModelState.IsValid)
             {

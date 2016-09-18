@@ -25,6 +25,7 @@
         <th>
             @Html.DisplayNameFor(model => model.PotrMatKolicina)
         </th>
+        <th></th>
     </tr>
 
 @foreach (var item in Model) {
@@ -44,6 +45,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.PotrMatKolicina)
         </td>
+        <td>@Html.ActionLink("Dodeli", "Create", "DodelaMaterijala", new { potrebaMaterijalaID = item.PotrebaMaterijalaID }, null)</td>
     </tr>
 }
 

@@ -39,9 +39,18 @@ namespace ConstructIT.Controllers
         }
 
         // GET: DodelaMaterijala/Create
-        public ActionResult Create()
+        public ActionResult Create(int potrebaMaterijalaID)
         {
-            ViewBag.PotrebaMaterijalaID = new SelectList(db.PotrebeMaterijala, "PotrebaMaterijalaID", "PotrebaMaterijalaID");
+            PotrebaMaterijala pm = db.PotrebeMaterijala.Find(potrebaMaterijalaID);
+
+            ViewData["projekatNaziv"] = pm.Zadatak.Projekat.ProjekatNaziv;
+            ViewData["potrebnaKolicina"] = pm.PotrMatKolicina;
+            ViewData["zadatakNaziv"] = pm.Zadatak.ZadatakNaziv;
+            ViewData["materijalNaziv"] = pm.Materijal.MaterijalNaziv;
+            ViewData["potrebaMaterijalaID"] = pm.PotrebaMaterijalaID;
+
+            int materijalID = db.PotrebeMaterijala.Find(pm.PotrebaMaterijalaID).MaterijalID;
+            ViewData["postojecaKolicinaMaterijala"] = db.Materijali.Where(m => m.MaterijalID == materijalID).FirstOrDefault().MaterijalRaspolozivaKolicina;
             return View();
         }
 
@@ -52,14 +61,42 @@ namespace ConstructIT.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "DodelaMaterijalaID,PotrebaMaterijalaID,DodMatDatumDodele,DodMatKolicina")] DodelaMaterijala dodelaMaterijala)
         {
+            PotrebaMaterijala pm = db.PotrebeMaterijala.Find(dodelaMaterijala.PotrebaMaterijalaID);
+            int materijalID = pm.MaterijalID;
+
+            if (dodelaMaterijala.DodMatKolicina > db.Materijali.Where(m => m.MaterijalID == materijalID).FirstOrDefault().MaterijalRaspolozivaKolicina)
+            {
+                ModelState.AddModelError("DodMatKolicina", "Dodeljena količina prevazilazi postojeću količinu materijala!");
+            }
+
+            if(dodelaMaterijala.DodMatKolicina > pm.PotrMatKolicina)
+            {
+                ModelState.AddModelError("DodMatKolicina", "Dodeljena količina prevazilazi potrebnu količinu materijala!");
+            }
+
+            if (dodelaMaterijala.DodMatKolicina <= 0)
+            {
+                ModelState.AddModelError("DodMatKolicina", "Dodeljena količina mora biti pozitivan broj!");
+            }
+
             if (ModelState.IsValid)
             {
+                dodelaMaterijala.DodMatDatumDodele = DateTime.Today;
+
                 db.DodeleMaterijala.Add(dodelaMaterijala);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.PotrebaMaterijalaID = new SelectList(db.PotrebeMaterijala, "PotrebaMaterijalaID", "PotrebaMaterijalaID", dodelaMaterijala.PotrebaMaterijalaID);
+
+
+            ViewData["projekatNaziv"] = pm.Zadatak.Projekat.ProjekatNaziv;
+            ViewData["potrebnaKolicina"] = pm.PotrMatKolicina;
+            ViewData["zadatakNaziv"] = pm.Zadatak.ZadatakNaziv;
+            ViewData["materijalNaziv"] = pm.Materijal.MaterijalNaziv;
+            ViewData["potrebaMaterijalaID"] = pm.PotrebaMaterijalaID;
+
+            ViewData["postojecaKolicinaMaterijala"] = db.Materijali.Where(m => m.MaterijalID == materijalID).FirstOrDefault().MaterijalRaspolozivaKolicina;
             return View(dodelaMaterijala);
         }
 
@@ -75,7 +112,17 @@ namespace ConstructIT.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.PotrebaMaterijalaID = new SelectList(db.PotrebeMaterijala, "PotrebaMaterijalaID", "PotrebaMaterijalaID", dodelaMaterijala.PotrebaMaterijalaID);
+
+            PotrebaMaterijala pm = db.PotrebeMaterijala.Find(dodelaMaterijala.PotrebaMaterijalaID);
+            int materijalID = pm.MaterijalID;
+
+            ViewData["projekatNaziv"] = pm.Zadatak.Projekat.ProjekatNaziv;
+            ViewData["potrebnaKolicina"] = pm.PotrMatKolicina;
+            ViewData["zadatakNaziv"] = pm.Zadatak.ZadatakNaziv;
+            ViewData["materijalNaziv"] = pm.Materijal.MaterijalNaziv;
+            ViewData["potrebaMaterijalaID"] = pm.PotrebaMaterijalaID;
+
+            ViewData["postojecaKolicinaMaterijala"] = db.Materijali.Where(m => m.MaterijalID == materijalID).FirstOrDefault().MaterijalRaspolozivaKolicina;
             return View(dodelaMaterijala);
         }
 
@@ -88,11 +135,22 @@ namespace ConstructIT.Controllers
         {
             if (ModelState.IsValid)
             {
+                dodelaMaterijala.DodMatDatumDodele = DateTime.Today;
+
                 db.Entry(dodelaMaterijala).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.PotrebaMaterijalaID = new SelectList(db.PotrebeMaterijala, "PotrebaMaterijalaID", "PotrebaMaterijalaID", dodelaMaterijala.PotrebaMaterijalaID);
+            PotrebaMaterijala pm = db.PotrebeMaterijala.Find(dodelaMaterijala.PotrebaMaterijalaID);
+            int materijalID = pm.MaterijalID;
+
+            ViewData["projekatNaziv"] = pm.Zadatak.Projekat.ProjekatNaziv;
+            ViewData["potrebnaKolicina"] = pm.PotrMatKolicina;
+            ViewData["zadatakNaziv"] = pm.Zadatak.ZadatakNaziv;
+            ViewData["materijalNaziv"] = pm.Materijal.MaterijalNaziv;
+            ViewData["potrebaMaterijalaID"] = pm.PotrebaMaterijalaID;
+
+            ViewData["postojecaKolicinaMaterijala"] = db.Materijali.Where(m => m.MaterijalID == materijalID).FirstOrDefault().MaterijalRaspolozivaKolicina;
             return View(dodelaMaterijala);
         }
 
@@ -108,6 +166,14 @@ namespace ConstructIT.Controllers
             {
                 return HttpNotFound();
             }
+
+            PotrebaMaterijala pm = db.PotrebeMaterijala.Find(dodelaMaterijala.PotrebaMaterijalaID);
+            int materijalID = pm.MaterijalID;
+
+            ViewData["projekatNaziv"] = pm.Zadatak.Projekat.ProjekatNaziv;
+            ViewData["zadatakNaziv"] = pm.Zadatak.ZadatakNaziv;
+            ViewData["materijalNaziv"] = pm.Materijal.MaterijalNaziv;
+
             return View(dodelaMaterijala);
         }
 

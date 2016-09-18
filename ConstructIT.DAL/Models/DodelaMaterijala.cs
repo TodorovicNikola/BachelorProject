@@ -17,11 +17,11 @@ namespace ConstructIT.DAL.Models
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        [Display(Name = "Datum")]
+        [Display(Name = "Datum dodele")]
         public DateTime DodMatDatumDodele { get; set; }
 
-        [Required(ErrorMessage = "'Dodeljena količina' ne sme biti neodređena!")]
-        [Display(Name = "Dodeljena količina")]
+        [Required(ErrorMessage = "'Količina za dodelu' ne sme biti neodređena!")]
+        [Display(Name = "Količina za dodelu")]
         public double DodMatKolicina { get; set; }
 
 

@@ -122,6 +122,10 @@
     <Compile Include="Migrations\201609180719120_timeUpdate.Designer.cs">
       <DependentUpon>201609180719120_timeUpdate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609181702205_materialUpdated.cs" />
+    <Compile Include="Migrations\201609181702205_materialUpdated.Designer.cs">
+      <DependentUpon>201609181702205_materialUpdated.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DodelaMaterijala.cs" />
     <Compile Include="Models\EvidencijaAngazovanjaMasine.cs" />
@@ -205,6 +209,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609180719120_timeUpdate.resx">
       <DependentUpon>201609180719120_timeUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609181702205_materialUpdated.resx">
+      <DependentUpon>201609181702205_materialUpdated.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

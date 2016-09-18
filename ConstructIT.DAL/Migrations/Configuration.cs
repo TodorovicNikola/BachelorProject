@@ -81,26 +81,26 @@
             );
 
             context.SaveChanges();
-
+            */
             context.Materijali.AddOrUpdate(
-                new Materijal { MaterijalNaziv = "Cement", MaterijalOpis = "metus sit amet imperdiet maximus", MaterijalProizvodjac = "Hipopotamus", MaterijalRaspolozivaKolicina = 90.0f },
-                new Materijal { MaterijalNaziv = "Kreč", MaterijalOpis = "Vivamus pharetra rhoncus dolor", MaterijalProizvodjac = "Puma", MaterijalRaspolozivaKolicina = 130.0f },
-                new Materijal { MaterijalNaziv = "Farba osnovna", MaterijalOpis = "elementum justo nec", MaterijalProizvodjac = "Moler", MaterijalRaspolozivaKolicina = 180.0f },
-                new Materijal { MaterijalNaziv = "Cigla", MaterijalOpis = "vehicula arcu quam", MaterijalProizvodjac = "Zada", MaterijalRaspolozivaKolicina = 100.0f },
-                new Materijal { MaterijalNaziv = "Šljunak", MaterijalOpis = "Nullam imperdiet elit", MaterijalProizvodjac = "Zada", MaterijalRaspolozivaKolicina = 300.0f },
-                new Materijal { MaterijalNaziv = "Šperploča", MaterijalOpis = "metus sit amet imperdiet maximus", MaterijalProizvodjac = "Puma", MaterijalRaspolozivaKolicina = 15.0f },
-                new Materijal { MaterijalNaziv = "Git", MaterijalOpis = "elementum justo nec", MaterijalProizvodjac = "Hipopotamus", MaterijalRaspolozivaKolicina = 10.0f },
-                new Materijal { MaterijalNaziv = "Silikon", MaterijalOpis = "raesent sed vehicula mauris", MaterijalProizvodjac = "Zada", MaterijalRaspolozivaKolicina = 250.0f },
-                new Materijal { MaterijalNaziv = "Malter", MaterijalOpis = "Vivamus pharetra rhoncus dolor", MaterijalProizvodjac = "Moler", MaterijalRaspolozivaKolicina = 400.0f },
-                new Materijal { MaterijalNaziv = "Gips", MaterijalOpis = "vehicula arcu quam", MaterijalProizvodjac = "Zada", MaterijalRaspolozivaKolicina = 200.0f },
-                new Materijal { MaterijalNaziv = "Drvene ploče 35x15", MaterijalOpis = "metus sit amet imperdiet maximus", MaterijalProizvodjac = "Hipopotamus", MaterijalRaspolozivaKolicina = 85.0f },
-                new Materijal { MaterijalNaziv = "Šaraf 3cm", MaterijalOpis = "Nullam imperdiet elit", MaterijalProizvodjac = "Moler", MaterijalRaspolozivaKolicina = 80.0f },
-                new Materijal { MaterijalNaziv = "Ekser 5cm", MaterijalOpis = "Vivamus pharetra rhoncus dolor", MaterijalProizvodjac = "Puma", MaterijalRaspolozivaKolicina = 250.0f },
-                new Materijal { MaterijalNaziv = "Pur pena", MaterijalOpis = "raesent sed vehicula mauris", MaterijalProizvodjac = "Hipopotamus", MaterijalRaspolozivaKolicina = 60.0f }
+                new Materijal { MaterijalNaziv = "Cement", MaterijalOpis = "metus sit amet imperdiet maximus", MaterijalRaspolozivaKolicina = 90.0f },
+                new Materijal { MaterijalNaziv = "Kreč", MaterijalOpis = "Vivamus pharetra rhoncus dolor", MaterijalRaspolozivaKolicina = 130.0f },
+                new Materijal { MaterijalNaziv = "Farba osnovna", MaterijalOpis = "elementum justo nec", MaterijalRaspolozivaKolicina = 180.0f },
+                new Materijal { MaterijalNaziv = "Cigla", MaterijalOpis = "vehicula arcu quam", MaterijalRaspolozivaKolicina = 100.0f },
+                new Materijal { MaterijalNaziv = "Šljunak", MaterijalOpis = "Nullam imperdiet elit", MaterijalRaspolozivaKolicina = 300.0f },
+                new Materijal { MaterijalNaziv = "Šperploča", MaterijalOpis = "metus sit amet imperdiet maximus", MaterijalRaspolozivaKolicina = 15.0f },
+                new Materijal { MaterijalNaziv = "Git", MaterijalOpis = "elementum justo nec", MaterijalRaspolozivaKolicina = 10.0f },
+                new Materijal { MaterijalNaziv = "Silikon", MaterijalOpis = "raesent sed vehicula mauris", MaterijalRaspolozivaKolicina = 250.0f },
+                new Materijal { MaterijalNaziv = "Malter", MaterijalOpis = "Vivamus pharetra rhoncus dolor", MaterijalRaspolozivaKolicina = 400.0f },
+                new Materijal { MaterijalNaziv = "Gips", MaterijalOpis = "vehicula arcu quam", MaterijalRaspolozivaKolicina = 200.0f },
+                new Materijal { MaterijalNaziv = "Drvene ploče 35x15", MaterijalOpis = "metus sit amet imperdiet maximus", MaterijalRaspolozivaKolicina = 85.0f },
+                new Materijal { MaterijalNaziv = "Šaraf 3cm", MaterijalOpis = "Nullam imperdiet elit", MaterijalRaspolozivaKolicina = 80.0f },
+                new Materijal { MaterijalNaziv = "Ekser 5cm", MaterijalOpis = "Vivamus pharetra rhoncus dolor", MaterijalRaspolozivaKolicina = 250.0f },
+                new Materijal { MaterijalNaziv = "Pur pena", MaterijalOpis = "raesent sed vehicula mauris", MaterijalRaspolozivaKolicina = 60.0f }
             );
-
+            
             context.SaveChanges();
-
+            /*
             context.Struke.AddOrUpdate(
                 new Struka { StrukaNaziv = "Moler" },
                 new Struka { StrukaNaziv = "Zavarivač" },

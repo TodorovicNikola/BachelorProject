@@ -1,22 +1,46 @@
 ﻿@model ConstructIT.DAL.Models.DodelaMaterijala
+@using ConstructIT.DAL.Models
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Brisanje dodele materijala";
+
+    var _projekat = new Projekat();
+    var _zadatak = new Zadatak();
+    var _materijal = new Materijal();
+
+
 }
 
-<h2>Delete</h2>
+<h2>Brisanje</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3 style="padding-left: 3%">Da li ste sigurni da želite da obrišete?</h3>
 <div>
-    <h4>DodelaMaterijala</h4>
+    <h4>Dodela Materijala</h4>
     <hr />
     <dl class="dl-horizontal">
+
         <dt>
-            @Html.DisplayNameFor(model => model.PotrebaMaterijala.PotrebaMaterijalaID)
+            @Html.DisplayNameFor(model => _materijal.MaterijalNaziv)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.PotrebaMaterijala.PotrebaMaterijalaID)
+            @ViewData["materijalNaziv"]
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => _projekat.ProjekatNaziv)
+        </dt>
+
+        <dd>
+            @ViewData["projekatNaziv"]
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => _zadatak.ZadatakNaziv)
+        </dt>
+
+        <dd>
+            @ViewData["zadatakNaziv"]
         </dd>
 
         <dt>
@@ -24,7 +48,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DodMatDatumDodele)
+            @Model.DodMatDatumDodele.ToString("dd.MM.yyyy.")
         </dd>
 
         <dt>
@@ -41,8 +65,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Obriši" class="btn btn-default" /> |
+            @Html.ActionLink("Odustani", "Index")
         </div>
     }
 </div>

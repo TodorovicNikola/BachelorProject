@@ -1,10 +1,15 @@
 ﻿@model ConstructIT.DAL.Models.DodelaMaterijala
+@using ConstructIT.DAL.Models
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Dodela materijala";
+    var _projekat = new Projekat();
+    var _zadatak = new Zadatak();
+    var _materijal = new Materijal();
+    var _potrebaMaterijala = new PotrebaMaterijala();
 }
 
-<h2>Create</h2>
+<h2>Dodela materijala</h2>
 
 
 @using (Html.BeginForm()) 
@@ -15,19 +20,46 @@
         <h4>DodelaMaterijala</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
         <div class="form-group">
-            @Html.LabelFor(model => model.PotrebaMaterijalaID, "PotrebaMaterijalaID", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => _materijal.MaterijalNaziv, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("PotrebaMaterijalaID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.PotrebaMaterijalaID, "", new { @class = "text-danger" })
+                <input type="text" value="@ViewData["materijalNaziv"]" disabled class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => _projekat.ProjekatNaziv, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" value="@ViewData["projekatNaziv"]" disabled class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => _zadatak.ZadatakNaziv, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" value="@ViewData["zadatakNaziv"]" disabled class="form-control" />
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.DodMatDatumDodele, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DodMatDatumDodele, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DodMatDatumDodele, "", new { @class = "text-danger" })
+                <input type="text" value="@DateTime.Today.ToString("dd.MM.yyyy.")" disabled class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => _potrebaMaterijala.PotrMatKolicina, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" value="@ViewData["potrebnaKolicina"]" disabled class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => _materijal.MaterijalRaspolozivaKolicina, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" value="@ViewData["postojecaKolicinaMaterijala"]" disabled class="form-control" />
             </div>
         </div>
 
@@ -39,16 +71,18 @@
             </div>
         </div>
 
+        @Html.HiddenFor(model => model.PotrebaMaterijalaID, new { Value = ViewData["potrebaMaterijalaID"] })
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Dodeli" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Odustani", "Index", "PotrebaMaterijala")
 </div>
 
 @section Scripts {
