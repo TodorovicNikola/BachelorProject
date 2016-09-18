@@ -21,7 +21,7 @@ namespace ConstructIT.Controllers
         {
             DateTime today = DateTime.Today;
 
-            var potrebeMaterijala = db.PotrebeMaterijala.Include(p => p.Materijal).Include(p => p.Zadatak).Where(pm => pm.PotrMatKolicina > 0 && DbFunctions.TruncateTime(pm.PotrMatOdDatuma) <= today && DbFunctions.TruncateTime(pm.PotrMatDoDatuma) >= today);
+            var potrebeMaterijala = db.PotrebeMaterijala.Where(pm => pm.PotrMatKolicina > 0 && DbFunctions.TruncateTime(pm.PotrMatOdDatuma) <= today && DbFunctions.TruncateTime(pm.PotrMatDoDatuma) >= today).Include(p => p.Materijal).Include(p => p.Zadatak);
             return View(await potrebeMaterijala.ToListAsync());
         }
 

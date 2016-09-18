@@ -18,14 +18,11 @@ namespace ConstructIT.DAL.Models
         [Display(Name = "Datum")]
         public DateTime EvRadnVrDatum { get; set; }
 
-
-        [StringLength(5, ErrorMessage = "Nepravilan unos za 'Vreme Do'"), RegularExpression(@"^(?:[01][0-9]|2[0-3]):[0-5][0-9]$", ErrorMessage = "Nepravilan unos vremena"), Required(ErrorMessage = "'Vreme Od' ne sme biti prazno!")]
         [Display(Name = "Vreme od")]
-        public String EvRadnVrVremeOd { get; set; }
+        public int EvRadnVrVremeOd { get; set; }
 
         [Display(Name = "Vreme do")]
-        [StringLength(5, ErrorMessage = "Nepravilan unos za 'Vreme Od'"), RegularExpression(@"^(?:[01][0-9]|2[0-3]):[0-5][0-9]$", ErrorMessage = "Nepravilan unos vremena"), Required(ErrorMessage = "'Vreme Do' ne sme biti prazno!")]
-        public String EvRadnVrVremeDo { get; set; }
+        public int EvRadnVrVremeDo { get; set; }
 
         [ForeignKey("Zadatak")]
         [Required]

@@ -66,6 +66,11 @@ AS
 	DECLARE @V_ZADATAK_ID INT
 
 BEGIN
+
+	-------------------PONISTAVANJE DODELA ZA DANASNJI DAN, UKOLIKO POSTOJE------------------
+
+	DELETE DodelaMaterijala where DATEDIFF(DAY, CONVERT(DATE, GETDATE()), CONVERT(DATE, DodMatDatumDodele)) = 0;
+
 	
 	-----------------------ODREDjIVANJE PRIORITETA-------------------------------------------
 

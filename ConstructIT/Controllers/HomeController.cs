@@ -27,15 +27,17 @@ namespace ConstructIT.Controllers
                 {
                     return RedirectToAction("Details", "Projekat", new { id = korisnik.KlijentovProjekatID });
                 }
-
             }
             else
             {
                 return RedirectToAction("Login", "Session", null);
             }
-            
+        }
 
-
+        public ActionResult Error(String error)
+        {
+            ViewData["error"] = error;
+            return View();
         }
     }
 }

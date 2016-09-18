@@ -44,10 +44,10 @@
             @Html.DisplayFor(modelItem => item.Zadatak.ZadatakNaziv)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.PotrTipaMasOdDatuma)
+            @item.PotrTipaMasOdDatuma.ToString("dd.MM.yyyy.")
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.PotrTipaMasDoDatuma)
+            @item.PotrTipaMasDoDatuma.ToString("dd.MM.yyyy.")
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.PotrTipaMasKolicina)

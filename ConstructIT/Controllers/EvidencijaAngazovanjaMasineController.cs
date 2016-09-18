@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using ConstructIT.DAL;
 using ConstructIT.DAL.Models;
+using ConstructIT.Models;
 
 namespace ConstructIT.Controllers
 {
@@ -19,7 +20,13 @@ namespace ConstructIT.Controllers
         // GET: EvidencijaAngazovanjaMasine
         public async Task<ActionResult> Index()
         {
-            var evidencijeAngazovanjaMasina = db.EvidencijeAngazovanjaMasina.Include(e => e.Masina).Include(e => e.Zadatak);
+            DateTime today = DateTime.Today;
+
+            ViewData["projekti"] = db.Projekti.Include(p => p.Zadaci).ToList();
+            ViewData["zadaciPrvogProjekta"] = db.Zadaci.Where(z => z.ProjekatID == db.Projekti.OrderBy(p => p.ProjekatID).FirstOrDefault().ProjekatID).ToList();
+            ViewData["masine"] = db.Masine.Include(m => m.TipMasine).ToList();
+
+            var evidencijeAngazovanjaMasina = db.EvidencijeAngazovanjaMasina.Where(e => DbFunctions.TruncateTime(e.EvidAngMasDatum) == today).Include(e => e.Masina).Include(e => e.Zadatak);
             return View(await evidencijeAngazovanjaMasina.ToListAsync());
         }
 
@@ -38,31 +45,32 @@ namespace ConstructIT.Controllers
             return View(evidencijaAngazovanjaMasine);
         }
 
-        // GET: EvidencijaAngazovanjaMasine/Create
-        public ActionResult Create()
-        {
-            ViewBag.MasinaID = new SelectList(db.Masine, "MasinaID", "MasinaProizvodjac");
-            ViewBag.ProjekatID = new SelectList(db.Zadaci, "ProjekatID", "ZadatakNaziv");
-            return View();
-        }
-
-        // POST: EvidencijaAngazovanjaMasine/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "EvidencijaAngazovanjaMasineID,ProjekatID,ZadatakID,MasinaID,EvidAngMasDatum,EvidAngMasVremeOd,EvidAngMasVremeDo")] EvidencijaAngazovanjaMasine evidencijaAngazovanjaMasine)
+        public ActionResult Create(int masinaID, int projekatID, int zadatakID, int odVreme, int doVreme)
         {
-            if (ModelState.IsValid)
+            if (db.EvidencijeAngazovanjaMasina.Where(e => DbFunctions.TruncateTime(e.EvidAngMasDatum) == DateTime.Today && e.MasinaID == masinaID).Count() > 0)
             {
-                db.EvidencijeAngazovanjaMasina.Add(evidencijaAngazovanjaMasine);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+
+                if (db.EvidencijeAngazovanjaMasina.Where(e => DbFunctions.TruncateTime(e.EvidAngMasDatum) == DateTime.Today && e.MasinaID == masinaID &&
+                ((e.EvidAngMasVremeOd >= odVreme && e.EvidAngMasVremeOd < doVreme) || (e.EvidAngMasVremeDo > odVreme && e.EvidAngMasVremeDo <= doVreme) || (e.EvidAngMasVremeOd <= odVreme && e.EvidAngMasVremeDo >= doVreme))
+                ).Count() >= db.Masine.Find(masinaID).MasinaDostupnaKolicina)
+                {
+                    return RedirectToAction("Error", "Home", new { error = "Uneseno vreme je u konfliktu sa nekom od stavki iz evidencije!" });
+                }
+                else
+                {
+                    db.EvidencijeAngazovanjaMasina.Add(new EvidencijaAngazovanjaMasine { MasinaID = masinaID, ProjekatID = projekatID, ZadatakID = zadatakID, EvidAngMasDatum = DateTime.Today, EvidAngMasVremeOd = odVreme, EvidAngMasVremeDo = doVreme });
+                }
+            }
+            else
+            {
+                db.EvidencijeAngazovanjaMasina.Add(new EvidencijaAngazovanjaMasine { MasinaID = masinaID, ProjekatID = projekatID, ZadatakID = zadatakID, EvidAngMasDatum = DateTime.Today, EvidAngMasVremeOd = odVreme, EvidAngMasVremeDo = doVreme });
             }
 
-            ViewBag.MasinaID = new SelectList(db.Masine, "MasinaID", "MasinaProizvodjac", evidencijaAngazovanjaMasine.MasinaID);
-            ViewBag.ProjekatID = new SelectList(db.Zadaci, "ProjekatID", "ZadatakNaziv", evidencijaAngazovanjaMasine.ProjekatID);
-            return View(evidencijaAngazovanjaMasine);
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
         }
 
         // GET: EvidencijaAngazovanjaMasine/Edit/5
@@ -77,8 +85,13 @@ namespace ConstructIT.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.MasinaID = new SelectList(db.Masine, "MasinaID", "MasinaProizvodjac", evidencijaAngazovanjaMasine.MasinaID);
-            ViewBag.ProjekatID = new SelectList(db.Zadaci, "ProjekatID", "ZadatakNaziv", evidencijaAngazovanjaMasine.ProjekatID);
+            Masina m = db.Masine.Find(evidencijaAngazovanjaMasine.MasinaID);
+
+            ViewData["vremeOd"] = evidencijaAngazovanjaMasine.EvidAngMasVremeOd;
+            ViewData["vremeDo"] = evidencijaAngazovanjaMasine.EvidAngMasVremeDo;
+            ViewBag.ProizvodniRadnik = m.TipMasine.TipMasineNaziv + ": " + m.MasinaProizvodjac;
+            ViewBag.ProjekatNaziv = db.Projekti.Find(evidencijaAngazovanjaMasine.ProjekatID).ProjekatNaziv;
+            ViewBag.ZadatakNaziv = db.Zadaci.Where(z => z.ProjekatID == evidencijaAngazovanjaMasine.ProjekatID && z.ZadatakID == evidencijaAngazovanjaMasine.ZadatakID).FirstOrDefault().ZadatakNaziv;
             return View(evidencijaAngazovanjaMasine);
         }
 
@@ -89,14 +102,29 @@ namespace ConstructIT.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "EvidencijaAngazovanjaMasineID,ProjekatID,ZadatakID,MasinaID,EvidAngMasDatum,EvidAngMasVremeOd,EvidAngMasVremeDo")] EvidencijaAngazovanjaMasine evidencijaAngazovanjaMasine)
         {
+            evidencijaAngazovanjaMasine.EvidAngMasDatum = DateTime.Today;
+
+            if (db.EvidencijeAngazovanjaMasina.Where(e => DbFunctions.TruncateTime(e.EvidAngMasDatum) == DateTime.Today && e.MasinaID == evidencijaAngazovanjaMasine.MasinaID && e.EvidencijaAngazovanjaMasineID != evidencijaAngazovanjaMasine.EvidencijaAngazovanjaMasineID &&
+                ((e.EvidAngMasVremeOd >= evidencijaAngazovanjaMasine.EvidAngMasVremeOd && e.EvidAngMasVremeOd < evidencijaAngazovanjaMasine.EvidAngMasVremeDo) || (e.EvidAngMasVremeDo > evidencijaAngazovanjaMasine.EvidAngMasVremeOd && e.EvidAngMasVremeDo <= evidencijaAngazovanjaMasine.EvidAngMasVremeDo) || (e.EvidAngMasVremeOd <= evidencijaAngazovanjaMasine.EvidAngMasVremeOd && e.EvidAngMasVremeDo >= evidencijaAngazovanjaMasine.EvidAngMasVremeDo))
+                ).Count() >= db.Masine.Find(evidencijaAngazovanjaMasine.MasinaID).MasinaDostupnaKolicina)
+            {
+                ModelState.AddModelError("EvidAngMasVremeOd", "Unesena vremena su u kofliktom sa nekom od postojećih stavki!");
+                ModelState.AddModelError("EvidAngMasVremeDo", "Unesena vremena su u kofliktom sa nekom od postojećih stavki!");
+            }
+
             if (ModelState.IsValid)
             {
                 db.Entry(evidencijaAngazovanjaMasine).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.MasinaID = new SelectList(db.Masine, "MasinaID", "MasinaProizvodjac", evidencijaAngazovanjaMasine.MasinaID);
-            ViewBag.ProjekatID = new SelectList(db.Zadaci, "ProjekatID", "ZadatakNaziv", evidencijaAngazovanjaMasine.ProjekatID);
+            Masina m = db.Masine.Find(evidencijaAngazovanjaMasine.MasinaID);
+
+            ViewData["vremeOd"] = evidencijaAngazovanjaMasine.EvidAngMasVremeOd;
+            ViewData["vremeDo"] = evidencijaAngazovanjaMasine.EvidAngMasVremeDo;
+            ViewBag.ProizvodniRadnik = m.TipMasine.TipMasineNaziv + ": " + m.MasinaProizvodjac;
+            ViewBag.ProjekatNaziv = db.Projekti.Find(evidencijaAngazovanjaMasine.ProjekatID).ProjekatNaziv;
+            ViewBag.ZadatakNaziv = db.Zadaci.Where(z => z.ProjekatID == evidencijaAngazovanjaMasine.ProjekatID && z.ZadatakID == evidencijaAngazovanjaMasine.ZadatakID).FirstOrDefault().ZadatakNaziv;
             return View(evidencijaAngazovanjaMasine);
         }
 
@@ -124,6 +152,19 @@ namespace ConstructIT.Controllers
             db.EvidencijeAngazovanjaMasina.Remove(evidencijaAngazovanjaMasine);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public JsonResult GetTasksForProject(int projekatID)
+        {
+            List<ZadatakDTO> zadaci = new List<ZadatakDTO>();
+
+            foreach (var zadatak in db.Zadaci.Where(z => z.ProjekatID == projekatID).ToList())
+            {
+                zadaci.Add(new ZadatakDTO(zadatak));
+            }
+
+            return Json(zadaci);
         }
 
         protected override void Dispose(bool disposing)

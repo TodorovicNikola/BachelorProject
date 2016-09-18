@@ -33,14 +33,12 @@ namespace ConstructIT.DAL.Models
         public DateTime EvidAngMasDatum { get; set; }
 
         [Required(ErrorMessage = "'Vreme od' ne sme biti neodređeno!")]
-        [StringLength(5), RegularExpression(@"^(?:[01][0-9]|2[0-3]):[0-5][0-9]$", ErrorMessage = "Nepravilan unos vremena!")]
         [Display(Name = "Vreme od")]
-        public String EvidAngMasVremeOd { get; set; }
+        public int EvidAngMasVremeOd { get; set; }
 
         [Required(ErrorMessage = "'Vreme do' ne sme biti neodređeno!")]
-        [StringLength(5), RegularExpression(@"^(?:[01][0-9]|2[0-3]):[0-5][0-9]$", ErrorMessage = "Nepravilan unos vremena!")]
         [Display(Name = "Vreme do")]
-        public String EvidAngMasVremeDo { get; set; }
+        public int EvidAngMasVremeDo { get; set; }
 
 
         public virtual Zadatak Zadatak { get; set; }

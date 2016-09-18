@@ -1,10 +1,15 @@
 ﻿@model IEnumerable<ConstructIT.DAL.Models.EvidencijaAngazovanjaMasine>
+@using ConstructIT.DAL.Models
 
 @{
     ViewBag.Title = "Evidencija angažovanja mašine";
 }
 
 <h2>Evidencija angažovanja mašine</h2>
+
+<p>
+    <a href="#form" onclick="showForCreating()">Dodaj novu stavku</a>
+</p>
 
 <hr />
 
@@ -49,13 +54,13 @@
             @Html.DisplayFor(modelItem => item.Zadatak.ZadatakNaziv)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.EvidAngMasDatum)
+            @item.EvidAngMasDatum.ToString("dd.MM.yyyy.")
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.EvidAngMasVremeOd)
+            @Html.DisplayFor(modelItem => item.EvidAngMasVremeOd):00
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.EvidAngMasVremeDo)
+            @Html.DisplayFor(modelItem => item.EvidAngMasVremeDo):00
         </td>
         <td>
             @Html.ActionLink("Izmeni", "Edit", new { id=item.EvidencijaAngazovanjaMasineID }) |
@@ -65,3 +70,162 @@
 }
 
 </table>
+
+<br class="for-creating" style="visibility:hidden" />
+<hr class="for-creating" style="visibility:hidden" />
+<br class="for-creating" style="visibility:hidden" />
+
+@using (Html.BeginForm("Create", "EvidencijaAngazovanjaMasine", FormMethod.Post, new { @class = "form-inline for-creating", @style = "visibility:hidden" }))
+{
+    @Html.AntiForgeryToken()
+
+    <table class="table table-bordered table-hover table-striped">
+        <tr>
+            <th>
+                Mašina
+            </th>
+            <th>
+                Projekat
+            </th>
+            <th>
+                Zadatak
+            </th>
+            <th>
+                Datum
+            </th>
+            <th>
+                Od
+            </th>
+            <th>
+                Do
+            </th>
+            <th></th>
+        </tr>
+        <tr>
+            <td width="270px">
+                <select name="masinaID" class="selectpicker" id="proRad" data-width="252px" data-size="8" data-dropup-auto="false">
+                    @{
+                        List<Masina> masine = (List<Masina>)ViewData["masine"];
+                    }
+                    @foreach (var masina in masine)
+                    {
+                        <option value="@masina.MasinaID">@masina.TipMasine.TipMasineNaziv: @masina.MasinaProizvodjac</option>
+                    }
+
+                </select>
+            </td>
+            <td width="210px">
+                <select class="selectpicker" name="projekatID" id="proj" data-width="192px" data-size="8" data-dropup-auto="false" onchange="getTasksForProject()">
+                    @{
+                        List<Projekat> projekti = (List<Projekat>)ViewData["projekti"];
+                    }
+                    @foreach (var projekat in projekti)
+                    {
+                        <option value="@projekat.ProjekatID">@projekat.ProjekatNaziv</option>
+                    }
+                </select>
+            </td>
+            <td width="210px" id="zad">
+                <select class="selectpicker" name="zadatakID" data-width="192px " data-size="8" data-dropup-auto="false">
+                    @{
+                        List<Zadatak> zadaci = (List<Zadatak>)ViewData["zadaciPrvogProjekta"];
+                    }
+                    @foreach (var zadatak in zadaci)
+                    {
+                        <option value="@zadatak.ZadatakID">@zadatak.ZadatakNaziv</option>
+                    }
+                </select>
+            </td>
+            <td width="115px">
+                <input id="todaysDate" style="width:115px" type="text" disabled class="form-control" value="" />
+            </td>
+            <td>
+                <select id="od" name="odVreme" class="form-control" data-size="8" data-dropup-auto="false" onchange="updateDo()"></select>
+            </td>
+            <td>
+                <select id="do" name="doVreme" class="form-control" data-size="8" data-dropup-auto="false"></select>
+            </td>
+            <td><button type="submit" class="form-control btn btn-primary">Dodaj</button></td>
+        </tr>
+    </table>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript" src="@Url.Content("/Scripts/bootstrap-select.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/Scripts/search-select-init.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/Scripts/add-new-ERM.js")"></script>
+}
+
+<script type="text/javascript">
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+    var yyyy = today.getFullYear();
+
+    if(dd<10) {
+        dd='0'+dd
+    }
+
+    if(mm<10) {
+        mm='0'+mm
+    }
+
+    today = dd + '.'+ mm + '.' + yyyy + '.';
+
+    document.getElementById("todaysDate").value = today;
+
+    ////////////////////////////////////////////////////
+
+    function getTasksForProject() {
+        var e = document.getElementById("proj");
+        var projekatID = e.options[e.selectedIndex].value;
+
+        $.post('@Url.Action("GetTasksForProject")',
+                { projekatID: projekatID },
+                function (data) {
+
+                    $('#zad').find('.inner').empty();
+                    $('#zad').find('.selectpicker').empty();
+
+                    for (var i = 0; i < data.length; i++) {
+
+                        if (i == 0) {
+                            $('#zad').find('.inner').append(
+                                "<li data-original-index=\"" + i + "\" class=\"selected active\">" +
+                                    "<a tabindex=\"0\" class style data-tokens=\"null\" role=\"option\" aria-disabled=\"false\" aria-selected=\"true\">" +
+                                        "<span class=\"text\">" + data[i].ZadatakNaziv + "</span>" +
+                                        "<span class=\"glyphicon glyphicon-on check-mark\"></span>" +
+                                    "</a>" +
+                                "</li>"
+                                );
+
+                            $('#zad').find('.selectpicker').append(
+                                "<option value=\"" + data[i].ZadatakID + "\">" + data[i].ZadatakNaziv + "</option>"
+                                );
+
+                            $('#zad').find('.pull-left').text(data[i].ZadatakNaziv);
+                        } else {
+                            $('#zad').find('.inner').append(
+                                "<li data-original-index=\"" + i + "\" class=\"\">" +
+                                    "<a tabindex=\"0\" class style data-tokens=\"null\" role=\"option\" aria-disabled=\"false\" aria-selected=\"false\">" +
+                                        "<span class=\"text\">" + data[i].ZadatakNaziv + "</span>" +
+                                        "<span class=\"glyphicon glyphicon-on check-mark\"></span>" +
+                                    "</a>" +
+                                "</li>"
+                                );
+
+                            $('#zad').find('.selectpicker').append(
+                                "<option value=\"" + data[i].ZadatakID + "\">" + data[i].ZadatakNaziv + "</option>"
+                                );
+
+                        }
+
+                    }
+
+
+
+                }
+            );
+    }
+</script>

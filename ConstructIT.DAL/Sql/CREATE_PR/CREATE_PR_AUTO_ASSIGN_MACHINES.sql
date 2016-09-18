@@ -73,6 +73,12 @@ AS
 
 BEGIN
 
+	-------------------PONISTAVANJE DODELA ZA DANASNJI DAN, UKOLIKO POSTOJE------------------
+
+	DELETE EvidencijaAngazovanjaMasine where DATEDIFF(DAY, CONVERT(DATE, GETDATE()), CONVERT(DATE, EvidAngMasDatum)) = 0;
+
+
+
 	-----------------------ODREDjIVANJE PRIORITETA-------------------------------------------
 
 	insert into @T_TASK_PRIORITIES (V_TASK_ID, V_PRIORITY, V_DATE_UNTIL)
@@ -229,7 +235,7 @@ BEGIN
 
 			------------------------------------------INSERT--------------------------------------
 			INSERT INTO EvidencijaAngazovanjaMasine (ProjekatID, ZadatakID, MasinaID, EvidAngMasDatum, EvidAngMasVremeOd, EvidAngMasVremeDo)
-			VALUES (@V_PROJEKAT_ID, @V_ZADATAK_ID, @V_RESOURCE_ASSIGNED, CONVERT(DATE, GETDATE()), '08:00', '16:00');
+			VALUES (@V_PROJEKAT_ID, @V_ZADATAK_ID, @V_RESOURCE_ASSIGNED, CONVERT(DATE, GETDATE()), 8, 16);
 
 			SELECT * FROM EvidencijaAngazovanjaMasine;
 

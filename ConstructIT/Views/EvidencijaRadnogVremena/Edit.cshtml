@@ -1,10 +1,14 @@
 ﻿@model ConstructIT.DAL.Models.EvidencijaRadnogVremena
+@using ConstructIT.DAL.Models
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Izmena stavke evidencije radnog vremena";
+
+    var _projekat = new Projekat();
+    var _zadatak = new Zadatak();
 }
 
-<h2>Edit</h2>
+<h2>Izmena</h2>
 
 
 @using (Html.BeginForm())
@@ -12,23 +16,43 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>EvidencijaRadnogVremena</h4>
+        <h4 style="padding-left: 3%">Stavka evidencije radnog vremena</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.EvidencijaRadnogVremenaID)
 
         <div class="form-group">
+            <label class = "control-label col-md-2">MBR - Ime Prezime</label>
+            <div class="col-md-10">
+                <input type="text" value="@ViewBag.ProizvodniRadnik" disabled class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => _projekat.ProjekatNaziv, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" value="@ViewBag.ProjekatNaziv" disabled class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => _zadatak.ZadatakNaziv, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" value="@ViewBag.ZadatakNaziv" disabled class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
             @Html.LabelFor(model => model.EvRadnVrDatum, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.EvRadnVrDatum, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.EvRadnVrDatum, "", new { @class = "text-danger" })
+                <input id="todaysDate" type="text" disabled class="form-control" value="" />
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.EvRadnVrVremeOd, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.EvRadnVrVremeOd, new { htmlAttributes = new { @class = "form-control" } })
+                <select id="od" name="EvRadnVrVremeOd" class="form-control" data-size="8" data-dropup-auto="false" onchange="updateDo()"></select>
                 @Html.ValidationMessageFor(model => model.EvRadnVrVremeOd, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -36,47 +60,116 @@
         <div class="form-group">
             @Html.LabelFor(model => model.EvRadnVrVremeDo, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.EvRadnVrVremeDo, new { htmlAttributes = new { @class = "form-control" } })
+                <select id="do" name="EvRadnVrVremeDo" class="form-control" data-size="8" data-dropup-auto="false"></select>
                 @Html.ValidationMessageFor(model => model.EvRadnVrVremeDo, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ProjekatID, "ProjekatID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("ProjekatID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.ProjekatID, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ZadatakID, "ZadatakID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("ZadatakID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.ZadatakID, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ProizvodniRadnikID, "ProizvodniRadnikID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("ProizvodniRadnikID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.ProizvodniRadnikID, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        @Html.HiddenFor(model => model.ProizvodniRadnikID)
+        @Html.HiddenFor(model => model.ProjekatID)
+        @Html.HiddenFor(model => model.ZadatakID)
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Sačuvaj" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Odustani", "Index")
 </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+<script type="text/javascript">
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+    var yyyy = today.getFullYear();
+
+    if(dd<10) {
+        dd='0'+dd
+    }
+
+    if(mm<10) {
+        mm='0'+mm
+    }
+
+    today = dd + '.'+ mm + '.' + yyyy + '.';
+
+    document.getElementById("todaysDate").value = today;
+
+    var vremeOd = @Html.Raw(Json.Encode(ViewData["vremeOd"]));
+    var vremeDo = @Html.Raw(Json.Encode(ViewData["vremeDo"]));
+
+    if(vremeOd == 8){
+        $("#od").html("<option selected value=\"8\">08:00</option>");
+
+        for (var i = 9; i < 20; i++) {
+            $("#od").append("<option value=\"" + i + "\">" + i +":00</option>");
+        }
+
+    }else{
+        $("#od").html("<option value=\"8\">08:00</option>");
+
+        for (var i = 9; i < 20; i++) {
+            if(vremeOd == i){
+                $("#od").append("<option selected value=\"" + i + "\">" + i +":00</option>");
+            }
+            else{
+                $("#od").append("<option value=\"" + i + "\">" + i +":00</option>");
+            }
+        }
+    }
+
+    for (var i = vremeOd + 1; i < 21; i++) {
+        if (i != vremeDo) {
+            $("#do").append("<option value=\"" + i + "\">" + i + ":00</option>");
+        }
+        else {
+            $("#do").append("<option selected value=\"" + i + "\">" + i + ":00</option>");
+        }
+
+    }
+
+    function updateDo() {
+        var eOd = document.getElementById("od");
+        var selectedOd = eOd.options[eOd.selectedIndex].value;
+
+        var eDo = document.getElementById("do");
+        var selectedDo = eDo.options[eDo.selectedIndex].value;
+
+        var variable = parseInt(selectedOd) + 1;
+
+        if(parseInt(selectedOd) >= parseInt(selectedDo)){
+            $("#do").html("<option selected value=\"" + variable + "\">" + variable + ":00</option>");
+
+            for (var i = variable + 1; i < 21; i++) {
+                $("#do").append("<option value=\"" + i + "\">" + i + ":00</option>");
+            }
+        }else{
+            if(parseInt(selectedDo) == variable){
+                $("#do").html("<option selected value=\"" + variable + "\">" + variable + ":00</option>");
+
+                for (var i = variable + 1; i < 21; i++) {
+                    $("#do").append("<option value=\"" + i + "\">" + i + ":00</option>");
+
+                }
+            }else{
+                $("#do").html("<option value=\"" + variable + "\">" + variable + ":00</option>");
+
+                for (var i = variable + 1; i < 21; i++) {
+                    if(i == parseInt(selectedDo)){
+                        $("#do").append("<option selected value=\"" + i + "\">" + i + ":00</option>");
+                    }else{
+                        $("#do").append("<option value=\"" + i + "\">" + i + ":00</option>");
+                    }
+                }
+            }
+        }
+    }
+</script>

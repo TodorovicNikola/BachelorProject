@@ -43,10 +43,10 @@
             @Html.DisplayFor(modelItem => item.Zadatak.ZadatakNaziv)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.PotrebaStrukeOdDatuma)
+            @item.PotrebaStrukeOdDatuma.ToString("dd.MM.yyyy.")
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.PotrebaStrukeDoDatuma)
+            @item.PotrebaStrukeDoDatuma.ToString("dd.MM.yyyy.")
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.PotrebaStrukeKolicina)
